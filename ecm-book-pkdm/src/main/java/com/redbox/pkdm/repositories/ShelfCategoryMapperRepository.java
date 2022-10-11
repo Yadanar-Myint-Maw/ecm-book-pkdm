@@ -16,6 +16,9 @@ public interface ShelfCategoryMapperRepository extends JpaRepository<ShelfCatego
 	
 	@Query(value = "select s from ShelfCategoryMapper as s where s.book.id = :bookId")
 	List<ShelfCategoryMapper> findMapperByBookId(@Param("bookId") String bookId);
+
+	@Query(value = "select s from ShelfCategoryMapper as s where s.erase = :erase")
+	List<ShelfCategoryMapper> findByErase(boolean erase);
 	
 	
 	
