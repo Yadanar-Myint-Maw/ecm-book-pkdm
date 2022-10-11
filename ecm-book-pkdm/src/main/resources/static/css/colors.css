@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.bg-theme-black{
+	background: #2D3236;
+}
+
+.bg-theme-black-light{
+	background: #2E3234;
+}
+
+.bg-theme-blue{
+	background: #0E243A;
+}
+
+.fg-theme-blue{
+	color: #0E243A;
+}
+
+.bg-theme-blue-light {
+	background: #0A1D2F;
+}
+
+.bg-theme-purple {
+	background: #362877;
+}
+
+.fg-theme-purple {
+	color: #362877;
+}
+
+.bg-theme-milk {
+	background: #D5D8DC;
+}
+
+.fg-theme-milk {
+	color: #D5D8DC;
+}

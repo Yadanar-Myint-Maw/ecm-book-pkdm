@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymelead/layout"
+	  layout:decorate="~{/layout/template2.html}">
+<head></head>
+<body>
+	<header layout:fragment="tlebox">
+		<div class="pr-2">
+			<a href="#!" class="menu-toggle">
+				<i class="fas fa-bars"></i>
+			</a>
+		</div>
+		<div class="pl-5 pr-2">
+			General
+		</div>
+		<div class="pl-2 pr-2" style="font-size: 9;">
+			<i class="fas fa-arrow-right"></i>
+		</div> 	
+		<div class="pl-2 pr-2">
+			Dashboard
+		</div>
+		<div class="text-right text-danger" style="width: 90%;">
+			<i class="fas fa-user mr-2"></i> Kaung Si Thu
+		</div>
+	</header>
+	<div layout:fragment="invbox">
+		<form th:action="@{/admin/account/authors/save}" th:object="${author}" method="post" class="border-bottom" style="width: 100%; height:150px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
+			<div style="width: 100%; background-color: #F1F1F2;"  class="pb-2">
+				<div class="row">
+					<div class="col-12 font-weight-bold text-danger">
+						<h5>Welcome</h5>
+					</div>
+					<div class="col-12 mb-4" style="height: 5px;">
+						<hr style="background-color: #E3E6F0;" />
+					</div>
+					<div class="col-12 mt-2 form-group">
+						<span class="lbl">Hello, Kaung Si Thu, Welcome to Phonenix Kingdom Author Panel</span>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div layout:fragment="srhbox">
+		<div class="container-fluid mt-2">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12">
+				
+						<div class="row" style="font-size: 11px">
+						<div class="col-12 font-weight-bold text-danger mt-2 mb-4">
+						Shelf
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+							<div class="rounded shadow-sm bg-light pt-2 pb-2">
+								<div class="form-inline">
+									<div class="col-3">
+										<i class="fas fa-cubes text-danger" style="font-size: 20px;"></i>
+									</div>
+									<div class="col-7 font-weight-bold text-dark">
+										Author
+									</div>
+									<div class="col-2">
+										10
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+							<div class="rounded shadow-sm bg-light pt-2 pb-2">
+								<div class="form-inline">
+									<div class="col-3">
+										<i class="fas fa-cubes text-danger" style="font-size: 20px;"></i>
+									</div>
+									<div class="col-7 font-weight-bold text-dark">
+										Feature
+									</div>
+									<div class="col-2">
+										15
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+							<div class="rounded shadow-sm bg-light pt-2 pb-2">
+								<div class="form-inline">
+									<div class="col-3">
+										<i class="fas fa-cubes text-danger" style="font-size: 20px;"></i>
+									</div>
+									<div class="col-7 font-weight-bold text-dark">
+										Category
+									</div>
+									<div class="col-2">
+										20
+									</div>
+								</div>
+							</div>
+						</div>
+				  		 <div class="col-12"><hr /></div>
+					</div>
+				  		
+					<div class="col-6 row">
+							<div class="col-lg-12 col-md-12 col-sm-12 font-weight-bold text-danger mt-2 mb-4">
+								Discount
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-12 mb-2">
+								<div class="rounded shadow-sm bg-light pt-2 pb-2">
+									<div class="form-inline">
+										<div class="col-3">
+											<i class="fas fa-percentage text-danger" style="font-size: 20px;"></i>
+										</div>
+										<div class="col-7 font-weight-bold text-dark">
+											Coupon
+										</div>
+										<div class="col-2">
+											10
+										</div>
+									</div>
+								</div>
+						</div>
+			</div>
+		</div>
+	</div>		
+</div>			
+</body>
+
+</html>

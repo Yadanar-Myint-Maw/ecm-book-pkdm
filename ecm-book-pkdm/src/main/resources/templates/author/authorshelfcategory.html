@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymelead/layout"
+	  layout:decorate="~{/layout/template2.html}">
+<head></head>
+<body>
+
+	<header layout:fragment="tlebox">
+		<div class="pr-2">
+			<a href="#!" class="menu-toggle">
+				<i class="fas fa-bars"></i>
+			</a>
+		</div>
+		<div class="pl-5 pr-2">
+			Shelf
+		</div>
+		<div class="pl-2 pr-2" style="font-size: 9;">
+			<i class="fas fa-arrow-right"></i>
+		</div> 	
+		<div class="pl-2 pr-2">
+			Categories
+		</div>
+		<div class="text-right" style="width: 75%; font-size: 10px;">
+			<a class="profilebtn" th:href="@{/author/profile/account}" > <i class="fas fa-user mr-2"></i> [[${loginaccount.id}]] (Author) </a>
+		</div>
+		<div class="text-right text-danger" style="width: 10%; font-size: 10px;">
+			<a class="logoutbtn" th:href="@{/signout}" > Logout </a>
+		</div>
+	</header>
+	
+	
+	<div layout:fragment="dtabox">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 mt-2 form-group">
+					<table class="table" style="font-size: 9px;">
+					  <thead>
+					    <tr>
+					      <th scope="col"></th>
+					      <th scope="col">Name</th>
+					      <th scope="col">Description</th>
+					      <th scope="col">Image</th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr th:each="shelfCategory: ${shelfCategories}">
+					      <td>
+					      	<img th:src="@{/img/user.png}" width="15px" />
+					      </td>
+					      <td th:text="${shelfCategory.name}"></td>
+					      <td th:text="${shelfCategory.description}"></td>
+						  <td>
+					      	<img th:src="${shelfCategory.iamge}" width="20px" />
+					      </td>
+					      <td></td>
+					      <td></td>	
+					      <td></td>
+					      <td></td>	
+					      <td></td>
+					      <td></td>					     
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

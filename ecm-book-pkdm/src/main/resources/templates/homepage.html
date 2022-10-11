@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<h:head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>PKDM - HOME</title>
+    <link href="../static/vendor/fontawesome-free/css/all.min.css" th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="../static/css/sb-admin-2.min.css" th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/colors.css}" rel="stylesheet" />
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+	</h:head> 
+</head>	
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-theme-blue" id="mainNav">
+	  <div class="container">
+	    <a class="navbar-brand" href="#">
+	      <img th:src="@{/img/lgo-gnr-mjr.png}" width="40px" height="35px" class="" /> 
+	      <span style="font-size: 17px;" class="font-weight-lighter text-light"> P K D M</span>
+	    </a>
+	    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	      Menu
+	      <i class="fa fa-bars"></i>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarResponsive">
+	      <ul class="navbar-nav ml-auto">
+	        <li class="nav-item">
+	          <a class="nav-link font-weight-lighter text-light" href="homepage.xhtml">Home</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link font-weight-lighter text-light" href="#books">Books</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link font-weight-lighter text-light" href="#download">DownLoad</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link font-weight-lighter text-light" href="#aboutus">About Us</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link font-weight-lighter text-light" th:href="@{/signin}">Sign In</a>
+	        </li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+	
+	<section class="mt-5" id="home">
+	 <img th:src="@{/img/bannexample.jpg}" width="100%" height="450px" class="" /> 
+	
+	</section>
+	 
+	<section class="mt-5 container" id="books">
+	 	<h5 class="font-weight-bold text-uppercase" style="font-size: 18px;">Series Collection ..</h5>
+	 	<div class="media-scroller1 pt-3">
+	 		<div class="border-right pb-3" style="width: 11rem" th:each="seriesBook : ${seriesBooks}">
+		        <img th:src=@{${seriesBook.image}} class="card-img-top pr-0 pl-3" 
+		        style="width: 9rem; height: 13rem; border-radius: 17px;">
+		        <div class="pt-3">
+		          <p class="font-weight-bold mb-0 pl-2"> [[${seriesBook.name}]]</p>
+		          <p class="font-weight-bold mb-0 pl-2" style="font-size: 15px; color: coral; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> [[${seriesBook.price}]] MMK </p>
+		        </div>
+		      </div>
+		</div>
+		       
+	 	<h5 class="font-weight-bold text-uppercase mt-5" style="font-size: 18px;">Lone Chinn Collection ..</h5>
+		<div class="media-scroller1 pt-3">
+	 		<div class="border-right pb-3" style="width: 11rem" th:each="loneChinBook : ${loneChinBooks}">
+		        <img th:src=@{${loneChinBook.image}} class="card-img-top pr-0 pl-3" 
+		        style="width: 9rem; height: 13rem; border-radius: 17px;">
+		        <div class="pt-3">
+		          <p class="font-weight-bold mb-0 pl-2"> [[${loneChinBook.name}]]</p>
+		          <p class="font-weight-bold mb-0 pl-2" style="font-size: 15px; color: coral; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> [[${loneChinBook.price}]] MMK </p>
+		        </div>
+		      </div>
+		</div>       		
+	</section>
+	 
+	 <section class="mt-5 container" id="download">
+	 	<h5 class="text-center font-weight-bold" style="font-size: 23px;"> Downloads</h5>
+	 	<div class="row">
+	 		<div class="col-md-6 border-right mt-2">
+	 			<div class="row pl-5">
+	 				<div class="col-4"></div>
+			 			<div class="col-4 pl-5 d-flex justify-content-center">
+			 				<img th:src="@{/img/andriodicon.jpg}" width="150px" class="" /> 
+			 			
+			 			</div>
+			 			<div class="col-4 pt-5 mt-4">
+		 			 		<button class="btn btn-success"> <i class="fas fa-download mr-1"></i> DownLoad</button>	
+		 				</div>
+	 				</div>
+	 			</div>
+	 		<div class="col-md-6 mt-2">
+	 			<div class="row pl-2">
+		 			<div class="col-3 pl-5 d-flex justify-content-center">
+		 			<img th:src="@{/img/iosicon.jpg}" width="150px" class="" /> 
+		 			
+		 			
+		 			</div>
+		 			<div class="col-5 pt-5 mt-4 pl-4 ml-1">
+	 			 		<button class="btn btn-success"> <i class="fas fa-download mr-1"></i> DownLoad</button>	
+	 				</div>
+	 			</div>
+	 		</div>		
+	 	</div>
+	 </section>
+	 
+	 <section class="mt-5 container mb-5 pb-5" id="aboutus">
+	 	<h5 class="text-center font-weight-bold" style="font-size: 23px;"> About Us</h5>
+	 	<div class="row pt-4">
+	 		<div class="col-1"></div>
+	 		<div class="col-md-5 pr-0">
+	 			<img src="https://banterbookshop.com/i/9924361/Banter_Bookshop_downtown_Fremont_CA_bookstore_6_15_22.png" width="100%" height="260px">
+	 		</div>
+	 		<div class="col-md-5 pt-2 pr-3" style="background-color: #F1F1F2; font-size: 15px; height: 260px">
+	 			<h5 class="text-center pt-3" > Team </h5>
+	 			<p class="text-center pt-1 pb-0">
+			 		In publishing and graphic design, Lorem ipsum
+			 		is a placeholder text commonly used to demonstrate the
+			 		visual form of a document or a typeface without relying
+			 		on meaningful content. Lorem ipsum may be used as a placeholder
+			 		before final copy is available.
+			 		In publishing and graphic design, Lorem ipsum
+			 		Lorem ipsum may be used as a placeholder
+			 		before final copy is available.
+			 		In publishing and graphic design, Lorem ipsum
+			 		In publishing and graphic design, Lorem ipsum
+			 	</p> 	 
+	 		</div>
+	 	</div>
+	 </section>
+	
+	
+      
+    <footer class="sticky-footer" style="height: 10px; background-color: rgba(0, 0, 0, 0.4);">
+        <div class="container my-auto">
+            <div class="mb-2 copyright text-light text-center my-auto" style="font-size: 12px;">
+                <span>Copyright @ www.redboxmm.com 2022</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
