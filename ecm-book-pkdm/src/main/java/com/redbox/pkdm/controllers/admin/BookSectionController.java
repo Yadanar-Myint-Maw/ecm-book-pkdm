@@ -74,7 +74,15 @@ public class BookSectionController {
 	}
 	
 	@GetMapping("/add-new-book-section/{bookId}")
-	public String addNewSection(@PathVariable String id, Model model) {
+	public String addNewSection(@PathVariable String id, Model model, @CookieValue("login_user_id") String cookieId) throws Exception {
+		
+		AccountAdmin loginaccount = accountAdminService.findByID(cookieId);
+		if (loginaccount == null) {
+			throw new Exception();
+		}
+		model.addAttribute("loginaccount", loginaccount);
+		
+		
 		model.addAttribute("books", bookService.findByBookType(id));
 		String bookName = bookService.findByID(id).getName();
 		model.addAttribute("bookName", bookName);
@@ -83,7 +91,9 @@ public class BookSectionController {
 	
 	
 	@PostMapping("/book-series-section/save")
-	public String save(@ModelAttribute("bookSection") BookSection bookSection, @RequestParam String bookId ,@CookieValue("login_user_id") String cookieId) {	
+	public String save(@ModelAttribute("bookSection") BookSection bookSection, @RequestParam String bookId ,@CookieValue("login_user_id") String cookieId) {
+		
+		String bookType = "";
 		
 		if (bookSection.getId() == 0) {
 			bookSection.setSecurityInfo(new SecurityInfo(cookieId));
@@ -92,6 +102,7 @@ public class BookSectionController {
 				bookSection.setImage(ImageUploadUtility.upload(bookSection.getFile()));
 			}
 			bookSectionService.save(bookSection, bookId);
+			bookType = bookSection.getBook().getBookType();
 		} 
 		else {
 			BookSection bookSection2 = bookSectionService.findByID(bookSection.getId());
@@ -105,9 +116,10 @@ public class BookSectionController {
 			bookSection2.getSecurityInfo().setUpdateDate(LocalDate.now());
 			bookSection2.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
 			bookSection2.getSecurityInfo().setUpdateUser(cookieId);
-			bookSectionService.save(bookSection2, bookId);	
+			bookSectionService.save(bookSection2, bookId);
+			bookType = bookSection2.getBook().getBookType();
 		}
-		return "redirect:/admin/book-section/book-series-section/Series";	
+		return "redirect:/admin/book-section/book-series-section/" + bookType;	
 	}
 
 	@GetMapping("/book-series-section/delete/{id}")
@@ -164,7 +176,15 @@ public class BookSectionController {
 	}
 	
 	@GetMapping("/view/{id}")
-	public String readMore(@PathVariable String id, Model model) {
+	public String readMore(@PathVariable String id, Model model, @CookieValue("login_user_id") String cookieId) throws Exception {
+		
+		AccountAdmin loginaccount = accountAdminService.findByID(cookieId);
+		if (loginaccount == null) {
+			throw new Exception();
+		}
+		model.addAttribute("loginaccount", loginaccount);
+		
+		
 		model.addAttribute("bookSection", bookSectionService.findByID(Long.parseLong(id)));
 		return "adminbooksectionview";
 	}

@@ -96,7 +96,7 @@ public class BookSectionDetailController {
 	@GetMapping("/book-series-section-detail/delete/{id}")
 	public String delete(@PathVariable String id) {
 		bookSectionDetailService.delete(bookSectionDetailService.findByID(Long.parseLong(id)));
-		return "redirect:/admin/book-section-detail/show-book-section-details/Series";
+		return "redirect:/admin/book-section-detail/show-book-section-details/SERIE";
 	}
 	
 	@GetMapping("/show-book-section-details/{bookType}")
@@ -143,7 +143,15 @@ public class BookSectionDetailController {
 	}
 
 	@GetMapping("/view/{id}")
-	public String view(@PathVariable String id ,Model model) {
+	public String view(@PathVariable String id ,Model model, @CookieValue("login_user_id") String cookieId) throws Exception {
+		
+		AccountAdmin loginaccount = accountAdminService.findByID(cookieId);
+		if (loginaccount == null) {
+			throw new Exception();
+		}
+		model.addAttribute("loginaccount", loginaccount);
+		
+		
 		model.addAttribute("bookSectionDetail", bookSectionDetailService.findByID(Long.parseLong(id)));
 		return "adminbooksectiondetailsview";
 	}

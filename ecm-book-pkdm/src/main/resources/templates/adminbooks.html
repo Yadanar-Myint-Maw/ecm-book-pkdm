@@ -86,25 +86,25 @@
 		        
 <hr class="sidebar-divider"></hr>
 		         <div class="sidebar-heading text-dark">
-		            Book - Series
+		            Book - SERIE
 		        </div>
 		       
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book/show-books/Series}">
+		            <a class="nav-link text-light" th:href="@{/admin/book/show-books/SERIE}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Books</span>
 		            </a>
 		        </li>
 		        
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book-section/show-book-sections/Series}">
+		            <a class="nav-link text-light" th:href="@{/admin/book-section/show-book-sections/SERIE}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Sections</span>
 		            </a>
 		        </li>
 		        
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book-section-detail/show-book-section-details/Series}">
+		            <a class="nav-link text-light" th:href="@{/admin/book-section-detail/show-book-section-details/SERIE}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Section Details</span>
 		            </a>
@@ -112,19 +112,19 @@
 		        		         
 		        <hr class="sidebar-divider"></hr>
 		         <div class="sidebar-heading text-dark">
-		            Book - Lone Chinn
+		            Book - ENTIRE
 		        </div>
 		       
 		        		        
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book/show-books/LoneChinn}">
+		            <a class="nav-link text-light" th:href="@{/admin/book/show-books/ENTIRE}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Books</span>
 		            </a>
 		        </li> 
 		        
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book-section/show-book-sections/LoneChinn}">
+		            <a class="nav-link text-light" th:href="@{/admin/book-section/show-book-sections/ENTIRE}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Book Sections</span>
 		            </a>
@@ -294,7 +294,7 @@
 			</a>
 		</div>
 		<div class="pl-5 pr-2">
-			Series
+			[[${bookType}]]
 		</div>
 		<div class="pl-2 pr-2" style="font-size: 9;">
 			<i class="fas fa-arrow-right"></i>
@@ -331,17 +331,17 @@
 						<button type="submit" class="btn btn-sm form-control searchbtn">Search</button>
 					</div>
 					<div class="col-2 mt-2 form-group" th:if="${addBtn}">
-						<a class="btn btn-sm form-control refreshbtn" th:href="@{/admin/book/show-books/Series}">Refresh</a>
+						<a class="btn btn-sm form-control refreshbtn" th:href="@{/admin/book/show-books/SERIE}">Refresh</a>
 					</div>
 					<div class="col-2 mt-2 form-group" th:if="${!addBtn}">
-						<a class="btn btn-sm form-control refreshbtn" th:href="@{/admin/book/show-books/LoneChinn}">Refresh</a>
+						<a class="btn btn-sm form-control refreshbtn" th:href="@{/admin/book/show-books/ENTIRE}">Refresh</a>
 					</div>
 					<div class="col-2 mt-2 form-group" th:if="${addBtn}">
-						<a class="btn btn-sm form-control addbtn" th:href="@{/admin/book/book-series/Series}">Add New Book</a>
+						<a class="btn btn-sm form-control addbtn" th:href="@{/admin/book/book-series/SERIE}">Add New Book</a>
 					</div>
 					
 					<div class="col-2 mt-2 form-group" th:if="${!addBtn}">
-						<a class="btn btn-sm form-control addbtn" th:href="@{/admin/book/book-series/LoneChinn}">Add New Book</a>
+						<a class="btn btn-sm form-control addbtn" th:href="@{/admin/book/book-series/ENTIRE}">Add New Book</a>
 					</div>	
 				</div>
 			</div>

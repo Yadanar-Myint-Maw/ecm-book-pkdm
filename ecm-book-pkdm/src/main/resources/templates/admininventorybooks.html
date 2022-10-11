@@ -85,25 +85,25 @@
 		        
 <hr class="sidebar-divider"></hr>
 		         <div class="sidebar-heading text-dark">
-		            Book - Series
+		            Book - SERIE
 		        </div>
 		       
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book/show-books/Series}">
+		            <a class="nav-link text-light" th:href="@{/admin/book/show-books/SERIE}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Books</span>
 		            </a>
 		        </li>
 		        
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book-section/show-book-sections/Series}">
+		            <a class="nav-link text-light" th:href="@{/admin/book-section/show-book-sections/SERIE}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Sections</span>
 		            </a>
 		        </li>
 		        
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book-section-detail/show-book-section-details/Series}">
+		            <a class="nav-link text-light" th:href="@{/admin/book-section-detail/show-book-section-details/SERIE}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Section Details</span>
 		            </a>
@@ -111,19 +111,19 @@
 		        		         
 		        <hr class="sidebar-divider"></hr>
 		         <div class="sidebar-heading text-dark">
-		            Book - Lone Chinn
+		            Book - ENTIRE
 		        </div>
 		       
 		        		        
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book/show-books/LoneChinn}">
+		            <a class="nav-link text-light" th:href="@{/admin/book/show-books/ENTIRE}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Books</span>
 		            </a>
 		        </li> 
 		        
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book-section/show-book-sections/LoneChinn}">
+		            <a class="nav-link text-light" th:href="@{/admin/book-section/show-book-sections/ENTIRE}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Book Sections</span>
 		            </a>
@@ -292,13 +292,13 @@
 			</a>
 		</div>
 		<div class="pl-5 pr-2">
-			Account
+			[[${bookType}]]
 		</div>
 		<div class="pl-2 pr-2" style="font-size: 9;">
 			<i class="fas fa-arrow-right"></i>
 		</div> 	
 		<div class="pl-2 pr-2" style="width: 10%">
-			Admins
+			Inventory
 		</div>
 		<div class="text-right" style="width: 75%; font-size: 10px;">
 			<a class="profilebtn" th:href="@{/admin/profile/account}" > <i class="fas fa-user mr-2"></i> [[${loginaccount.id}]] (Admin) </a>
@@ -406,10 +406,7 @@
 						<span class="lbl">Description</span>
 						<textarea type="text" name="description" th:field="*{description}" class="form-control textfield" style="width: 100%; height: 100px"></textarea>
 					</div>
-					<div class="col-12 mt-2 form-group">
-						<span class="lbl">Trailer</span>
-						<textarea type="text" name="trailer" th:field="*{trailer}" class="form-control textfield" style="width: 100%; height: 200px"></textarea>
-					</div>
+					
 					<div class="col-12 mt-3 form-group">
 						<span class="lbl"> Transtor Image</span>
 						<div class="input-group">

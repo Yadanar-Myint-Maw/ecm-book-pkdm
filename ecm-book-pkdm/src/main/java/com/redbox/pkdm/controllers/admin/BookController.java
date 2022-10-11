@@ -121,7 +121,15 @@ public class BookController {
 	}
 	
 	@GetMapping("/add-new-book-section/{bookId}")
-	public String addNewSection(@PathVariable String bookId, Model model) {
+	public String addNewSection(@PathVariable String bookId, Model model, @CookieValue("login_user_id") String cookieId) throws Exception {
+		
+		AccountAdmin loginaccount = accountAdminService.findByID(cookieId);
+		if (loginaccount == null) {
+			throw new Exception();
+		}
+		model.addAttribute("loginaccount", loginaccount);
+		
+		
 		model.addAttribute("books", bookService.findByErase(false));
 		String bookName = bookService.findByID(bookId).getName();
 		model.addAttribute("bookName", bookName);
@@ -143,6 +151,8 @@ public class BookController {
 	@PostMapping("/book-series/save")
 	public String save(@ModelAttribute("book") Book book, @CookieValue("login_user_id") String cookieId, String categoryId, String featureNew, String featureId, String authorId) {	
 	
+		String bookType = "";
+		
 		if (book.getId().isEmpty()) {
 			System.out.println("3");
 			System.out.println(book.getId());
@@ -157,6 +167,8 @@ public class BookController {
 		}
 		
 		bookService.save(book);
+		
+		bookType = book.getBookType();
 		
 		ShelfCategory shelfCategory = shelfCategoryService.findByID(Long.parseLong(categoryId));
 		ShelfCategoryMapper shelfCategoryMapper = new ShelfCategoryMapper(shelfCategory, book);
@@ -202,6 +214,8 @@ public class BookController {
 			book2.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
 			book2.getSecurityInfo().setUpdateUser(cookieId);
 			bookService.save(book2);
+			
+			bookType = book2.getBookType();
 						
 			ShelfCategory shelfCategory = shelfCategoryService.findByID(Long.parseLong(categoryId));
 			List<ShelfCategoryMapper> shelfCategoryMappers = shelfCategoryMapperService.findMapperByBookId(book.getId());
@@ -228,7 +242,7 @@ public class BookController {
 			}
 		}
 		
-		return "redirect:/admin/book/book-series/Series";	
+		return "redirect:/admin/book/book-series/" + bookType;	
 	}
 	
 	@GetMapping("/book-series/delete/{id}")
@@ -246,10 +260,13 @@ public class BookController {
 		}
 		model.addAttribute("loginaccount", loginaccount);
 		
+		model.addAttribute("bookType", bookType);
+		
 		boolean addBtn = true;
 		if(!bookType.equals("SERIE")) {
 			addBtn = false;
 		}
+		
 		
 		model.addAttribute("addBtn", addBtn);
 		
@@ -265,7 +282,15 @@ public class BookController {
 	}
 	
 	@GetMapping("/read-more/{id}")
-	public String readMore(@PathVariable String id, Model model) {
+	public String readMore(@PathVariable String id, Model model, @CookieValue("login_user_id") String cookieId) throws Exception {
+		
+		AccountAdmin loginaccount = accountAdminService.findByID(cookieId);
+		if (loginaccount == null) {
+			throw new Exception();
+		}
+		model.addAttribute("loginaccount", loginaccount);
+		
+		
 		model.addAttribute("bookDetails", bookService.findByID(id));
 		model.addAttribute("bookDetailsAuthor", shelfAuthorMapperService.findByBookId(id).get(0));
 		model.addAttribute("bookDetailsCategory", shelfCategoryMapperService.findByBookId(id).get(0));
