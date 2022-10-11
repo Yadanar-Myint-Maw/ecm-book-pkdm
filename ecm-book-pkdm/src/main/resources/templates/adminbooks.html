@@ -368,11 +368,8 @@
 									<span style="padding: 2px 5px 2px 5px; font-size: 8px; color:white;" class="bg-primary" th:if="${book.electronicBook == true}">Electronic Books</span>
 									<span style="padding: 2px 5px 2px 5px; font-size: 8px; color:white;" class="bg-danger" th:if="${book.physicalBook == true}">Physical Books</span>
 								</div>
-								<div class="mt-2 mr-3 row">
-									<p style="font-size: 10px;"> [[${book.description.substring(0,50)}]] </p>
-								</div>
 								<div class="pt-2 pb-2 pb-2 pl-2 pr-2 mr-3 pb-0 text-dark row" style="background-color: #E6E6E6;">
-									<span style="font-size: 10px;"> [[${book.trailer.substring(0, 100)}]] <a class="text-primary text-underline" th:href="@{/admin/book/read-more/{id}(id=${book.id})}" style="text-decoration: underline;"> Read More</a> </span>
+									<span style="font-size: 10px;"> [[${book.description.substring(0, 100)}]] <a class="text-primary text-underline" th:href="@{/admin/book/read-more/{id}(id=${book.id})}" style="text-decoration: underline;"> Read More</a> </span>
 								</div>
 								<div class="pt-2 pb-2 text-dark row">
 					      			<a class="text-primary mr-3" th:href="@{/admin/book/add-new-book-section/{bookId}(bookId=${book.id})}"><u> Add Section </u></a>

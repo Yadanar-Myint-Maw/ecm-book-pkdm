@@ -23,8 +23,7 @@
 	            <div class="sidebar-brand-icon rounded-circle">
 	                <img th:src="@{/img/lgo-gnr-mjr.png}" width="40px" />
 	            </div>
-	             <div class="sidebar-brand-text mx-3 text-light pt-2" style="font-size: 14px; line-height: 25px;">Admin<br/> 
-	             <sup class="text-danger" style="font-size: 12px;">Panelization</sup></div>
+	             <div class="sidebar-brand-text mx-3 text-light pt-2" style="font-size: 14px; line-height: 25px;">Admin<br/> <sup class="text-danger" style="font-size: 12px;">Panelization</sup></div>
 	       	</a>
         </header>
         <nav class="dashboard-nav-list">
@@ -83,27 +82,11 @@
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">Categories</span>
 		            </a>
 		        </li>
-		        <hr class="sidebar-divider"></hr>
-		         <div class="sidebar-heading text-dark">
-		            Book
-		        </div>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book/book-series/new}">
-		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 12px;"  class="font-weight-lighter">E-Book</span>
-		            </a>
-		        </li>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book-section/book-series-section/new}">
-		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 12px;"  class="font-weight-lighter">P-Book</span>
-		            </a>
-		        </li>
 		        
 		        
-				<hr class="sidebar-divider"></hr>
+<hr class="sidebar-divider"></hr>
 		         <div class="sidebar-heading text-dark">
-		            Book - Series
+		            Book - SERIE
 		        </div>
 		       
 		        <li class="nav-item">
@@ -129,7 +112,7 @@
 		        		         
 		        <hr class="sidebar-divider"></hr>
 		         <div class="sidebar-heading text-dark">
-		            Book - Lone Chinn
+		            Book - ENTIRE
 		        </div>
 		       
 		        		        
@@ -247,14 +230,6 @@
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">Wallet Top Up</span>
 		            </a>
 		        </li>
-		        
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/wallet/point/new}">
-		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 12px;"  class="font-weight-lighter">Wallet Point Top Up</span>
-		            </a>
-		        </li>
-		        
 		        <hr class="sidebar-divider"></hr>
 		        
 		        <div class="sidebar-heading text-dark">
@@ -311,343 +286,156 @@
         </nav>
     </div>
     <div class="dashboard-app" style="font-size: 11px;">
-        <header layout:fragment="tlebox" class='dashboard-toolbar shadow-sm'>
+        <header class='dashboard-toolbar shadow-sm'>
+        	<div class="pr-2">
+			<a href="#!" class="menu-toggle">
+				<i class="fas fa-bars"></i>
+			</a>
+		</div>
+		<div class="pl-5 pr-2">
+			Purchasement
+		</div>
+		<div class="pl-2 pr-2" style="font-size: 9;">
+			<i class="fas fa-arrow-right"></i>
+		</div> 	
+		<div class="pl-2 pr-2" style="width: 10%">
+			Wallet Point 
+		</div>
+		<div class="text-right" style="width: 75%; font-size: 10px;">
+			<a class="profilebtn" th:href="@{/admin/profile/account}" > <i class="fas fa-user mr-2"></i> [[${loginaccount.id}]] (Admin) </a>
+		</div>
+		<div class="text-right text-danger" style="width: 10%; font-size: 10px;">
+			<a class="logoutbtn" th:href="@{/signout}" > Logout </a>
+		</div>
         </header>
         <div class="" style="width: 100%; color: white;">
         	<div class="alert bg-success rounded-0" role="alert" th:text="${save}" th:if="${save}"></div>
         	<div class="alert bg-primary rounded-0" role="alert" th:text="${update}" th:if="${update}"></div>
 			<div class="alert bg-danger rounded-0" role="alert" th:text="${validation}" th:if="${validation}"></div>
         </div>
-      	<form th:action="@{/admin/account/admins/save}" th:object="${admin}" method="post" class="border-bottom" style="width: 100%; height:150px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
-			<div style="width: 100%; background-color: #F1F1F2;"  class="pb-2">
-				<div class="row">
-					<div class="col-12 font-weight-bold text-danger">
-						<h5>Welcome</h5>
-					</div>
-					<div class="col-12 mb-4" style="height: 5px;">
-						<hr style="background-color: #E3E6F0;" />
-					</div>
-					<div class="col-12 mt-2 form-group">
-						<span class="lbl">Hello, Kaung Si Thu, Welcome to Phonenix Kingdom Admin Panel</span>
-					</div>
-				</div>
-			</div>
-		</form>
-      	<div class="container-fluid mt-2">
+      	<form th:action="@{/admin/wallet/point/save}" th:object="${walletPoint}" method="post" class="border-bottom" style="width: 100%; height:160px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
+		<div style="width: 100%; background-color: #F1F1F2;"  class="pb-2">
+		<div class="">
 			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-12">
-					<div class="row" style="font-size: 11px">
-				<div class="col-12 font-weight-bold text-danger mt-2 mb-4">
-					Account Data
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
-					<div class="rounded pt-3 pl-1 pr-1 pb-3" style="background-color: #F1F1F2;">
-						<div class="form-inline">
-							<div class="col-7">
-								<i class="fas fa-users text-danger" style="font-size: 20px;"></i>
-								<div class="mt-2">
-									<span class="">Admin</span>
-								</div>
-							</div>
-							<div class="col-5 form-inline">
-								<div class="bg-primary rounded text-light pt-1 pb-1 pl-3 pr-3">
-									<span style="font-size: 14px;">[[${adminTotal}]]</span>
-								</div>
-							</div>
-						</div>
+					<div class="col-12 font-weight-bold text-danger mb-3">
+						Inventory
 					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
-					<div class="rounded pt-3 pl-1 pr-1 pb-3" style="background-color: #F1F1F2;">
-						<div class="form-inline">
-							<div class="col-7">
-								<i class="fas fa-users text-danger" style="font-size: 20px;"></i>
-								<div class="mt-2">
-									<span class="">Author</span>
-								</div>
-							</div>
-							<div class="col-5 form-inline">
-								<div class="bg-primary rounded text-light pt-1 pb-1 pl-3 pr-3">
-									<span style="font-size: 14px;">[[${authorTotal}]]</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
-					<div class="rounded pt-3 pl-1 pr-1 pb-3" style="background-color: #F1F1F2;">
-						<div class="form-inline">
-							<div class="col-7">
-								<i class="fas fa-users text-danger" style="font-size: 20px;"></i>
-								<div class="mt-2">
-									<span class="">User (Level 1)</span>
-								</div>
-							</div>
-							<div class="col-5 form-inline">
-								<div class="bg-primary rounded text-light pt-1 pb-1 pl-3 pr-3">
-									<span style="font-size: 14px;">[[${userlevel1Total}]]</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
-					<div class="rounded pt-3 pl-1 pr-1 pb-3" style="background-color: #F1F1F2;">
-						<div class="form-inline">
-							<div class="col-7">
-								<i class="fas fa-users text-danger" style="font-size: 20px;"></i>
-								<div class="mt-2">
-									<span class="">User (Level 2)</span>
-								</div>
-							</div>
-							<div class="col-5 form-inline">
-								<div class="bg-primary rounded text-light pt-1 pb-1 pl-3 pr-3">
-									<span style="font-size: 14px;">[[${userlevel2Total}]]</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			   <div class="col-12"><hr /></div>
-			</div>
-			<div class="row" style="font-size: 11px">
-				<div class="col-12 font-weight-bold text-danger mt-2 mb-4">
-					Books
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-12 mb-2">
-						<div class="rounded shadow-sm bg-light pt-3 pb-3">
-							<div class="form-inline">
-								<div class="col-3">
-									<i class="fas fa-cubes text-danger" style="font-size: 20px;"></i>
-								</div>
-								<div class="col-7 font-weight-bold text-dark">
-									E-Book
-								</div>
-								<div class="col-2">
-									[[${ebookTotal}]]
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-12 mb-2">
-						<div class="rounded shadow-sm bg-light pt-3 pb-3">
-							<div class="form-inline">
-								<div class="col-3">
-									<i class="fas fa-cubes text-danger" style="font-size: 20px;"></i>
-								</div>
-								<div class="col-7 font-weight-bold text-dark">
-									P-Book
-								</div>
-								<div class="col-2">
-									[[${pbookTotal}]]
-								</div>
-							</div>
-						</div>
+					<div class="col-12 font-weight-bold text-danger mb-2">
+						<div class="col-12 border-bottom"></div>
 					</div>
 					
-			  		 <div class="col-12"><hr /></div>
+					<div class="col-3 mt-2 form-group">
+						<span class="lbl">Point Type</span>
+						<select name="pointType" th:field="*{pointType}" class="form-control textfield">
+							<option th:value="notSelected">Select Point Type</option>
+							<option th:value="game">Game</option>
+							<option th:value="purchased">Purchased</option>
+						</select>
 					</div>
-					<div class="row" style="font-size: 11px">
-						<div class="col-12 font-weight-bold text-danger mt-2 mb-4">
-						Shelf
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
-							<div class="rounded shadow-sm bg-light pt-2 pb-2">
-								<div class="form-inline">
-									<div class="col-3">
-										<i class="fas fa-cubes text-danger" style="font-size: 20px;"></i>
-									</div>
-									<div class="col-7 font-weight-bold text-dark">
-										Author
-									</div>
-									<div class="col-2">
-										[[${shelfAuthorTotal}]]
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
-							<div class="rounded shadow-sm bg-light pt-2 pb-2">
-								<div class="form-inline">
-									<div class="col-3">
-										<i class="fas fa-cubes text-danger" style="font-size: 20px;"></i>
-									</div>
-									<div class="col-7 font-weight-bold text-dark">
-										Feature
-									</div>
-									<div class="col-2">
-										[[${shelfFeatureTotal}]]
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
-							<div class="rounded shadow-sm bg-light pt-2 pb-2">
-								<div class="form-inline">
-									<div class="col-3">
-										<i class="fas fa-cubes text-danger" style="font-size: 20px;"></i>
-									</div>
-									<div class="col-7 font-weight-bold text-dark">
-										Category
-									</div>
-									<div class="col-2">
-										[[${shelfCategoryTotal}]]
-									</div>
-								</div>
-							</div>
-						</div>
-				  		 <div class="col-12"><hr /></div>
+					
+					<div class="col-3 mt-2 form-group">
+												<span class="lbl">Account User Name</span>
+					
+						<select name="userId" id="id" class="form-control textfield" value="Action">
+						
+							<option th:value="notselected" >Select User Name</option>
+	        				<option th:each="accountUser : ${accountUsers}" th:text="${accountUser.name}"
+	                					th:value="${accountUser.id}"></option>
+	     				 </select>
 					</div>
-					<div class="row" style="font-size: 11px">
-						<div class="col-6 row">
-							<div class="col-lg-12 col-md-12 col-sm-12 font-weight-bold text-danger mt-2 mb-4">
-								Discount
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-								<div class="rounded shadow-sm bg-light pt-2 pb-2">
-									<div class="form-inline">
-										<div class="col-3">
-											<i class="fas fa-percentage text-danger" style="font-size: 20px;"></i>
-										</div>
-										<div class="col-7 font-weight-bold text-dark">
-											Coupon
-										</div>
-										<div class="col-2">
-											[[${couponTotal}]]
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-								<div class="rounded shadow-sm bg-light pt-2 pb-2">
-									<div class="form-inline">
-										<div class="col-3">
-											<i class="fas fa-percentage text-danger" style="font-size: 20px;"></i>
-										</div>
-										<div class="col-7 font-weight-bold text-dark">
-											Book
-										</div>
-										<div class="col-2">
-											[[${authorTotal}]]
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-												<div class="col-6 row">
-							<div class="col-lg-12 col-md-12 col-sm-12 font-weight-bold text-danger mt-2 mb-4">
-								Advertising
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-								<div class="rounded shadow-sm bg-light pt-2 pb-2">
-									<div class="form-inline">
-										<div class="col-3">
-											<i class="fas fa-image text-danger" style="font-size: 20px;"></i>
-										</div>
-										<div class="col-7 font-weight-bold text-dark">
-											Major Banner
-										</div>
-										<div class="col-2">
-											[[${majorBannerTotal}]]
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-								<div class="rounded shadow-sm bg-light pt-2 pb-2">
-									<div class="form-inline">
-										<div class="col-3">
-											<i class="fas fa-image text-danger" style="font-size: 20px;"></i>
-										</div>
-										<div class="col-7 font-weight-bold text-dark">
-											Minor Banner
-										</div>
-										<div class="col-2">
-											[[${minorTotal}]]
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-				  		 <div class="col-12"><hr /></div>
+					
+					<div class="col-3 mt-2 form-group">
+						<span class="lbl">Amount</span>
+						<input type="number" name="amount" th:field="*{amount}" class="form-control textfield">
 					</div>
-					<div class="row" style="font-size: 11px">
-						<div class="col-6 row">
-							<div class="col-lg-12 col-md-12 col-sm-12 font-weight-bold text-danger mt-2 mb-4">
-								Discount
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-								<div class="rounded shadow-sm bg-light pt-2 pb-2">
-									<div class="form-inline">
-										<div class="col-3">
-											<i class="fas fa-map text-danger" style="font-size: 20px;"></i>
-										</div>
-										<div class="col-7 font-weight-bold text-dark">
-											Region
-										</div>
-										<div class="col-2">
-											[[${regionTotal}]]
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-								<div class="rounded shadow-sm bg-light pt-2 pb-2">
-									<div class="form-inline">
-										<div class="col-3">
-											<i class="fas fa-map text-danger" style="font-size: 20px;"></i>
-										</div>
-										<div class="col-7 font-weight-bold text-dark">
-											Township
-										</div>
-										<div class="col-2">
-											[[${townshipTotal}]]
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-												<div class="col-6 row">
-							<div class="col-lg-12 col-md-12 col-sm-12 font-weight-bold text-danger mt-2 mb-4">
-								Purchasement
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-								<div class="rounded shadow-sm bg-light pt-2 pb-2">
-									<div class="form-inline">
-										<div class="col-3">
-											<i class="fas fa-list text-danger" style="font-size: 20px;"></i>
-										</div>
-										<div class="col-7 font-weight-bold text-dark">
-											Transitions
-										</div>
-										<div class="col-2">
-											3
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12 mb-2">
-								<div class="rounded shadow-sm bg-light pt-2 pb-2">
-									<div class="form-inline">
-										<div class="col-3">
-											<i class="fas fa-list text-danger" style="font-size: 20px;"></i>
-										</div>
-										<div class="col-7 font-weight-bold text-dark">
-											Invoices
-										</div>
-										<div class="col-2">
-											5
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-				  		 <div class="col-12"><hr /></div>
+					
+					<div class="col-2 mt-2 form-group">
+						<span class="lbl"><br /></span>
+						<button class="btn btn-sm form-control savebtn">Save</button>
 					</div>
-				</div>
+					
+				   <div class="col-0 mt-2 disabled form-group" >
+						<input name="id" th:field="*{id}" class="border-0 form-control textfield" style="font-size: 0; background-color: #F1F1F2">
+					</div>  
 				
 			</div>
 		</div>
+		</div>
+		</form>
+		
+      	<form  style="width: 100%; height:190px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
+		<div style="width: 100%; background-color: #FFFFFF;"  class="pb-2">
+			<div class="row">
+				<div class="col-12 font-weight-bold text-danger pb-2">
+					Data Table
+				</div>
+					
+				<div class="col-3 mt-2 form-group">
+						<select name="userId" id="id" class="form-control textfield" value="Action">
+							<option th:value="notselected" >Select User Name</option>
+	        				<option th:each="accountUser : ${accountUsers}" th:text="${accountUser.name}"
+	                					th:value="${accountUser.id}"></option>
+	     				 </select>
+					</div>
+				
+				<div class="col-2 mt-2 form-group">
+					<button type="submit" class="btn btn-sm form-control searchbtn">Search</button>
+				</div>
+				<div class="col-2 mt-2 form-group">
+					<a class="btn btn-sm form-control refreshbtn" th:href="@{/admin/wallet/point/new}">Refresh</a>
+				</div>
+			</div>
+		</div>
+		</form>
+		
+		
+      	<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 form-group">
+					<table class="table" style="font-size: 9px;">
+					  <thead>
+					    <tr>
+					      <th scope="col"></th>
+					      <th scope="col">AccountUserName</th>
+					      <th scope="col">Amount</th>
+					      <th scope="col">Point Type</th>
+					      <th scope="col">Description</th>
+					      <th scope="col">Create Info</th>
+					      <th scope="col">Update Info</th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr th:each="walletPoint : ${walletPoints}">
+					    <td>
+					      	<img th:src="@{/img/user.png}" width="15px" />
+					      </td>
+					      <td th:text="${walletPoint.accountUser.name}"></td>
+					      <td th:text="${walletPoint.amount}"></td>
+					      <td th:text="${walletPoint.pointType}"></td>
+					      <td th:text="${walletPoint.description}"></td>
+					      <td style="font-size: 7px;"> 
+					      	[[${walletPoint.securityInfo.createTime.substring(0,5)}]] / 
+					      	[[${walletPoint.securityInfo.createDate}]] / [[${walletPoint.securityInfo.createUser}]] </td>
+					      <td style="font-size: 7px;"> 
+					      	[[${walletPoint.securityInfo.updateTime.substring(0,5)}]] / 
+					      	[[${walletPoint.securityInfo.updateDate}]] / [[${walletPoint.securityInfo.updateUser}]] </td>
+					      <td>
+					      <td ></td>
+					      
+					      <td>
+					      	<a class="text-danger" th:href="@{/admin/wallet/point/delete/{id}(id=${walletPoint.id})}"> Delete </a>
+					      </td>  
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
       	<footer class="bg-white border-top pt-2 pb-2" style="height: 35px; width:100%; bottom: 0; position: fixed;">
             <div class="container" style="margin-left: 33%;">
                 <div class="copyright">
@@ -657,6 +445,7 @@
         </footer>
     </div>
 </div>
+
 <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
 <script>
