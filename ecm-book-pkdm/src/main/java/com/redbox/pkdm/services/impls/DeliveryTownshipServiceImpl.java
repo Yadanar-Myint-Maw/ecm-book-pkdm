@@ -77,6 +77,11 @@ public class DeliveryTownshipServiceImpl implements DeliveryTownshipService{
 	public List<DeliveryTownship> findByNameAndErase(String name, boolean erase) {
 		return townshipRepo.findByNameAndErase("%"+name+"%", erase);
 	}
+
+	@Override
+	public long findCountByDeliveryTownship() {
+		return townshipRepo.findCountByDeliveryTownship();
+	}
 	
 	
 

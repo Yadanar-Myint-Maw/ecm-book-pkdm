@@ -15,6 +15,7 @@ public interface ShelfAuthorRepository extends JpaRepository<ShelfAuthor, Long>{
 	@Query(value = "select s from ShelfAuthor as s where s.name LIKE %:name% and s.erase = false")
 	List<ShelfAuthor> findByNameLike(@Param("name") String name);
 	
-	
+	@Query(value = "select count(s) from ShelfAuthor as s where s.erase = false")
+	long findCountByShelfAuthor();
 	
 }

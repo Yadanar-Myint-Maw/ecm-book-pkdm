@@ -27,4 +27,6 @@ public interface DiscountCouponService {
 
 	List<AccountUser> getDiscountCouponList(String id);
 	
+	long findCountByDiscountCoupon();
+	
 }

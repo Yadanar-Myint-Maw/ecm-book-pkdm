@@ -16,6 +16,6 @@ public interface ShelfCategoryService {
 	
 	List<ShelfCategory> findByNameLike(String name);	
 
-
+	long findCountByShelfCategory();
 
 }

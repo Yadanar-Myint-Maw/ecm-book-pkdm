@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.redbox.pkdm.entities.DiscountCouponMapper;
 import com.redbox.pkdm.entities.ShelfFeature;
 import com.redbox.pkdm.entities.ShelfFeatureMapper;
 
@@ -20,5 +21,6 @@ public interface ShelfFeatureMapperRepository extends JpaRepository<ShelfFeature
 	@Query(value = "select s from ShelfFeatureMapper as s where s.shelfFeature.id = :id")
 	List<ShelfFeatureMapper> findByShelfFeature(@Param("id") long id);
 	
-
+	@Query(value = "select s from ShelfFeatureMapper as s where s.erase = :erase ORDER BY s.id DESC")
+	List<ShelfFeatureMapper> findByErase(@Param("erase")boolean erase);
 }

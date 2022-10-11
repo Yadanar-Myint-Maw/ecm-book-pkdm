@@ -24,4 +24,6 @@ public interface AccountAdminService {
 	
 	long findCountByErase();
 	
+	long findCountByAdmin();
+	
 }

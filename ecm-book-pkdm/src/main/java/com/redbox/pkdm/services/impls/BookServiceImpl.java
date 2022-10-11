@@ -65,4 +65,15 @@ public class BookServiceImpl implements BookService{
 		return repository.findbyPBook();
 	}
 
+	@Override
+	public long findByCountEBook(String bookType) {
+		return repository.findByCountEBook(bookType);
+	}
+
+	@Override
+	public long findByCountPBook(String bookType) {
+		return repository.findByCountPBook(bookType);
+	}
+
+
 }

@@ -16,6 +16,8 @@ public interface ShelfCategoryRepository extends JpaRepository<ShelfCategory, Lo
 	@Query(value = "select s from ShelfCategory as s where s.name LIKE %:name% and s.erase = false")
 	List<ShelfCategory> findByNameLike(@Param("name") String name);
 	
-	
+	@Query(value = "select count(s) from ShelfCategory as s where s.erase = false")
+	long findCountByShelfCategory();
+
 
 }

@@ -42,7 +42,10 @@ public class ShelfCategoryServiceImpl implements ShelfCategoryService{
 	}
 	
 	
-	
+	@Override
+	public long findCountByShelfCategory() {
+		return repository.findCountByShelfCategory();
+	}
 
 
 }

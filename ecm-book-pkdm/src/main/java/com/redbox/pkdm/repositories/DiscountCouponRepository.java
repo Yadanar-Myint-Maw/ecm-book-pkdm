@@ -24,4 +24,6 @@ public interface DiscountCouponRepository extends JpaRepository<DiscountCoupon, 
 	@Query(value = "select u from AccountUser as u where u.id = :id")
 	List<AccountUser> getDiscountCouponList(@Param("id")String id);	
 
+	@Query(value = "select count(d) from DiscountCoupon as d where d.erase = false")
+	long findCountByDiscountCoupon();
 }

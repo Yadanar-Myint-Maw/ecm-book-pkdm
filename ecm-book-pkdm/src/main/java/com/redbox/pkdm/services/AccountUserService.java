@@ -39,6 +39,8 @@ public interface AccountUserService {
 	AccountUser updateAccountUser(String id, String name, String email, String password, String phone, String gender,
 			LocalDate dob);
 	
+	long findByCountUser(String level);
 	
+	long findByCountUserLevel2(String level);
 
 }

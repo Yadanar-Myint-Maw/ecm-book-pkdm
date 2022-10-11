@@ -7,7 +7,7 @@ import com.redbox.pkdm.entities.ShelfCategoryMapper;
 
 public interface ShelfCategoryMapperService {
 	
-	void save(ShelfCategoryMapper shelfCategoryMapper);
+	void save(ShelfCategoryMapper shelfCategoryMapper , String featureId, String bookId);
 	
 	List<ShelfCategory> findByBookId(String bookId);
 		

@@ -17,5 +17,7 @@ public interface DeliveryTownshipRepository extends JpaRepository<DeliveryTownsh
 	@Query(value = "select dt from DeliveryTownship as dt where dt.name like :name and dt.erase = :erase")
 	List<DeliveryTownship> findByNameAndErase(@Param("name") String name, @Param("erase") Boolean erase);
 	
+	@Query(value = "select count(dt) from DeliveryTownship as dt where dt.erase = false")
+	long findCountByDeliveryTownship();
 	
 }

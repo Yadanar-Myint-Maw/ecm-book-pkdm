@@ -40,7 +40,11 @@ public class ShelfAuthorServiceImpl implements ShelfAuthorService{
 	public List<ShelfAuthor> findByNameLike(String name) {
 		return repository.findByNameLike(name);
 	}
-	
+
+	@Override
+	public long findCountByShelfAuthor() {
+		return repository.findCountByShelfAuthor();
+	}
 	
 	
 }

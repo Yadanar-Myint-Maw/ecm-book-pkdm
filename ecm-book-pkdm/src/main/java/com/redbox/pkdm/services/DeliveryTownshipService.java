@@ -21,5 +21,7 @@ public interface DeliveryTownshipService {
 	List<DeliveryTownshipModel> findAllDeliveryTownShipModel();
 	
 	List<DeliveryTownship> findByNameAndErase(String name, boolean erase);
+	
+	long findCountByDeliveryTownship();
 
 }

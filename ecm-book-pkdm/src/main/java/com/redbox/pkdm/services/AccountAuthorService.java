@@ -19,4 +19,6 @@ public interface AccountAuthorService {
 	List<AccountAuthor> findByErase(boolean erase);
 	
 	AccountAuthor findByUsernameAndPassword(String username, String password);
+	
+	long findCountByAuthor();
 }

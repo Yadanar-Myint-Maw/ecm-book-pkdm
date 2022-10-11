@@ -109,4 +109,14 @@ public class AccountUserServiceImpl implements AccountUserService{
 		return repository.findCountByEmail(email) == 0 ? true : false;
 	}
 
+	@Override
+	public long findByCountUser(String level) {
+		return repository.findByCountUser(level);
+	}
+
+	@Override
+	public long findByCountUserLevel2(String level) {
+		return repository.findByCountUserLevel2(level);
+	}
+
 }

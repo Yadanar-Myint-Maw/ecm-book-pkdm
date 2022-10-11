@@ -20,7 +20,7 @@ public interface DeliveryRegionService {
 	
 	List<DeliveryRegion> findByNameAndErase(String name, boolean erase);
 	
-	
+	long findCountByDeliveryRegion();
 
 
 }

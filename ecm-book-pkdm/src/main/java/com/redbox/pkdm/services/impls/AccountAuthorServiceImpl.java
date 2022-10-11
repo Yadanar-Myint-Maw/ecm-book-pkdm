@@ -61,5 +61,11 @@ public class AccountAuthorServiceImpl implements AccountAuthorService{
 	public AccountAuthor findByUsernameAndPassword(String username, String password) {
 		return accountAuthorRepository.findByUsernameAndPassword(username, password);
 	}
+
+	@Override
+	public long findCountByAuthor() {
+		
+		return accountAuthorRepository.findCountByAuthor();
+	}
 	
 }

@@ -23,5 +23,9 @@ public interface BookService {
 	String findByLast();
 	
 	List<Book> findByNameLikeAndBookType(String name, String bookType);
+	
+	long findByCountEBook(String bookType);
+	
+	long findByCountPBook(String bookType);
 
 }

@@ -14,9 +14,11 @@ public interface ShelfFeatureService {
 			
 	List<ShelfFeature> findByEraseAndOrderId(boolean erase);	
 	
+	List<ShelfFeature> findByErase(boolean erase);
+	
 	List<ShelfFeature> findByNameLike(String name);	
 	
 	ShelfFeature findByName(String name);
 
-
+	long findCountByShelfFeature();
 }

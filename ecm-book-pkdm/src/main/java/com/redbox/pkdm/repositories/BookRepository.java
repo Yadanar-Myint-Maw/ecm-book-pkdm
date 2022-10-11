@@ -28,4 +28,10 @@ public interface BookRepository extends JpaRepository<Book, String>{
 	@Query(value = "select b from Book as b where b.physicalBook = true and b.erase = false")
 	List<Book> findbyPBook();
 	
+	@Query(value = "select count(b) from Book as b where b.bookType = :bookType and b.erase = false")
+	long findByCountEBook(@Param("bookType")String bookType);
+	
+	@Query(value = "select count(b) from Book as b where b.bookType = :bookType and b.erase = false")
+	long findByCountPBook(@Param("bookType")String bookType);
+	
 }

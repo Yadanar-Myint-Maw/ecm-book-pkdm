@@ -13,5 +13,8 @@ public interface AdvertisingMinorBannerRepository extends JpaRepository<Advertis
 	
 	@Query(value = "select ad from AdvertisingMinorBanner as ad where ad.erase = :erase ORDER BY ad.id ") 
 	List<AdvertisingMinorBanner> findByErase(@Param("erase") Boolean erase);
+	
+	@Query(value = "select count(ad) from AdvertisingMinorBanner as ad where ad.erase = false")
+	long findCountByMinorBanner();
 
 }

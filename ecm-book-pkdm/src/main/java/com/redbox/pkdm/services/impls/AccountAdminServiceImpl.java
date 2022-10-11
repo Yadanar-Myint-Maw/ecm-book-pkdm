@@ -66,6 +66,12 @@ public class AccountAdminServiceImpl implements AccountAdminService {
 		return repository.findByUsernameAndPassword(username, password);
 	}
 
+	@Override
+	public long findCountByAdmin() {
+		// TODO Auto-generated method stub
+		return repository.findCountByAdmin();
+	}
+
 
 	
 	

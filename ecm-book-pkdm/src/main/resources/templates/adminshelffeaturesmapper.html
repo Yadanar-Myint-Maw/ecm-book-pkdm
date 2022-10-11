@@ -88,6 +88,23 @@
 		                 <span style="font-size: 12px;"  class="font-weight-lighter">Categories</span>
 		            </a>
 		        </li>
+		        <hr class="sidebar-divider"></hr>
+		         <div class="sidebar-heading text-dark">
+		            Book
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/book/book-series/new}">
+		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 12px;"  class="font-weight-lighter">E-Book</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/book-section/book-series-section/new}">
+		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 12px;"  class="font-weight-lighter">P-Book</span>
+		            </a>
+		        </li>
+		        
 		        
 <hr class="sidebar-divider"></hr>
 		         <div class="sidebar-heading text-dark">
@@ -291,20 +308,20 @@
         </nav>
     </div>
     <div class="dashboard-app" style="font-size: 11px;">
-       <header class='dashboard-toolbar shadow-sm'>
+        <header class='dashboard-toolbar shadow-sm'>
         	<div class="pr-2">
 			<a href="#!" class="menu-toggle">
 				<i class="fas fa-bars"></i>
 			</a>
 		</div>
 		<div class="pl-5 pr-2">
-			Advertising
+			Shelf
 		</div>
 		<div class="pl-2 pr-2" style="font-size: 9;">
 			<i class="fas fa-arrow-right"></i>
 		</div> 	
 		<div class="pl-2 pr-2" style="width: 10%">
-			Major Banners
+			Features Mapper
 		</div>
 		<div class="text-right" style="width: 75%; font-size: 10px;">
 			<a class="profilebtn" th:href="@{/admin/profile/account}" > <i class="fas fa-user mr-2"></i> [[${loginaccount.id}]] (Admin) </a>
@@ -318,7 +335,7 @@
         	<div class="alert bg-primary rounded-0" role="alert" th:text="${update}" th:if="${update}"></div>
 			<div class="alert bg-danger rounded-0" role="alert" th:text="${validation}" th:if="${validation}"></div>
         </div>
-      	<form th:action="@{/admin/advertising/majorbanners/save}" th:object="${advMajorBanner}" enctype="multipart/form-data" method="post" class="border-bottom" style="width: 100%; height:170px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
+      	<form  class="border-bottom" th:action="@{/admin/shelf/featuremappers/save}" enctype="multipart/form-data" th:object="${shelfFeatureMapper}" method="post" style="width: 100%; height:170px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
 		<div style="width: 100%; background-color: #F1F1F2;"  class="pb-2">
 		<div class="">
 			<div class="row">
@@ -328,67 +345,101 @@
 					<div class="col-12 font-weight-bold text-danger mb-2">
 						<div class="col-12 border-bottom"></div>
 					</div>
-					
 					<div class="col-3 mt-2 form-group">
-						<span class="lbl"> Image</span>
-						<div class="input-group">
-						  <div class="custom-file">
-						    <input type="file" name="file" accept="*{file}" class="custom-file-input" id="inputGroupFile01"
-						      aria-describedby="inputGroupFileAddon01">
-						    <label class="custom-file-label" for="inputGroupFile01">Add Image </label>
-						  </div>
-						</div>					
+						<select name="bookId" id="bookName" class="form-control textfield" value="Action">
+							<option th:value="notselected"> Book Name</option>
+	        				<option th:each="book : ${books}" th:text="${book.name}" th:value="${book.id}"></option>
+	     			 	</select>
 					</div>
 					
-					
-					<div class="col-2 mt-2 form-group">
-						<span class="lbl"><br /></span>
+				<div class="col-3 mt-2 form-group">
+						<select name="featureId" id="feature" class="form-control textfield" value="Action">
+							<option value="notselected"> Feature Name</option>
+							<option th:each="feature : ${features}" th:text="${feature.name}"
+                					th:value="${feature.id}"></option>
+     			 			</select>
+				</div>	
+				
+				<div class="col-2 mt-2 form-group">
 						<button class="btn btn-sm form-control savebtn">Save</button>
-					</div>
-				<div class="col-1"><input type="text" name="id" th:field="*{id}" class="form-control textfield border-0 text-light" style="font-size: 0px; background-color: #F1F1F2"></div>  
+				</div>
+				
+			<div class="col-1"><input type="text" name="id" th:field="*{id}" class="form-control textfield border-0 text-light" style="font-size: 0px; background-color: #F1F1F2"></div>
 				
 			</div>
 		</div>
 		</div>
 		</form>
 		
-      <form style="width: 100%; height:90px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
+      	<form th:action="@{/admin/shelf/featuremappers/new}" method="get" style="width: 100%; height:90px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
 		<div style="width: 100%; background-color: #FFFFFF;"  class="pb-2">
 			<div class="row">
 				<div class="col-5 font-weight-bold text-danger pt-1">
 					Data Table
 				</div>
-				
 				<div class="col-3 form-group">
-					<select name="keyword" id="adv" class="form-control textfield" value="Action">
-						<option th:value="not selected" >Select Image</option>
-	        			<option th:each="advMajorBanner : ${advMajorBanners}" th:text="${advMajorBanner.image.substring(26, advMajorBanner.image.length)}"
-	                					th:value="${advMajorBanner.id}"></option>
+					<select name="featureId" id="feature" class="form-control textfield" value="Action">
+						<option th:value="notselected" >Search By Feature Name</option>
+	        			<option th:each="feature : ${features}" th:text="${feature.name}"
+	                					th:value="${feature.id}"></option>
 	     			 </select>
 				</div>
-					
 				<div class="col-2 form-group">
 					<button type="submit" class="btn btn-sm form-control searchbtn">Search</button>
 				</div>
 				<div class="col-2 form-group">
-					<a  class="btn btn-sm form-control refreshbtn" th:href="@{/admin/advertising/majorbanners/new}">Refresh</a>
+					<a th:href="@{/admin/shelf/featuremappers/new}"  class="btn btn-sm form-control refreshbtn">Refresh</a>
 				</div>
+				
 			</div>
 		</div>
 		</form>
-		
-      	<div class="container-fluid">
-				<div class="row">
-					<div class="col-3" th:each="majorbanner : ${majorbanners}" width="100px">
-						<div class="card" style="width: 18rem;" >
-						    <img th:src="@{${majorbanner.image}}" class="card-img-top" alt="..." style="width: 100%; height: 150px" >
-						    <div class="card-body">
-					    	<p class="card-text"> [[${majorbanner.image.substring(26, majorbanner.image.length)}]] </p>
-					  </div>
-					</div>
-					</div>
+	
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 mt-2 form-group">
+					<table class="table" style="font-size: 9px;">
+					  <thead>
+					    <tr>
+					      <th scope="col">Book Name</th>
+					      <th scope="col">Feature Name</th>
+					      <th scope="col">Image</th>
+					      <th >Create Info</th>
+					      <th >Update Info</th>
+					      <th></th>
+					      <th></th>
+					      <th></th>
+					      <th></th>
+					      <th></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr th:each="featureMapper: ${shelfFeatureMappers}">
+					    <td th:text="${featureMapper.book.name}"></td>
+					    <td th:text="${featureMapper.shelfFeature.name}"></td>
+					      <td>                          
+					       <img th:src="@{${featureMapper.book.image}}" width="20px" />                         
+					      </td>
+					      <td style="font-size: 7px;"> 
+					      	[[${featureMapper.securityInfo.createTime.substring(0,5)}]] / 
+					      	[[${featureMapper.securityInfo.createDate}]] / [[${featureMapper.securityInfo.createUser}]] </td>
+					      <td style="font-size: 7px;"> 
+					      	[[${featureMapper.securityInfo.updateTime.substring(0,5)}]] / 
+					      	[[${featureMapper.securityInfo.updateDate}]] / [[${featureMapper.securityInfo.updateUser}]] </td>
+					      <td>				     
+					      	<a class="text-primary" th:href="@{/admin/shelf/featuremappers/{id}(id=${featureMapper.id})}"> Edit </a> 
+					      </td>
+					      <td>
+					      	<a class="text-danger" th:href="@{/admin/shelf/featuremappers/delete/{id}(id=${featureMapper.id})}"> Delete </a>
+					      </td>  
+					    </tr>
+					  </tbody>
+					</table>
 				</div>
+			
+			</div>
 		</div>
+
 		
       	<footer class="bg-white border-top pt-2 pb-2" style="height: 35px; width:100%; bottom: 0; position: fixed;">
             <div class="container" style="margin-left: 33%;">

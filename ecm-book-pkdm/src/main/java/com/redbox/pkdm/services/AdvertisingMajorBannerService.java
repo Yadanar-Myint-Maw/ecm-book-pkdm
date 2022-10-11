@@ -17,5 +17,5 @@ public interface AdvertisingMajorBannerService {
 	
 	List<AdvertisingMajorBanner> findByErase(boolean erase);
 	
-
+	long findCountByMajorBanner();
 }

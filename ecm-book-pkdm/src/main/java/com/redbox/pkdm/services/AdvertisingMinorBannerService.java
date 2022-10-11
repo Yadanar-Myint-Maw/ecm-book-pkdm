@@ -18,5 +18,7 @@ public interface AdvertisingMinorBannerService {
 	List<AdvertisingMinorBanner> findAll();
 	
 	List<AdvertisingMinorBanner> findByErase(boolean erase);
+	
+	long findCountByMinorBanner();
 
 }

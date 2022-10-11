@@ -43,6 +43,11 @@ public class AdvertisingMajorBannerServiceImpl implements AdvertisingMajorBanner
 	public List<AdvertisingMajorBanner> findByErase(boolean erase) {
 		return advertisingMajorBannerRepository.findByErase(false);
 	}
+
+	@Override
+	public long findCountByMajorBanner() {
+		return advertisingMajorBannerRepository.findCountByMajorBanner();
+	}
 	
 	
 

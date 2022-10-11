@@ -46,6 +46,11 @@ public class DeliveryRegionServiceImpl implements DeliveryRegionService{
 	@Override
 	public List<DeliveryRegion> findByNameAndErase(String name, boolean erase) {
 		return deliRepository.findByNameAndErase("%"+name+"%", erase);
-	}	
+	}
+
+	@Override
+	public long findCountByDeliveryRegion() {
+		return deliRepository.findCountByDeliveryRegion();
+	}
 
 }

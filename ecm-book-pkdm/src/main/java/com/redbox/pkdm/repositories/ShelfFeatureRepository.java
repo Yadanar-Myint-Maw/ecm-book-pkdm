@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.redbox.pkdm.entities.DiscountCoupon;
 import com.redbox.pkdm.entities.ShelfFeature;
 
 public interface ShelfFeatureRepository  extends JpaRepository<ShelfFeature, Long> {
@@ -19,6 +20,11 @@ public interface ShelfFeatureRepository  extends JpaRepository<ShelfFeature, Lon
 	@Query(value = "select s from ShelfFeature as s where s.name = :name and s.erase = false")
 	ShelfFeature findByName(@Param("name") String name);
 	
+	@Query(value = "select count(s) from ShelfFeature as s where s.erase = false")
+	long findCountByShelfFeature();
+	
+	@Query(value = "select s from ShelfFeature as s where s.erase = :erase ORDER BY s.id DESC")
+	List<ShelfFeature> findByErase(boolean erase);
 	
 	
 

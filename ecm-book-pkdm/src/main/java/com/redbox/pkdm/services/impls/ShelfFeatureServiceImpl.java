@@ -47,4 +47,15 @@ public class ShelfFeatureServiceImpl implements ShelfFeatureService{
 		return repository.findByName(name);
 	}
 
+	@Override
+	public long findCountByShelfFeature() {
+		return repository.findCountByShelfFeature();
+	}
+
+	@Override
+	public List<ShelfFeature> findByErase(boolean erase) {
+		
+		return repository.findByErase(erase);
+	}
+
 }

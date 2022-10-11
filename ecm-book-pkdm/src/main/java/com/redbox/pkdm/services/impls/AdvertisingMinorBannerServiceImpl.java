@@ -48,4 +48,9 @@ public class AdvertisingMinorBannerServiceImpl implements AdvertisingMinorBanner
 		return advertisingMinorBannerRepository.findByErase(false);
 	}
 
+	@Override
+	public long findCountByMinorBanner() {
+		return advertisingMinorBannerRepository.findCountByMinorBanner();
+	}
+
 }

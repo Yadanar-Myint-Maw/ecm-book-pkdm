@@ -82,20 +82,20 @@ public class AdminGeneralDashboardController {
 //		model.addAttribute("regionTotal", deliveryRegionService.findCountByDeliveryRegion());
 //		model.addAttribute("townshipTotal", deliveryTownshipService.findCountByDeliveryTownship());
 
-		model.addAttribute("adminTotal", 0);
-		model.addAttribute("authorTotal", 0);
-		model.addAttribute("userlevel1Total", 0);
-		model.addAttribute("userlevel2Total", 0);
-		model.addAttribute("ebookTotal", 0);
-		model.addAttribute("pbookTotal", 0);
-		model.addAttribute("shelfAuthorTotal", 0);
-		model.addAttribute("shelfFeatureTotal", 0);
-		model.addAttribute("shelfCategoryTotal", 0);
-		model.addAttribute("couponTotal" , 0);
-		model.addAttribute("majorBannerTotal" , 0);
-		model.addAttribute("minorTotal", 0);
-		model.addAttribute("regionTotal", 0);
-		model.addAttribute("townshipTotal", 0);
+		model.addAttribute("adminTotal", accountAdminService.findCountByAdmin());
+		model.addAttribute("authorTotal", accountAuthorService.findCountByAuthor());
+		model.addAttribute("userlevel1Total", accountUserService.findByCountUser("Level-1"));
+		model.addAttribute("userlevel2Total", accountUserService.findByCountUserLevel2("Level-2"));
+		model.addAttribute("ebookTotal", bookService.findByCountEBook("Series"));
+		model.addAttribute("pbookTotal", bookService.findByCountPBook("LoneChinn"));
+		model.addAttribute("shelfAuthorTotal", shelfAuthorService.findCountByShelfAuthor());
+		model.addAttribute("shelfFeatureTotal", shelfFeatureService.findCountByShelfFeature());
+		model.addAttribute("shelfCategoryTotal", shelfCategoryService.findCountByShelfCategory());
+		model.addAttribute("couponTotal" , discountCouponService.findCountByDiscountCoupon());
+		model.addAttribute("majorBannerTotal" , advertisingMajorBannerService.findCountByMajorBanner());
+		model.addAttribute("minorTotal", advertisingMinorBannerService.findCountByMinorBanner());
+		model.addAttribute("regionTotal", deliveryRegionService.findCountByDeliveryRegion());
+		model.addAttribute("townshipTotal", deliveryTownshipService.findCountByDeliveryTownship());
 		
 		return "admingeneraldashboard";
 		

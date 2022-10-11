@@ -19,4 +19,7 @@ public interface DeliveryRegionRepository extends JpaRepository<DeliveryRegion, 
 
 	@Query(value = "select de from DeliveryRegion as de where de.name like :name and de.erase = :erase")
 	List<DeliveryRegion> findByNameAndErase(@Param("name") String name, @Param("erase") Boolean erase);
+	
+	@Query(value = "select count(de) from DeliveryRegion as de where de.erase = false")
+	long findCountByDeliveryRegion();
 }

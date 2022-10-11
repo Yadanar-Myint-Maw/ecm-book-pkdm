@@ -57,4 +57,9 @@ public class DiscountCouponServiceImpl implements DiscountCouponService{
 	public List<AccountUser> getDiscountCouponList(String id) {
 		return repository.getDiscountCouponList(id);
 	}
+
+	@Override
+	public long findCountByDiscountCoupon() {
+		return repository.findCountByDiscountCoupon();
+	}
 }

@@ -15,6 +15,7 @@ public interface ShelfAuthorService {
 	
 	List<ShelfAuthor> findByNameLike(String name);	
 
+	long findCountByShelfAuthor();
 	
 	
 	
