@@ -44,7 +44,7 @@
 		            Accounts
 		        </div>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/account/admins/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/account/admin/initialize/new}">
 		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 11px;"  class="font-weight-bold  text-secondary">Account Data</span>
 		            </a>
@@ -64,31 +64,31 @@
 		           General
 		        </div>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/essential/author/initialize/new}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
 		                  <span style="font-size: 11px;"  class="font-weight-bold">Essential Data</span>
 		            </a>
 		        </li>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		       <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/feature/initialize/0}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
 		                  <span style="font-size: 11px;"  class="font-weight-bold">Shelf Data</span>
 		            </a>
 		        </li>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/discount/coupon/initialize/0}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
 		                  <span style="font-size: 11px;"  class="font-weight-bold">Discount Data</span>
 		            </a>
 		        </li>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/advertising/banner/initialize/0}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
 		                  <span style="font-size: 11px;"  class="font-weight-bold">Advertising Data</span>
 		            </a>
 		        </li>
 		          <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/delivery/region/initialize/0}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
 		                  <span style="font-size: 11px;"  class="font-weight-bold">Delivery Data</span>
 		            </a>
@@ -101,18 +101,17 @@
 		            Cash
 		        </div>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/purchasement/wallets/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/cash/wallet/init/TOPUP/0}">
 		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 11px;"  class="font-weight-bold">Wallet Data</span>
 		            </a>
 		        </li>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/purchasement/wallets/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/wallet/point/new}">
 		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 11px;"  class="font-weight-bold">Point Data</span>
 		            </a>
 		        </li>
-		     
 		        
 		        <hr class="sidebar-divider"></hr>
 		        
@@ -126,7 +125,7 @@
 		            </a>
 		        </li>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/account/termandconditions/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/account/ruleandregulations/new}">
 		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 11px;"  class="font-weight-bold">Rule Data</span>
 		            </a>
@@ -153,7 +152,7 @@
 			</a>
 		</div>
 		<div class="pl-3 pr-2" style="width: 10%">
-			<span style="font-size: 12px;">Essentail</span>
+			<span style="font-size: 12px;">Shelf</span>
 		</div>
 		<div class="text-right" style="width: 90%; font-size: 9px;">
 			<span class="text-secondary" style="font-size: 8px;">Current User </span> <span class="text-secondary ml-1 mr-2"> - </span> <a class="fg-theme-blue font-weight-bold" style="font-size: 10px;" th:href="@{/admin/account/admins/new}" > [[${loginaccount.name}]] </a>

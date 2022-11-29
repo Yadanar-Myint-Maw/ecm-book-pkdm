@@ -36,7 +36,7 @@ public class AdminAccountAdminController {
 		if (id.equals("0")) {
 			model.addAttribute("admin", new AccountAdmin());
 		} else {
-			model.addAttribute("admin", accountAdminService.findByID(id));
+			model.addAttribute("admin", accountAdminService.findByID(cookieId));
 		}
 		if (keyword == null) {
 			model.addAttribute("admins", accountAdminService.findByErase(false));

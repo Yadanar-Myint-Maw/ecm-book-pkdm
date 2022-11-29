@@ -98,7 +98,7 @@ public class AdminDashboardController {
 		model.addAttribute("regionTotal", deliveryRegionService.findCountByDeliveryRegion());
 		model.addAttribute("townshipTotal", deliveryTownshipService.findCountByDeliveryTownship());
 		
-		return "admingeneraldashboard";
+		return "admindashboard";
 		
 	}
 

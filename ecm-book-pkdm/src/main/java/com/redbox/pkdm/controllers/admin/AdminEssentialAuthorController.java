@@ -40,7 +40,7 @@ public class AdminEssentialAuthorController {
 			throw new Exception();
 		}
 		model.addAttribute("loginaccount", loginaccount);	
-		if (id.equals("0")) {
+		if (id.equals("new")) {
 			model.addAttribute("shelfAuthor", new ShelfAuthor());
 		} else {
 			model.addAttribute("shelfAuthor", shelfAuthorService.findByID(Long.parseLong(id)));

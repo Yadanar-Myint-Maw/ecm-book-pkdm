@@ -62,7 +62,7 @@ public class WalletPointTopUpController {
 		
 		model.addAttribute("walletPoints", walletPoints);
 
-		return "adminwalletpoint";
+		return "admincashpoint";
 		
 	}
 	

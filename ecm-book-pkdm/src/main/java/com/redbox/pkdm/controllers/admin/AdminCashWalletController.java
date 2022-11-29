@@ -39,29 +39,52 @@ public class AdminCashWalletController {
 	
 	@GetMapping("init/{type}/{id}")
 	public String initialize(Model model, @PathVariable String type, @PathVariable String id, String dateFrom, String dateTo, @CookieValue("login_user_id") String cookieId) throws Exception{
-		AccountAdmin loginaccount = accountAdminService.findByID(cookieId);
-		if (loginaccount == null) {
-			return "signin";
+
+		 AccountAdmin loginaccount = accountAdminService.findByID(cookieId);
+
+		 if (loginaccount == null) {
+
+		 return "signin";
+
 		}
-		String redirectPage = "";
-		List<Wallet> wallets = new ArrayList<>();
-		model.addAttribute("loginaccount", loginaccount);
-		model.addAttribute("accountUsers", accountUserService.findByErase(false));
-		model.addAttribute("wallet", walletService.findByID(Long.parseLong(id)));
-		if (type.equals("TOPUP")) {
-			wallets = walletService.findByWalletTypeAndDateFromTo(type, dateFrom, dateTo);
-			redirectPage = "adminwallettopup"; 
-		} else if (type.equals("PURCHASED")) {
-			wallets = walletService.findByWalletTypeAndDateFromTo(type, dateFrom, dateTo);
-			redirectPage = "adminwalletpurchased"; 
-		} else {
-			wallets = walletService.findByDate(dateFrom, dateTo);
-			redirectPage = "adminwalletall"; 
+
+		 String redirectPage = "";
+
+		 List<Wallet> wallets = new ArrayList<>();
+
+		 model.addAttribute("loginaccount", loginaccount);
+
+		 model.addAttribute("accountUsers", accountUserService.findByErase(false));
+
+		 model.addAttribute("wallet", walletService.findByID(Long.parseLong(id)));
+
+		 if (type.equals("TOPUP")) {
+
+		 wallets = walletService.findByWalletTypeAndDateFromTo(type, dateFrom, dateTo);
+
+		 redirectPage = "admincashbalancetopup"; 
+
+		 } else if (type.equals("PURCHASED")) {
+
+		 wallets = walletService.findByWalletTypeAndDateFromTo(type, dateFrom, dateTo);
+
+		 redirectPage = "admincashbalancepurchased"; 
+
+		 } else {
+
+		 wallets = walletService.findByDate(dateFrom, dateTo);
+
+		 redirectPage = "admincashbalanceall"; 
+
 		}
-		model.addAttribute("wallets", wallets);
-		model.addAttribute("total", getTotal(wallets));
-		return redirectPage;
-	}	
+
+		 model.addAttribute("wallets", wallets);
+
+		 model.addAttribute("total", getTotal(wallets));
+
+		 return redirectPage;
+		 
+	}
 	
 	@PostMapping("save")
 	public String save(@ModelAttribute("wallet") Wallet wallet, String userId, @CookieValue("login_user_id") String cookieId, RedirectAttributes redirAttrs) {	

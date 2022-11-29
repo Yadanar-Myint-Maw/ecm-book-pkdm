@@ -68,14 +68,14 @@
 		                  <span style="font-size: 11px;"  class="font-weight-bold">Essential Data</span>
 		            </a>
 		        </li>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		       <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/feature/initialize/0}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
 		                  <span style="font-size: 11px;"  class="font-weight-bold">Shelf Data</span>
 		            </a>
 		        </li>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/discount/coupon/initialize/new}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
 		                  <span style="font-size: 11px;"  class="font-weight-bold">Discount Data</span>
 		            </a>
@@ -99,14 +99,14 @@
 		         <div class="sidebar-heading text-dark">
 		            Cash
 		        </div>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/purchasement/wallets/new}">
+		       <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/cash/wallet/init/TOPUP/0}">
 		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 11px;"  class="font-weight-bold">Wallet Data</span>
 		            </a>
 		        </li>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/purchasement/wallets/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/wallet/point/new}">
 		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 11px;"  class="font-weight-bold">Point Data</span>
 		            </a>
@@ -124,8 +124,8 @@
 		                <span style="font-size: 11px;"  class="font-weight-bold">Contact Data</span>
 		            </a>
 		        </li>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/account/termandconditions/new}">
+		       <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/ruleandregulations/new}">
 		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 11px;"  class="font-weight-bold">Rule Data</span>
 		            </a>
@@ -255,10 +255,10 @@
 					      <td th:text=${discountcouponmapper.accountUser.id}></td>
 					     
 					      <td>
-					      	<td style="font-size: 7px;"> <a class="bg-primary text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/discount/mapper/initialize/{id}(id=${discountcoupon.id})}"> UPDATE </a>
+					      	<td style="font-size: 7px;"> <a class="bg-primary text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/discount/mapper/initialize/{id}(id=${discountcouponmapper.id})}"> UPDATE </a>
 					      </td>  
 					      <td>
-					      	<td style="font-size: 7px;"> <a class="bg-danger text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/discount/mapper/delete/{id}(id=${discountcoupon.id})}"> DELETE </a>
+					      	<td style="font-size: 7px;"> <a class="bg-danger text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/discount/mapper/delete/{id}(id=${discountcouponmapper.id})}"> DELETE </a>
 					      </td>  
 					    </tr>
 					  </tbody>

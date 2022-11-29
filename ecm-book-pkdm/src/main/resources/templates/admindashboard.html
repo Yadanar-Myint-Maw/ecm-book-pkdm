@@ -30,229 +30,139 @@
 			<ul class="navbar-nav sidebar bg-theme-blue sidebar-dark" style="font-size: 11px;">
 				<hr class="sidebar-divider"></hr>
 				<div class="sidebar-heading text-dark" >
-		           အထွေထွေ
+		           Dashboard
 		        </div>
 				<li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/general/dashboard}">
 		                <i class="fas fa-fw fa-tachometer-alt text-danger" style="font-size: 14px;"></i>
-		                <span style="font-size: 9px;" class="font-weight-lighter"> စာရင်းစုများ </span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Dashboard Data</span>
 		            </a>
 		        </li>
 		        <hr class="sidebar-divider"></hr>
 				<div class="sidebar-heading text-dark">
-		            အကောင့်
+		            Accounts
 		        </div>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/account/admins/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/account/admin/initialize/new}">
 		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">ထိန်းချုပ်သူများ</span>
-		            </a>
-		        </li>
-		        <!-- <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/account/authors/new}">
-		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 12px;"  class="font-weight-lighter">Authors</span>
-		            </a>
-		        </li> -->
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/account/users/new}">
-		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">အသုံးပြုသူများ</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold  text-secondary">Account Data</span>
 		            </a>
 		        </li>
 		         <hr class="sidebar-divider"></hr>
 		         <div class="sidebar-heading text-dark">
-		            စာအုပ်
+		            Books
 		        </div>	        
 		        <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/book/book-entire/new}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">လုံးချင်းစာအုပ်များ</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Book Data</span>
 		            </a>
 		        </li> 
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book/book-serie/new}">
-		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">စီးရီးစာအုပ်များ</span>
-		            </a>
-		        </li> 
-		        
-		        <!-- <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/book-section/show-book-sections/LoneChinn}">
-		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Book Sections</span>
-		            </a>
-		        </li>  -->
 		        <hr class="sidebar-divider"></hr>
 		        <div class="sidebar-heading text-dark">
-		            အချက်အလက်
+		           General
 		        </div>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/essential/author/initialize/new}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">စာရေးဆရာများ</span>
-		            </a>
-		        </li>
-		        		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/categories/new}">
-		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">အမျိုးအစားများ</span>
+		                  <span style="font-size: 11px;"  class="font-weight-bold">Essential Data</span>
 		            </a>
 		        </li>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/related/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/feature/initialize/0}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">လုံးချင်းအုပ်စုများ</span>
+		                  <span style="font-size: 11px;"  class="font-weight-bold">Shelf Data</span>
 		            </a>
 		        </li>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/tag/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/discount/coupon/initialize/0}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">စီးရီးခေါင်းစဉ်များ</span>
+		                  <span style="font-size: 11px;"  class="font-weight-bold">Discount Data</span>
 		            </a>
 		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/advertising/banner/initialize/0}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                  <span style="font-size: 11px;"  class="font-weight-bold">Advertising Data</span>
+		            </a>
+		        </li>
+		          <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/delivery/region/initialize/0}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                  <span style="font-size: 11px;"  class="font-weight-bold">Delivery Data</span>
+		            </a>
+		        </li>
+		        
 		       
 		     
-		        
 		        <hr class="sidebar-divider"></hr>
 		         <div class="sidebar-heading text-dark">
-		           စာအုပ်စဉ်
-		        </div>
-		       		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/features/new}">
-		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">စာအုပ်စဉ်များ</span>
-		            </a>
-		        </li>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/shelf/featuremappers/new}">
-		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">စာအုပ်စဉ်များ တွဲဖက်မှုများ</span>
-		            </a>
-		        </li>
-		        <hr class="sidebar-divider"></hr>
-		         <div class="sidebar-heading text-dark">
-		            လျော့စျေး
+		            Cash
 		        </div>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/discount/usercoupons/new}">
-		                <i class="fas fa-percentage text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">အသုံးပြုသူကူပွန်</span>
-		            </a>
-		        </li>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/account/discountcouponmappers/new}">
-		                <i class="fas fa-percentage text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">အသုံးပြုသူကူပွန် တွဲဖက်မှုများ</span>
-		            </a>
-		        </li>
-		        <hr class="sidebar-divider"></hr>
-		         <div class="sidebar-heading text-dark">
-		            ကြော်ငြာ
-		        </div>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/advertising/majorbanners/new}">
-		                <i class="fas fa-image text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">အဓိက ကြော်ငြာများ</span>
-		            </a>
-		        </li>
-		        
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/advertising/minorbanners/new}">
-		                <i class="fas fa-image text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">အရန် ကြော်ငြာများ</span>
-		            </a>
-		        </li>
-		        
-		         <hr class="sidebar-divider"></hr>
-		         <div class="sidebar-heading text-dark">
-		            ပိုဆောင်ရေး
-		        </div>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/delivery/regions/new}">
-		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">ပြည်နယ်နှင့် တိုင်းဒေသကြီးများ</span>
-		            </a>
-		        </li>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/delivery/townships/new}">
-		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">မြို့နယ်များ နှင့်စျေးနှုန်း</span>
-		            </a>
-		        </li>
-		        <hr class="sidebar-divider"></hr>
-		         <div class="sidebar-heading text-dark">
-		            ငွေစာရင်း
-		        </div>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/purchasement/wallets/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/cash/wallet/init/TOPUP/0}">
 		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">ပိုက်ဆံအိတ်</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Wallet Data</span>
 		            </a>
 		        </li>
-		     
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/wallet/point/new}">
+		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Point Data</span>
+		            </a>
+		        </li>
 		        
 		        <hr class="sidebar-divider"></hr>
 		        
 		        <div class="sidebar-heading text-dark">
-		            ဆက်သွယ်မှု
+		           System
 		        </div>
 		        <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/contact/edit}">
 		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">ဖုန်းနံပါတ်နှင့် လိပ်စာ</span>
+		                <span style="font-size: 11px;"  class="font-weight-bold">Contact Data</span>
 		            </a>
 		        </li>
-		        
-		        <hr class="sidebar-divider"></hr>
-		        
-		        <div class="sidebar-heading text-dark">
-		            သတ်မှတ်ချက်
-		        </div>
-		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/account/termandconditions/new}">
-		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">သတ်မှတ်ချက်များ</span>
-		            </a>
-		        </li>
-		        
-		        <hr class="sidebar-divider"></hr>
-		        
-		        <div class="sidebar-heading text-dark">
-		           စည်းမျည်း
-		        </div>
-		        <li class="nav-item">
+		       <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/account/ruleandregulations/new}">
 		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 9px;"  class="font-weight-lighter">စည်းမျည်းစည်းကမ်းများ</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Rule Data</span>
+		            </a>
+		        </li>
+		         <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/termandconditions/new}">
+		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Term Data</span>
 		            </a>
 		        </li>
  				<hr class="sidebar-divider"></hr>
 		        
 				<div class="text-center d-none d-md-inline mb-5">
-		            <span class="text-warning" style="font-size: 12px;">ဗားရှင်း 1.0</span>
+		            <span class="text-warning" style="font-size: 12px;">Version 1.0</span>
 		        </div>
 			</ul>
         </nav>
     </div>
     <div class="dashboard-app" style="font-size: 11px;">
           
-        <header class='dashboard-toolbar shadow-sm'>
+       <header class='dashboard-toolbar shadow-sm'>
         	<div class="pr-2">
 			<a href="#!" class="menu-toggle">
-				<i class="fas fa-bars"></i>
+				<i class="fas fa-users"></i>
 			</a>
 		</div>
 		<div class="pl-3 pr-2" style="width: 10%">
-			<span style="font-size: 10px;">စာရင်းစုများ</span>
+			<span style="font-size: 12px;">General Dashboard</span>
 		</div>
-		<div class="text-right" style="width: 90%; font-size: 10px;">
-			<a class="logoutbtn bg-primary border-primary text-light ml-2" th:href="@{/admin/profile/account}" > <i class="fas fa-user mr-2"></i> [[${loginaccount.name}]] </a>
-			<a class="logoutbtn bg-primary border-primary text-light ml-2" th:href="@{/admin/general/dashboard}" > <i class="fas fa-history mr-2"></i> ပြန်လည်စတင်မည် </a>
-			<a class="logoutbtn ml-2" th:href="@{/signout}" > အကောင့်မှထွက်မည် </a>
+		<div class="text-right" style="width: 90%; font-size: 9px;">
+			<span class="text-secondary" style="font-size: 8px;">Current User </span> <span class="text-secondary ml-1 mr-2"> - </span> <a class="fg-theme-blue font-weight-bold" style="font-size: 10px;" th:href="@{/admin/account/admins/new}" > [[${loginaccount.name}]] </a>
+			<span class="ml-2 mr-2 text-secondary"> | </span>
+			<a class="text-success" style="font-size: 10px;" th:href="@{/admin/account/user/initialize/0}" > Refresh Page </a>
+			<span class="ml-2 mr-2 text-secondary"> | </span>
+			<a class="text-danger" style="font-size: 10px;" th:href="@{/signin}" > Sign Out </a>
+			
 		</div>
         </header>
-        
         <div class="" style="width: 100%; color: white;">
         	<div class="bg-success rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${save}" th:if="${save}"></div>
         	<div class="bg-primary rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${update}" th:if="${update}"></div>
@@ -263,11 +173,11 @@
 			<div style="background-color: #F1F1F2;"  class="pb-2 pt-4 container-fluid">
 				<div class="row">
 					<div class="col-12 font-weight-bold text-danger">
-						<h5>ကြိုဆိုပါတယ်</h5>
+						<h5>Welcome</h5>
 					</div>
 					<div class="col-12"><hr /></div>
 					<div class="col-12 mt-2 form-group">
-						<span class="lbl">ထိန်းချုပ်သူတွေရဲ့ စီမံခန့်ခွဲတဲ့နေရာဖြစ်ပါတယ်။</span>
+						<span class="lbl">This is Admin Control Panel.</span>
 					</div>
 				</div>
 			</div>
@@ -277,7 +187,7 @@
 				<div class="col-sm-12 col-md-12 col-lg-12">
 					<div class="row" style="font-size: 11px">
 				<div class="col-12 font-weight-bold text-danger mt-2 mb-4">
-					အကောင့်
+					Account
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
 					<div class="rounded pt-3 pl-1 pr-1 pb-3" style="background-color: #F1F1F2;">
@@ -285,7 +195,7 @@
 							<div class="col-7">
 								<i class="fas fa-users text-danger" style="font-size: 20px;"></i>
 								<div class="mt-2">
-									<span class="">ထိန်းချုပ်သူ</span>
+									<span class="">Admin</span>
 								</div>
 							</div>
 							<div class="col-5 form-inline">
@@ -302,7 +212,7 @@
 							<div class="col-7">
 								<i class="fas fa-users text-danger" style="font-size: 20px;"></i>
 								<div class="mt-2">
-									<span class="">စာရေးဆရာ</span>
+									<span class="">Author</span>
 								</div>
 							</div>
 							<div class="col-5 form-inline">
@@ -319,7 +229,7 @@
 							<div class="col-7">
 								<i class="fas fa-users text-danger" style="font-size: 20px;"></i>
 								<div class="mt-2">
-									<span class="">အသုံးပြုသူ (Level 1)</span>
+									<span class="">User (Level 1)</span>
 								</div>
 							</div>
 							<div class="col-5 form-inline">
@@ -336,7 +246,7 @@
 							<div class="col-7">
 								<i class="fas fa-users text-danger" style="font-size: 20px;"></i>
 								<div class="mt-2">
-									<span class="">အသုံးပြုသူ (Level 2)</span>
+									<span class="">User (Level 2)</span>
 								</div>
 							</div>
 							<div class="col-5 form-inline">
@@ -351,7 +261,7 @@
 			</div>
 			<div class="row" style="font-size: 11px">
 				<div class="col-12 font-weight-bold text-danger mt-2 mb-4">
-					စာအုပ်
+					Book Type
 					</div>
 					<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
 						<div class="rounded shadow-sm bg-light pt-3 pb-3">
