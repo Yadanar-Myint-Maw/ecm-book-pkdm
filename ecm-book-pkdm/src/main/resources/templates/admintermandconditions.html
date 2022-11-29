@@ -157,7 +157,7 @@
 		<div class="text-right" style="width: 90%; font-size: 9px;">
 			<span class="text-secondary" style="font-size: 8px;">Current User </span> <span class="text-secondary ml-1 mr-2"> - </span> <a class="fg-theme-blue font-weight-bold" style="font-size: 10px;" th:href="@{/admin/account/admins/new}" > [[${loginaccount.name}]] </a>
 			<span class="ml-2 mr-2 text-secondary"> | </span>
-			<a class="text-success" style="font-size: 10px;" th:href="@{/admin/account/user/initialize/0}" > Refresh Page </a>
+			<a class="text-success" style="font-size: 10px;" th:href="@{/admin/account/termandconditions/new}" > Refresh Page </a>
 			<span class="ml-2 mr-2 text-secondary"> | </span>
 			<a class="text-danger" style="font-size: 10px;" th:href="@{/signin}" > Sign Out </a>
 			
@@ -170,11 +170,11 @@
 			<div class="bg-danger rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${validation}" th:if="${validation}"></div>
         </div> 
       <form th:action="@{/admin/account/termandconditions/save}" th:object="${termandcondition}" method="post" class="border-bottom" style="width: 100%; height:240px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
-		<div style="width: 100%; background-color: #F1F1F2;"  class="pb-2">
+		<div style="width: 100%; background-color: #F1F1F2;"  class="pb-2 container-fluid mt-4">
 		<div class="">
 			<div class="row">
 					<div class="col-12 font-weight-bold text-danger mb-3">
-						Inventory
+						DATA INVENTORY
 					</div>
 					<div class="col-12 font-weight-bold text-danger mb-2">
 						<div class="col-12 border-bottom"></div>
@@ -202,11 +202,11 @@
 		</form>
 		
 		
-      	<form method="get" style="width: 100%; height:70px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
-		<div style="width: 100%; background-color: #FFFFFF;"  class="pb-2">
+      	<form style="width: 100%; height:160px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
+		<div style="width: 100%; background-color: #FFFFFF;"  class="pb-2 container-fluid mt-4">
 			<div class="row">
-				<div class="col-12 font-weight-bold text-danger pb-2 ml-2">
-					Data Table
+				<div class="col-12 font-weight-bold text-danger pt-1">
+					DATA TABLE
 				</div>
 			</div>
 		</div>		
