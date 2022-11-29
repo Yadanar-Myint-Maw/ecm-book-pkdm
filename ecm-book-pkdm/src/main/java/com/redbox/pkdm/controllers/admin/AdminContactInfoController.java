@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.redbox.pkdm.entities.AccountAdmin;
 import com.redbox.pkdm.entities.ContactInfo;
+import com.redbox.pkdm.entities.SecurityInfo;
 import com.redbox.pkdm.services.AccountAdminService;
 import com.redbox.pkdm.services.ContactInfoService;
 
@@ -34,7 +35,6 @@ public class AdminContactInfoController {
 			throw new Exception();
 		}
 		model.addAttribute("loginaccount", loginaccount);	
-		
 		model.addAttribute("contactInfo", contactInfoService.findById(1));	
 		return "admincontact";
 	}
@@ -50,10 +50,11 @@ public class AdminContactInfoController {
 			contactInfo2.setViber(contactInfo.getViber());
 			contactInfo2.setTelegram(contactInfo.getTelegram());
 			contactInfo2.setFacebook(contactInfo.getFacebook());
+			contactInfo2.setSecurityInfo(new SecurityInfo());
 			contactInfo2.getSecurityInfo().setUpdateDate(LocalDate.now());
 			contactInfo2.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
 			contactInfo2.getSecurityInfo().setUpdateUser(cookieId);
-			redirAttrs.addFlashAttribute("update","Contact Information update successfully");
+			redirAttrs.addFlashAttribute("update","အချက်အလက်များကို ပြင်ဆင်လိုက်ပါပြီ။");
 			
 			contactInfoService.save(contactInfo2);					
 		return "redirect:/admin/contact/edit";

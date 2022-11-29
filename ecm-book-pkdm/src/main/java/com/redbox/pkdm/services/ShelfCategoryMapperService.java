@@ -9,7 +9,7 @@ public interface ShelfCategoryMapperService {
 	
 	void save(ShelfCategoryMapper shelfCategoryMapper);
 	
-	List<ShelfCategory> findByBookId(String bookId);
+	List<ShelfCategory> findByBook(String bookId);
 		
 	List<ShelfCategoryMapper> findMapperByBookId(String bookId);
 	

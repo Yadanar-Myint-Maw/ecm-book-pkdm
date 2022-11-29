@@ -17,10 +17,10 @@
 </head>	
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-theme-blue" id="mainNav">
-	  <div class="container">
+	  <div class="container-fluid">
 	    <a class="navbar-brand" href="#">
-	      <img th:src="@{/img/lgo-gnr-mjr.png}" width="40px" height="35px" class="" /> 
-	      <span style="font-size: 17px;" class="font-weight-lighter text-light"> P K D M</span>
+	      <img th:src="@{/img/lgo-gnr-mjr.png}" width="30px" class="" /> 
+	      <span style="font-size: 14px;" class="font-weight-bold text-light ml-3"> PHOENIX KINGDOM</span>
 	    </a>
 	    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 	      Menu
@@ -29,7 +29,7 @@
 	    <div class="collapse navbar-collapse" id="navbarResponsive">
 	      <ul class="navbar-nav ml-auto">
 	        <li class="nav-item">
-	          <a class="nav-link font-weight-lighter text-light" href="homepage.xhtml">Home</a>
+	          <a class="nav-link font-weight-lighter text-light" href="#">Home</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link font-weight-lighter text-light" href="#books">Books</a>
@@ -48,38 +48,40 @@
 	  </div>
 	</nav>
 	
-	<section class="mt-5" id="home">
-	 <img th:src="@{/img/bannexample.jpg}" width="100%" height="450px" class="" /> 
 	
-	</section>
+		<section class="mt-5" id="home">
+	 	<img th:src="@{/img/banner-1.png}" width="100%" class="" /> 
+	 	</section>
 	 
-	<section class="mt-5 container" id="books">
-	 	<h5 class="font-weight-bold text-uppercase" style="font-size: 18px;">Series Collection ..</h5>
+	<section class="container-fluid p-4" id="books" style="background-color: #F1F1F2;">
+	<h5 class="font-weight-bold text-uppercase" style="font-size: 18px;">ENTIRE Books From Phoenix Kingdom</h5>
+		<div class="media-scroller1 pt-3">
+	 		<div class="rounded pb-4" style="width: 14rem; background-color: #FFFFFF;" th:each="loneChinBook : ${loneChinBooks}">
+		        <img th:src=@{${loneChinBook.image}} class="rounded" 
+		        style="width: 100%;">
+		        <div class="pt-2">
+		          <p style="font-size: 11px;" class="font-weight-bold mb-0 pl-2 pr-2"> [[${loneChinBook.name}]]</p>
+		         
+		        </div>
+		      </div>
+		</div>       
+		
+	 	<h5 class="font-weight-bold text-uppercase mt-5" style="font-size: 18px;">SERIE Books From Phoenix Kingdom</h5>
 	 	<div class="media-scroller1 pt-3">
-	 		<div class="border-right pb-3" style="width: 11rem" th:each="seriesBook : ${seriesBooks}">
-		        <img th:src=@{${seriesBook.image}} class="card-img-top pr-0 pl-3" 
-		        style="width: 9rem; height: 13rem; border-radius: 17px;">
-		        <div class="pt-3">
-		          <p class="font-weight-bold mb-0 pl-2"> [[${seriesBook.name}]]</p>
-		          <p class="font-weight-bold mb-0 pl-2" style="font-size: 15px; color: coral; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> [[${seriesBook.price}]] MMK </p>
+	 		<div class="rounded pb-4" style="width: 14rem; background-color: #FFFFFF;" th:each="seriesBook : ${seriesBooks}">
+		        <img th:src=@{${seriesBook.image}} class="rounded" 
+		        style="width: 100%;">
+		        <div class="pt-2">
+		          <p style="font-size: 11px;" class="font-weight-bold mb-0 pl-2 pr-2"> [[${seriesBook.name}]]</p>
+		         
 		        </div>
 		      </div>
 		</div>
 		       
-	 	<h5 class="font-weight-bold text-uppercase mt-5" style="font-size: 18px;">Lone Chinn Collection ..</h5>
-		<div class="media-scroller1 pt-3">
-	 		<div class="border-right pb-3" style="width: 11rem" th:each="loneChinBook : ${loneChinBooks}">
-		        <img th:src=@{${loneChinBook.image}} class="card-img-top pr-0 pl-3" 
-		        style="width: 9rem; height: 13rem; border-radius: 17px;">
-		        <div class="pt-3">
-		          <p class="font-weight-bold mb-0 pl-2"> [[${loneChinBook.name}]]</p>
-		          <p class="font-weight-bold mb-0 pl-2" style="font-size: 15px; color: coral; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> [[${loneChinBook.price}]] MMK </p>
-		        </div>
-		      </div>
-		</div>       		
+	 		
 	</section>
 	 
-	 <section class="mt-5 container" id="download">
+	 <section class="mt-5 container-fluid" id="download">
 	 	<h5 class="text-center font-weight-bold" style="font-size: 23px;"> Downloads</h5>
 	 	<div class="row">
 	 		<div class="col-md-6 border-right mt-2">
@@ -109,7 +111,7 @@
 	 	</div>
 	 </section>
 	 
-	 <section class="mt-5 container mb-5 pb-5" id="aboutus">
+	 <section class="mt-4 p-4 container-fluid" id="aboutus" style="background-color: #F1F1F2;">
 	 	<h5 class="text-center font-weight-bold" style="font-size: 23px;"> About Us</h5>
 	 	<div class="row pt-4">
 	 		<div class="col-1"></div>
@@ -134,6 +136,7 @@
 	 	</div>
 	 </section>
 	
+	</div>
 	
       
     <footer class="sticky-footer" style="height: 10px; background-color: rgba(0, 0, 0, 0.4);">

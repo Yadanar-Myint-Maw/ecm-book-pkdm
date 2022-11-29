@@ -1,6 +1,7 @@
 package com.redbox.pkdm.api;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import com.redbox.pkdm.services.AdvertisingMinorBannerMapperService;
 import com.redbox.pkdm.services.AdvertisingMinorBannerService;
 
 @RestController
-@RequestMapping("admin/advertising/api")
+@RequestMapping("api/advmnr")
 public class AdvertisingMinorBannerApi {
 	
 	@Autowired
@@ -26,9 +27,14 @@ public class AdvertisingMinorBannerApi {
 	private AdvertisingMinorBannerMapperService advertisingMinorBannerMapperService;
 	
 	
-	@GetMapping("/advertisingminorbanners")
-	public List<AdvertisingMinorBanner> findAll(){
-		return advertisingMinorBannerService.findAll();
+	@GetMapping("/banners")
+	public List<String> findAll(){
+		List<AdvertisingMinorBanner> banners = advertisingMinorBannerService.findAll();
+		List<String> images = new ArrayList<>();
+		for (AdvertisingMinorBanner banner : banners) {
+			images.add(banner.getImage());
+		}
+		return images;
 	}
 	
 	@GetMapping("/advminorlistfortodayuse")

@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -15,18 +14,24 @@ public class Wallet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	private String walletType; // Top Up, Purchased
+	private String walletType;
 	
-	@Lob
-	private String description; // Top Up 5000 MMK into ACCOUNT - ID (Name) WALLET
+	private String description;
 	
 	@ManyToOne
 	private AccountUser accountUser;
 	
 	private double amount;
 	
+	private String payment;
+	
+	private String taskIDNo;
+	
+	private boolean approve;
 	
 	private boolean erase;
+	
+	private String status;
 	
 	@Embedded
 	private SecurityInfo securityInfo;
@@ -101,5 +106,38 @@ public class Wallet {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+
+	public String getPayment() {
+		return payment;
+	}
+
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+
+	public String getTaskIDNo() {
+		return taskIDNo;
+	}
+
+	public void setTaskIDNo(String taskIDNo) {
+		this.taskIDNo = taskIDNo;
+	}
+
+	public boolean isApprove() {
+		return approve;
+	}
+
+	public void setApprove(boolean approve) {
+		this.approve = approve;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	
 }

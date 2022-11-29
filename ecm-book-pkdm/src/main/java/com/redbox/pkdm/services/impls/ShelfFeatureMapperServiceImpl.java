@@ -46,6 +46,12 @@ public class ShelfFeatureMapperServiceImpl implements ShelfFeatureMapperService 
 		repository.save(shelfFeatureMapper);
 		
 	}
+	
+	@Override
+	public void save(ShelfFeatureMapper shelfFeatureMapper) {
+		repository.save(shelfFeatureMapper);
+		
+	}
 
 	@Override
 	public List<ShelfFeatureMapper> findByErase(boolean erase) {

@@ -15,6 +15,8 @@
 	<name>ecm-book-pkdm</name>
 	<description>E-Commerce Booking Shopping</description>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	    <java.version>1.8</java.version>
 	    <deploy.wildfly.host>127.0.0.1</deploy.wildfly.host>
 	    <deploy.wildfly.port>9990</deploy.wildfly.port>

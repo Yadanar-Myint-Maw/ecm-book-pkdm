@@ -8,7 +8,7 @@ public interface ShelfAuthorMapperService {
 	
 	void save(ShelfAuthorMapper shelfAuthorMapper);
 	
-	List<ShelfAuthor> findByBookId(String bookId);
+	List<ShelfAuthor> findByBook(String bookId);
 	
 	List<ShelfAuthorMapper> findMapperByBookId(String bookId);
 	

@@ -35,8 +35,8 @@ public class ShelfCategoryMapperServiceImpl implements ShelfCategoryMapperServic
 	}
 
 	@Override
-	public List<ShelfCategory> findByBookId(String bookId) {
-		return repository.findByBookId(bookId);
+	public List<ShelfCategory> findByBook(String bookId) {
+		return repository.findByBook(bookId);
 	}
 
 	@Override

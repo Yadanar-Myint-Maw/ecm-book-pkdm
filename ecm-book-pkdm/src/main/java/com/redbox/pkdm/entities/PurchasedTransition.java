@@ -23,9 +23,24 @@ public class PurchasedTransition {
 	@ManyToOne
 	private PurchasedInvoice purchasedInvoice;
 	
+	private String sectionID;
+	
 	private String bookType;
 	
+	@ManyToOne
+	private DiscountCoupon discountCoupon;
+	
+	private double discountPercent;
+	
+	private double bookPrice;
+	
+	private double total;
+	
 	private String paymentType;
+	
+	private String invoice_no;
+	
+	private String deliveryStatus;
 	
 	@ManyToOne
 	private DeliveryInfo deliveryInfo;
@@ -105,6 +120,62 @@ public class PurchasedTransition {
 
 	public void setSecurityInfo(SecurityInfo securityInfo) {
 		this.securityInfo = securityInfo;
+	}
+
+	public String getSectionID() {
+		return sectionID;
+	}
+
+	public void setSectionID(String sectionID) {
+		this.sectionID = sectionID;
+	}
+
+	public DiscountCoupon getDiscountCoupon() {
+		return discountCoupon;
+	}
+
+	public void setDiscountCoupon(DiscountCoupon discountCoupon) {
+		this.discountCoupon = discountCoupon;
+	}
+
+	public double getDiscountPercent() {
+		return discountPercent;
+	}
+
+	public void setDiscountPercent(double discountPercent) {
+		this.discountPercent = discountPercent;
+	}
+
+	public double getBookPrice() {
+		return bookPrice;
+	}
+
+	public void setBookPrice(double bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public String getInvoice_no() {
+		return invoice_no;
+	}
+
+	public void setInvoice_no(String invoice_no) {
+		this.invoice_no = invoice_no;
+	}
+
+	public String getDeliveryStatus() {
+		return deliveryStatus;
+	}
+
+	public void setDeliveryStatus(String deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
 	}
 
 }

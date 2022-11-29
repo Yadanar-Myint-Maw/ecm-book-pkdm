@@ -1,9 +1,9 @@
 package com.redbox.pkdm.api;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import com.redbox.pkdm.entities.AccountUser;
+import com.redbox.pkdm.entities.SecurityInfo;
 import com.redbox.pkdm.models.AccountUserModel;
 import com.redbox.pkdm.services.AccountUserService;
 
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -89,6 +88,7 @@ public class AccountUserAPI {
 			user.setLevel("Level-1");
 			user.setDob(LocalDate.now());
 			user.setErase(false);
+			user.setSecurityInfo(new SecurityInfo("own"));
 			accountUserService.save(user);
 			user = accountUserService.findByPhoneAndPassword(phone, password);
 			return new AccountUserModel(
@@ -124,17 +124,14 @@ public class AccountUserAPI {
 		} 
 	}
 	
-	@GetMapping("/update/{id}/{name}/{email}/{password}/{gender}/{dob}")
-	public AccountUserModel update (@PathVariable String id, @PathVariable String name, @PathVariable String email, @PathVariable String password, @PathVariable String gender, @PathVariable String dob) {
+	@GetMapping("/update/{id}/{name}/{email}/{password}")
+	public AccountUserModel update (@PathVariable String id, @PathVariable String name, @PathVariable String email, @PathVariable String password) {
 		try {
 			AccountUser user = accountUserService.findByID(id);
 			user.setName(name);
-			user.setPhone("-");
-			user.setEmail(email);
+			user.setPhone(email);
 			user.setPassword(password);
-			user.setGender(gender);
 			user.setLevel("Level-1");
-			user.setDob(LocalDate.parse(dob, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 			user.setErase(false);
 			accountUserService.save(user);
 			user = accountUserService.findByEmailAndPassword(email, password);
@@ -148,4 +145,22 @@ public class AccountUserAPI {
 		} 
 	}
 	
+	@GetMapping("/updatepassword/{loginID}/{password}")
+	public boolean updatePassword (@PathVariable String loginID, @PathVariable String password) {
+		try {
+			AccountUser user = accountUserService.findByPhone(loginID);
+			user.setPassword(password);
+			accountUserService.save(user);
+			return true;
+		} catch (Exception e) {
+			return false;
+		} 
+	}
+	
 }
+
+
+
+
+
+

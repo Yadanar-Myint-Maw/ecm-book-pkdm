@@ -1,5 +1,6 @@
 package com.redbox.pkdm.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,5 +22,7 @@ public interface DiscountCouponMapperService {
 	List<DiscountCouponMapper> findByErase(boolean erase);
 
 	List<DiscountCouponMapper> getDiscountCouponList(String id);
+	
+	List<DiscountCouponMapper> findByUserAndDate(String userID, LocalDate date);
 
 }

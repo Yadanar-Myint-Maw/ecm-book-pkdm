@@ -12,6 +12,10 @@
 	background: #0E243A;
 }
 
+.border-theme-blue{
+	border: #0E243A solid 1px;
+}
+
 .fg-theme-blue{
 	color: #0E243A;
 }

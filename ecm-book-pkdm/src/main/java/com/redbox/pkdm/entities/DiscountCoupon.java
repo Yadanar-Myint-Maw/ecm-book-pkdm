@@ -20,6 +20,8 @@ public class DiscountCoupon {
 	
 	private String name;
 	
+	private int rate;
+	
 	@Lob
 	private String description;
 	
@@ -115,6 +117,14 @@ public class DiscountCoupon {
 
 	public void setSecurityInfo(SecurityInfo securityInfo) {
 		this.securityInfo = securityInfo;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
 	}
 
 }

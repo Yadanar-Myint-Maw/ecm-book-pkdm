@@ -1,14 +1,13 @@
 package com.redbox.pkdm.repositories;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import com.redbox.pkdm.entities.DiscountCouponMapper;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import com.redbox.pkdm.entities.AccountUser;
-import com.redbox.pkdm.entities.DiscountCoupon;
-import com.redbox.pkdm.entities.DiscountCouponMapper;
 
 public interface DiscountCouponMapperRepository extends JpaRepository<DiscountCouponMapper, Long>{
 
@@ -17,4 +16,7 @@ public interface DiscountCouponMapperRepository extends JpaRepository<DiscountCo
 
 	@Query(value = "select u from DiscountCouponMapper u join u.discountCoupon dc join u.accountUser ac where ac.id = ?1")
 	List<DiscountCouponMapper> getDiscountCouponList(String id);
+	
+	@Query(value = "select d from DiscountCouponMapper as d where d.erase = false and d.accountUser.id = :userID and :date between d.discountCoupon.startDate and d.discountCoupon.endDate")
+	List<DiscountCouponMapper> findByUserAndEndDate(String userID, LocalDate date);
 }

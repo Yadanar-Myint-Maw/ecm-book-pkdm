@@ -7,6 +7,8 @@ import com.redbox.pkdm.entities.ShelfFeatureMapper;
 
 public interface ShelfFeatureMapperService {
 	
+	void save(ShelfFeatureMapper shelfFeatureMapper);
+	
 	void save(ShelfFeatureMapper shelfFeatureMapper, String featureid, String bookId);
 	
 	void delete(ShelfFeatureMapper shelfFeatureMapper);

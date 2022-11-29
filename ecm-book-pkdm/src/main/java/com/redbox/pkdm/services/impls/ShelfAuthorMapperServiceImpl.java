@@ -22,7 +22,7 @@ public class ShelfAuthorMapperServiceImpl implements ShelfAuthorMapperService{
 	}
 
 	@Override
-	public List<ShelfAuthor> findByBookId(String bookId) {
+	public List<ShelfAuthor> findByBook(String bookId) {
 		return repository.findByBookId(bookId);
 	}
 

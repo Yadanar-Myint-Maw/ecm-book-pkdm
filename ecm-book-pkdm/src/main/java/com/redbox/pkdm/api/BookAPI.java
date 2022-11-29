@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.redbox.pkdm.entities.Book;
+import com.redbox.pkdm.entities.BookSection;
 import com.redbox.pkdm.entities.PurchasedTransition;
 import com.redbox.pkdm.entities.ShelfAuthor;
 import com.redbox.pkdm.entities.ShelfCategory;
-import com.redbox.pkdm.entities.ShelfFeature;
-import com.redbox.pkdm.entities.ShelfFeatureMapper;
+import com.redbox.pkdm.entities.ShelfRelated;
+import com.redbox.pkdm.models.BookInformationModel;
 import com.redbox.pkdm.models.BookModel;
+import com.redbox.pkdm.models.BookSectionModel;
+import com.redbox.pkdm.models.MyBookModel;
+import com.redbox.pkdm.services.BookSectionService;
 import com.redbox.pkdm.services.BookService;
 import com.redbox.pkdm.services.PurchasedTransitionService;
 import com.redbox.pkdm.services.ShelfAuthorMapperService;
 import com.redbox.pkdm.services.ShelfCategoryMapperService;
-import com.redbox.pkdm.services.ShelfFeatureMapperService;
+import com.redbox.pkdm.services.ShelfRelatedMapperService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,10 +34,13 @@ public class BookAPI {
 	private BookService bookService;
 	
 	@Autowired
+	private BookSectionService bookSectionService;
+	
+	@Autowired
 	private ShelfAuthorMapperService shelfAuthorMapperService;
 	
 	@Autowired
-	private ShelfFeatureMapperService shelfFeatureMapperService;
+	private ShelfRelatedMapperService shelfRelatedMapperService;
 	
 	@Autowired
 	private ShelfCategoryMapperService shelfCategoryMapperService;
@@ -41,123 +48,121 @@ public class BookAPI {
 	@Autowired
 	private PurchasedTransitionService purchasedTransitionService;
 
-	@GetMapping("/findbyoption/{option}")
-	public List<BookModel> findByOption (@PathVariable String option) {
+	@GetMapping("/findbyuser/{userID}")
+	public List<BookModel> findByOption (@PathVariable String userID) {
 		try {
+			
 			List<BookModel> bookModels = new ArrayList<>();
-			BookModel model = new BookModel();
-			List<Book> books = new ArrayList<>();
-			if (option.equals("E")) {
-				books = bookService.findByEBook();
-			} else {
-				books = bookService.findByPBook();
+			
+			for (Book book : bookService.findByErase(false)) {
+				
+				BookInformationModel bookInformationModel = new BookInformationModel();
+				bookInformationModel.setId(book.getId());
+				bookInformationModel.setImage(book.getImage());
+				bookInformationModel.setName(book.getName());
+				bookInformationModel.setDescription(book.getDescription());
+				bookInformationModel.setAuthor(getAuthorName(book.getId()));
+				bookInformationModel.setCategory(getCategoryName(book.getId()));
+				bookInformationModel.setRelated(getRelatedName(book.getId()));
+				bookInformationModel.setRelatedDiscount(getRelatedPrice(book.getId()));
+				bookInformationModel.setTag(getTagName(book));
+				bookInformationModel.setBookType(book.getBookType());
+				bookInformationModel.setElectronicBook(book.isElectronicBook());
+				bookInformationModel.setPhysicalBook(book.isPhysicalBook());
+				bookInformationModel.setE_price(book.getE_price());
+				bookInformationModel.setP_price(book.getP_price());
+				bookInformationModel.setE_discount(book.getE_discount());
+				bookInformationModel.setP_discount(book.getP_discount());
+				bookInformationModel.setE_actual_price(getActualPrice(book.getE_price(), book.getE_discount()));
+				bookInformationModel.setP_actual_price(getActualPrice(book.getP_price(), book.getP_discount()));
+				bookInformationModel.setE_purchased(false);
+				bookInformationModel.setP_purchased(false);
+				
+				List<BookSectionModel> bookSectionModels = new ArrayList<>();
+				for (BookSection bookSection : bookSectionService.findByBookId(book.getId(), false)) {
+					BookSectionModel bookSectionModel = new BookSectionModel();
+					bookSectionModel.setNo(bookSection.getSort_no());
+					bookSectionModel.setImage(bookSection.getImage());
+					bookSectionModel.setName(bookSection.getName());
+					bookSectionModel.setDescription(bookSection.getDescription());
+					bookSectionModels.add(bookSectionModel);
+				}
+				
+				bookModels.add(new BookModel(bookInformationModel, bookSectionModels));
+				
 			}
-			for (Book b : books) {
-				model.setId(b.getId());
-				model.setImage(b.getImage());
-				model.setName(b.getName());
-				model.setDescription(b.getDescription());
-				model.setBookType(b.getBookType());
-				model.setElectronicBook(b.isElectronicBook());
-				model.setPhysicalBook(b.isPhysicalBook());
-				model.setTrailer(b.getTrailer());
-				model.setTranslatorImage(b.getTranslatorImage());
-				List<ShelfAuthor>  shelfAuthors = shelfAuthorMapperService.findByBookId(b.getId());
-				if (shelfAuthors != null && shelfAuthors.size() > 0) {
-					model.setAuthor(shelfAuthors.get(0).getName());
-				}
-				List<ShelfFeature> shelfFeatures = shelfFeatureMapperService.findByBookId(b.getId());
-				if (shelfFeatures != null && shelfFeatures.size() > 0) {
-					model.setFeature(shelfFeatures.get(0).getName());
-				}
-				List<ShelfCategory> shelfCategories = shelfCategoryMapperService.findByBookId(b.getId());
-				if (shelfCategories != null && shelfCategories.size() > 0) {
-					model.setCategory(shelfCategories.get(0).getName());
-				}
-				bookModels.add(model);
-				model = new BookModel();
-			}
+			
 			return bookModels;
+			
 		} catch (Exception e) {
+			
 			return new ArrayList<>();
+			
 		}
 	}
 	
-	@GetMapping("/findbyshelffeature/{id}")
-	public List<BookModel> findByShelfFeature (@PathVariable long id) {
-		try {
-			Book b = new Book();
-			BookModel model = new BookModel();
-			List<BookModel> bookModels = new ArrayList<>();
-			List<ShelfFeatureMapper> shelfFeatureMappers = shelfFeatureMapperService.findByShelfFeature(id);
-			for (ShelfFeatureMapper m : shelfFeatureMappers) {
-				b = m.getBook();
-				model.setId(b.getId());
-				model.setImage(b.getImage());
-				model.setName(b.getName());
-				model.setDescription(b.getDescription());
-				model.setBookType(b.getBookType());
-				model.setElectronicBook(b.isElectronicBook());
-				model.setPhysicalBook(b.isPhysicalBook());
-				model.setTrailer(b.getTrailer());
-				model.setTranslatorImage(b.getTranslatorImage());
-				List<ShelfAuthor>  shelfAuthors = shelfAuthorMapperService.findByBookId(b.getId());
-				if (shelfAuthors != null && shelfAuthors.size() > 0) {
-					model.setAuthor(shelfAuthors.get(0).getName());
-				}
-				List<ShelfFeature> shelfFeatures = shelfFeatureMapperService.findByBookId(b.getId());
-				if (shelfFeatures != null && shelfFeatures.size() > 0) {
-					model.setFeature(shelfFeatures.get(0).getName());
-				}
-				List<ShelfCategory> shelfCategories = shelfCategoryMapperService.findByBookId(b.getId());
-				if (shelfCategories != null && shelfCategories.size() > 0) {
-					model.setCategory(shelfCategories.get(0).getName());
-				}
-				bookModels.add(model);
-				model = new BookModel();
-				b = new Book();
-			}
-			return bookModels;
-		} catch (Exception e) {
-			return new ArrayList<>();
+	private String getAuthorName (String bookID) {
+		List<ShelfAuthor> authors = shelfAuthorMapperService.findByBook(bookID);
+		if (authors != null && authors.size() > 0) {
+			return authors.get(0).getName();
 		}
+		return "-";
 	}
 	
-	@GetMapping("/findbypurchased/{id}")
-	public List<BookModel> findByPurchased (@PathVariable String id) {
+	private String getCategoryName (String bookID) {
+		List<ShelfCategory> categories = shelfCategoryMapperService.findByBook(bookID);
+		if (categories != null && categories.size() > 0) {
+			return categories.get(0).getName();
+		}
+		return "-";
+	}
+	
+	private String getRelatedName (String bookID) {
+		List<ShelfRelated> relateds = shelfRelatedMapperService.findByBook(bookID);
+		if (relateds != null && relateds.size() > 0) {
+			return relateds.get(0).getName();
+		}
+		return "-";
+	}
+	
+	private double getRelatedPrice (String bookID) {
+		List<ShelfRelated> relateds = shelfRelatedMapperService.findByBook(bookID);
+		if (relateds != null && relateds.size() > 0) {
+			return relateds.get(0).getPrice();
+		}
+		return 0;
+	}
+	
+	private String getTagName (Book book) {
+		if (book.getBookTag() != null) {
+			return book.getBookTag().getName();
+		}
+		return "-";
+	}
+	
+	private double getActualPrice (double price, int discount) {
+		if (discount != 0) {
+			return price - ((price * discount) / 100);
+		}
+		return price;
+	}
+	
+	@GetMapping("/findmybooks/{userID}")
+	public List<MyBookModel> findMyBooks (@PathVariable String userID) {
 		try {
-			Book b = new Book();
-			BookModel model = new BookModel();
-			List<BookModel> bookModels = new ArrayList<>();
-			List<PurchasedTransition> purchasedTransitions = purchasedTransitionService.findByUser(id);
-			for (PurchasedTransition m : purchasedTransitions) {
-				b = m.getBook();
-				model.setId(b.getId());
-				model.setImage(b.getImage());
-				model.setName(b.getName());
-				model.setDescription(b.getDescription());
-				model.setBookType(b.getBookType());
-				model.setElectronicBook(b.isElectronicBook());
-				model.setPhysicalBook(b.isPhysicalBook());
-				model.setTrailer(b.getTrailer());
-				model.setTranslatorImage(b.getTranslatorImage());
-				List<ShelfAuthor>  shelfAuthors = shelfAuthorMapperService.findByBookId(b.getId());
-				if (shelfAuthors != null && shelfAuthors.size() > 0) {
-					model.setAuthor(shelfAuthors.get(0).getName());
+			MyBookModel model = new MyBookModel();
+			List<MyBookModel> models = new ArrayList<>();
+			List<PurchasedTransition> purchasedTransitions = purchasedTransitionService.findByUser(userID);
+			for (PurchasedTransition purchasedTransition : purchasedTransitions) {
+				model.setBookID(purchasedTransition.getBook().getId());
+				model.setBookType(purchasedTransition.getBookType());
+				if (purchasedTransition.getDeliveryInfo() != null) {
+					model.setAddress(purchasedTransition.getDeliveryInfo().getPhone() + ", " + purchasedTransition.getDeliveryInfo().getDeliveryRegion().getName() + ", " + purchasedTransition.getDeliveryInfo().getDeliveryTownship().getName() + ", " + purchasedTransition.getDeliveryInfo().getAddressDetail());
 				}
-				List<ShelfFeature> shelfFeatures = shelfFeatureMapperService.findByBookId(b.getId());
-				if (shelfFeatures != null && shelfFeatures.size() > 0) {
-					model.setFeature(shelfFeatures.get(0).getName());
-				}
-				List<ShelfCategory> shelfCategories = shelfCategoryMapperService.findByBookId(b.getId());
-				if (shelfCategories != null && shelfCategories.size() > 0) {
-					model.setCategory(shelfCategories.get(0).getName());
-				}
-				bookModels.add(model);
-				model = new BookModel();
-				b = new Book();
+				models.add(model);
+				model = new MyBookModel();
 			}
-			return bookModels;
+			return models;
 		} catch (Exception e) {
 			return new ArrayList<>();
 		}

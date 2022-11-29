@@ -4,6 +4,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -20,7 +21,6 @@ public class Book {
 	
 	private String name;
 	
-	@Lob
 	private String description;
 	
 	@Lob
@@ -35,13 +35,42 @@ public class Book {
 	@Transient
 	private MultipartFile file;
 	
+	@Transient
+	private String category;
+	
+	@Transient
+	private String related;
+	
+	@Transient
+	private String relatedDiscount;
+	
+	@Transient
+	private String author;
+	
+	@ManyToOne
+	private BookTag bookTag;
+	
 	private String bookType;
 	
 	private boolean electronicBook;
 	
 	private boolean physicalBook;
 	
-	private double price;
+	private double e_price;
+	
+	private double p_price;
+	
+	private int e_discount;
+	
+	private int p_discount;
+	
+	private String d_discount;
+	
+	@Transient
+	private double e_actual_price;
+	
+	@Transient
+	private double p_actual_price;
 	
 	private boolean erase;
 	
@@ -52,21 +81,32 @@ public class Book {
 		
 	}
 
-	public Book(String id, String image, String name, String description, String trailer, String bookType,
-			boolean electronicBook, boolean physicalBook, double price, boolean erase, SecurityInfo securityInfo) {
+	public Book(String id, String image, String translatorImage, String name, String description, String trailer,
+			String foreword, MultipartFile translatorFile, MultipartFile file, String category, String related,
+			String bookType, boolean electronicBook, boolean physicalBook, double e_price, double p_price,
+			boolean erase, SecurityInfo securityInfo) {
 		super();
 		this.id = id;
 		this.image = image;
+		this.translatorImage = translatorImage;
 		this.name = name;
 		this.description = description;
 		this.trailer = trailer;
+		this.foreword = foreword;
+		this.translatorFile = translatorFile;
+		this.file = file;
+		this.category = category;
+		this.related = related;
 		this.bookType = bookType;
 		this.electronicBook = electronicBook;
 		this.physicalBook = physicalBook;
-		this.price = price;
+		this.e_price = e_price;
+		this.p_price = p_price;
 		this.erase = erase;
 		this.securityInfo = securityInfo;
 	}
+
+
 
 	public MultipartFile getFile() {
 		return file;
@@ -140,14 +180,6 @@ public class Book {
 		this.physicalBook = physicalBook;
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
 	public boolean isErase() {
 		return erase;
 	}
@@ -187,9 +219,101 @@ public class Book {
 	public void setTranslatorFile(MultipartFile translatorFile) {
 		this.translatorFile = translatorFile;
 	}
-	
-	
-	
-	
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getRelated() {
+		return related;
+	}
+
+	public void setRelated(String related) {
+		this.related = related;
+	}
+
+	public double getE_price() {
+		return e_price;
+	}
+
+	public void setE_price(double e_price) {
+		this.e_price = e_price;
+	}
+
+	public double getP_price() {
+		return p_price;
+	}
+
+	public void setP_price(double p_price) {
+		this.p_price = p_price;
+	}
+
+	public BookTag getBookTag() {
+		return bookTag;
+	}
+
+	public void setBookTag(BookTag bookTag) {
+		this.bookTag = bookTag;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public int getE_discount() {
+		return e_discount;
+	}
+
+	public void setE_discount(int e_discount) {
+		this.e_discount = e_discount;
+	}
+
+	public int getP_discount() {
+		return p_discount;
+	}
+
+	public void setP_discount(int p_discount) {
+		this.p_discount = p_discount;
+	}
+
+	public String getD_discount() {
+		return d_discount;
+	}
+
+	public void setD_discount(String d_discount) {
+		this.d_discount = d_discount;
+	}
+
+	public double getE_actual_price() {
+		return e_actual_price;
+	}
+
+	public void setE_actual_price(double e_actual_price) {
+		this.e_actual_price = e_actual_price;
+	}
+
+	public double getP_actual_price() {
+		return p_actual_price;
+	}
+
+	public void setP_actual_price(double p_actual_price) {
+		this.p_actual_price = p_actual_price;
+	}
+
+	public String getRelatedDiscount() {
+		return relatedDiscount;
+	}
+
+	public void setRelatedDiscount(String relatedDiscount) {
+		this.relatedDiscount = relatedDiscount;
+	}
 
 }

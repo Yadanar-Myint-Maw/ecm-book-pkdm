@@ -1,0 +1,324 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymelead/layout">
+
+<h:head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>PKDM - Admin</title>
+    <link href="../static/vendor/fontawesome-free/css/all.min.css" th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="../static/css/sb-admin-2.min.css" th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/colors.css}" rel="stylesheet" />
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+</h:head> 
+<body>
+ <div class='dashboard'>
+    <div class="dashboard-nav">
+        <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+        	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+	            <div class="sidebar-brand-icon rounded-circle">
+	                <img th:src="@{/img/lgo-gnr-mjr.png}" width="40px" />
+	            </div>
+	             <div class="sidebar-brand-text mx-3 text-light pt-2" style="font-size: 14px; line-height: 25px;">Admin<br/> <sup class="text-danger" style="font-size: 12px;">Panelization</sup></div>
+	       	</a>
+        </header>
+        <nav class="dashboard-nav-list">
+			<ul class="navbar-nav sidebar bg-theme-blue sidebar-dark" style="font-size: 11px;">
+				<hr class="sidebar-divider"></hr>
+				<div class="sidebar-heading text-dark" >
+		           Dashboard
+		        </div>
+				<li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/general/dashboard}">
+		                <i class="fas fa-fw fa-tachometer-alt text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Dashboard Data</span>
+		            </a>
+		        </li>
+		        <hr class="sidebar-divider"></hr>
+				<div class="sidebar-heading text-dark">
+		            Accounts
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/admins/new}">
+		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 11px;"  class="font-weight-bold text-secondary">Account Data</span>
+		            </a>
+		        </li>
+		         <hr class="sidebar-divider"></hr>
+		         <div class="sidebar-heading text-dark">
+		            Books
+		        </div>	        
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/book/book-entire/new}">
+		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Book Data</span>
+		            </a>
+		        </li> 
+		        <hr class="sidebar-divider"></hr>
+		        <div class="sidebar-heading text-dark">
+		           General
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                  <span style="font-size: 11px;"  class="font-weight-bold">Essential Data</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                  <span style="font-size: 11px;"  class="font-weight-bold">Shelf Data</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                  <span style="font-size: 11px;"  class="font-weight-bold">Discount Data</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                  <span style="font-size: 11px;"  class="font-weight-bold">Advertising Data</span>
+		            </a>
+		        </li>
+		          <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                  <span style="font-size: 11px;"  class="font-weight-bold">Delivery Data</span>
+		            </a>
+		        </li>
+		        
+		       
+		     
+		        <hr class="sidebar-divider"></hr>
+		         <div class="sidebar-heading text-dark">
+		            Cash
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/purchasement/wallets/new}">
+		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Wallet Data</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/purchasement/wallets/new}">
+		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Point Data</span>
+		            </a>
+		        </li>
+		     
+		        
+		        <hr class="sidebar-divider"></hr>
+		        
+		        <div class="sidebar-heading text-dark">
+		           System
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/contact/edit}">
+		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
+		                <span style="font-size: 11px;"  class="font-weight-bold">Contact Data</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/termandconditions/new}">
+		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Rule Data</span>
+		            </a>
+		        </li>
+		         <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/termandconditions/new}">
+		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Term Data</span>
+		            </a>
+		        </li>
+ 				<hr class="sidebar-divider"></hr>
+		        
+				<div class="text-center d-none d-md-inline mb-5">
+		            <span class="text-warning" style="font-size: 12px;">Version 1.0</span>
+		        </div>
+			</ul>
+        </nav>
+    </div>
+   <div class="dashboard-app" style="font-size: 11px;">
+         <header class='dashboard-toolbar shadow-sm'>
+        	<div class="pr-2">
+			<a href="#!" class="menu-toggle">
+				<i class="fas fa-users"></i>
+			</a>
+		</div>
+		<div class="pl-3 pr-2" style="width: 10%">
+			<span style="font-size: 12px;">Account Data</span>
+		</div>
+		<div class="text-right" style="width: 90%; font-size: 9px;">
+			<span class="text-secondary" style="font-size: 8px;">Current User </span> <span class="text-secondary ml-1 mr-2"> - </span> <a class="fg-theme-blue font-weight-bold" style="font-size: 10px;" th:href="@{/admin/account/admins/new}" > [[${loginaccount.name}]] </a>
+			<span class="ml-2 mr-2 text-secondary"> | </span>
+			<a class="text-success" style="font-size: 10px;" th:href="@{/admin/account/user/initialize/0}" > Refresh Page </a>
+			<span class="ml-2 mr-2 text-secondary"> | </span>
+			<a class="text-danger" style="font-size: 10px;" th:href="@{/signin}" > Sign Out </a>
+			
+		</div>
+        </header>
+         <div class="pt-4 pb-3 text-right border-bottom" style="width: 100%; background: #FFFFFF; box-shadow: none; border-radius: 0px; font-size: 8px;">
+        	<div class="form-inline ml-3">
+        		<span> <a class="text-dark font-weight-bold pt-2 pb-2 pl-5 pr-5 active bg-light border rounded m-2" th:href="@{/admin/account/admin/initialize/0}"> Admin Data </a></span>
+        		<span> <a class="text-light font-weight-bold pt-2 pb-2 pl-5 pr-5 bg-theme-blue rounded m-2" th:href="@{/admin/account/user/initialize/0}"> User Data </a></span>
+        	</div>
+        </div> 
+        <div class="" style="width: 100%; color: white;">
+        	<div class="bg-success rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${save}" th:if="${save}"></div>
+        	<div class="bg-primary rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${update}" th:if="${update}"></div>
+			<div class="bg-danger rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${validation}" th:if="${validation}"></div>
+        </div>
+      	<form th:action="@{/admin/account/user/save}" th:object="${user}" method="post" class="border-bottom container-fluid" style="width: 100%; height:170px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
+		<div style="width: 100%; background-color: #F1F1F2;"  class="pb-2 pt-4">
+		<div class="">
+			<div class="row">
+					<div class="col-12 font-weight-bold text-danger mb-3">
+						DATA INVENTORY
+					</div>
+					<div class="col-12 font-weight-bold text-danger mb-2">
+						<div class="col-12 border-bottom"></div>
+					</div>
+					<div class="col-3 mt-2 form-group">
+						<span class="lbl">Name</span>
+						<input type="text" name="name" th:field="*{name}" class="form-control textfield mt-1">
+					</div>
+					<div class="col-2 mt-2 form-group">
+						<span class="lbl">Email / Phone</span>
+						<input type="text" name="phone" th:field="*{phone}" class="form-control textfield mt-1">
+					</div>
+					<div class="col-2 mt-2 form-group">
+						<span class="lbl">Password</span>
+						<input type="text" name="password" min="4" th:field="*{password}" class="form-control textfield mt-1">
+					</div>
+					<div class="col-3 mt-2 form-group">
+					<span class="lbl">Level</span>
+						<select name="level" th:field=*{level} class="form-control textfield mt-1">
+							<option th:value="Level-1" th:text="Level-1"></option>
+							<option th:value="Level-2" th:text="Level-2"></option>
+						</select>
+					</div>
+					<div class="col-2 mt-2 form-group">
+						<span class="lbl"><br/></span>
+						<button class="btn btn-sm form-control savebtn mt-1">Save</button>
+					</div>				
+					<div class="col-1"><input type="text" name="id" th:field="*{id}" class="form-control textfield border-0" style="font-size: 0px; background-color:#F1F1F2;"></div>
+			</div>
+		</div>
+		</div>
+		</form>
+		
+	<form th:action="@{/admin/account/user/initialize/0}" method="get" style="width: 100%; height:160px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
+		<div style="width: 100%; background-color: #FFFFFF;"  class="pt-4 pb-2 container-fluid">
+			<div class="row">
+				<div class="col-12 font-weight-bold text-danger pt-1">
+					DATA TABLE
+				</div>
+				<div class="col-12 font-weight-bold text-danger mt-4 mb-3">
+					<div class="col-12 border-bottom"></div>
+				</div>
+				<div class="col-2 form-group">
+					<span class="lbl">ID</span>
+					<input type="text" name="keyword1" class="form-control textfield mt-1" placeholder="">
+				</div>
+				<div class="col-2 form-group">
+					<span class="lbl">Name</span>
+					<input type="text" name="keyword2" class="form-control textfield mt-1" placeholder="">
+				</div>
+				<div class="col-2 form-group">
+					<span class="lbl">Email / Phone</span>
+					<input type="text" name="keyword3" class="form-control textfield mt-1" placeholder="">
+				</div>
+				<div class="col-2 form-group">
+					<span class="lbl"><br /></span>
+					<button type="submit" class="btn btn-sm form-control searchbtn bg-primary mt-1">Search</button>
+				</div>
+				
+			</div>
+		</div>
+		</form>
+
+	<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 mt-2 form-group">
+					<table class="table" style="font-size: 9px;">
+					  <thead>
+					    <tr>
+					   	  <th scope="col"></th>
+					      <th scope="col">ID</th>
+					      <th scope="col">Name</th>
+					      <th scope="col">Email / Phone</th>
+					      <th scope="col">Password</th>
+					      <th scope="col">Level</th>
+					      <th scope="col"></th>
+					      <th scope="col"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr th:each="user: ${users}">
+					      <td>
+					      	<img th:src="@{/img/user.png}" width="15px" />
+					      </td>
+					      <td th:text=${user.id}></td>
+					      <td th:text="${user.name}"></td>
+					      <td th:text="${user.phone}"></td>
+					      <td> **** </td>
+					      <td th:text="${user.level}"></td>
+					      <td>
+					      	<a style="font-size: 7px;"> <a class="bg-primary text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/account/user/initialize/{id}(id=${user.id})}"> 
+					      		UPDATE
+					      	</a>
+					      </td>  
+					      <td>
+					      	<a style="font-size: 7px;"> <a class="bg-danger text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/account/user/delete/{id}(id=${user.id})}"> 
+					      		DELETE
+					      	</a>
+					      </td>  
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+			
+			</div>
+		</div>
+		
+      	<footer class="bg-white border-top pt-2 pb-2" style="height: 35px; width:100%; bottom: 0; position: fixed;">
+            <div class="container" style="margin-left: 33%;">
+                <div class="copyright">
+                    <span>copyright @ <span class="text-danger">www.redboxmm.com</span> 2022</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script>
+	const mobileScreen = window.matchMedia("(max-width: 990px )");
+	$(document).ready(function () {
+	    $(".dashboard-nav-dropdown-toggle").click(function () {
+	        $(this).closest(".dashboard-nav-dropdown")
+	            .toggleClass("show")
+	            .find(".dashboard-nav-dropdown")
+	            .removeClass("show");
+	        $(this).parent()
+	            .siblings()
+	            .removeClass("show");
+	    });
+	    $(".menu-toggle").click(function () {
+	        if (mobileScreen.matches) {
+	            $(".dashboard-nav").toggleClass("mobile-show");
+	        } else {
+	            $(".dashboard").toggleClass("dashboard-compact");
+	        }
+	    });
+	});
+</script>
+</body>
+</html>

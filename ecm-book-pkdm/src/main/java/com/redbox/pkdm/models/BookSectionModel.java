@@ -2,38 +2,20 @@ package com.redbox.pkdm.models;
 
 public class BookSectionModel {
 	
-	private long id;
+	public int no;
 	
-	private int sort_no;
+	public String image;
 	
-	private String image;
+	public String name;
 	
-	private String name;
+	public String description;
 
-	private String description;
-	
-	private String trailer;
-	
-	private double price;
-	
-	public BookSectionModel() {
-		
+	public int getNo() {
+		return no;
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public int getSort_no() {
-		return sort_no;
-	}
-
-	public void setSort_no(int sort_no) {
-		this.sort_no = sort_no;
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public String getImage() {
@@ -59,21 +41,4 @@ public class BookSectionModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public String getTrailer() {
-		return trailer;
-	}
-
-	public void setTrailer(String trailer) {
-		this.trailer = trailer;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	
 }

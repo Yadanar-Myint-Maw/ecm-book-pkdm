@@ -25,7 +25,7 @@ public interface AccountUserRepository extends JpaRepository<AccountUser, String
 	AccountUser findByEmailAndPassword(@Param("email") String email,@Param("password") String password);
 
 	@Query(value = "select u from AccountUser as u where u.phone = :phone")
-	String findByPhone(@Param("phone") String phone);
+	AccountUser findByPhone(@Param("phone") String phone);
 	
 	@Query(value = "select count(u) from AccountUser as u where u.phone = :phone")
 	long findCountByPhone(@Param("phone") String phone);
@@ -47,4 +47,5 @@ public interface AccountUserRepository extends JpaRepository<AccountUser, String
 	
 	@Query(value = "select count(u) from AccountUser as u where u.level = :level and u.erase = false")
 	long findByCountUserLevel2(@Param("level")String level);
+
 }

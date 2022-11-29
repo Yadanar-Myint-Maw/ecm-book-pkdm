@@ -37,7 +37,6 @@ public class AdvertisingMinorBannerController {
 		
 		model.addAttribute("advMinorBanners", advertisingMinorBannerService.findByErase(false));
 		
-		
 		AccountAdmin loginaccount = accountAdminService.findByID(cookieId);
 		if (loginaccount == null) {
 			throw new Exception();
@@ -72,7 +71,7 @@ public class AdvertisingMinorBannerController {
 					advMinorBanner.setImage(ImageUploadUtility.upload(advMinorBanner.getFile()));
 				}
 				advertisingMinorBannerService.save(advMinorBanner);
-				redirAttrs.addFlashAttribute("save","Advertising Minor Banner save successfully");
+				redirAttrs.addFlashAttribute("save","အချက်အလက်များကို သိမ်းဆဲလိုက်ပါပြီ။");
 			} else {
 				
 				AdvertisingMinorBanner advMinorBanner2 = advertisingMinorBannerService.findByID(advMinorBanner.getId());
@@ -83,10 +82,8 @@ public class AdvertisingMinorBannerController {
 				advMinorBanner.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
 				advMinorBanner.getSecurityInfo().setUpdateUser(cookieId);
 				advertisingMinorBannerService.save(advMinorBanner2);		
-				redirAttrs.addFlashAttribute("update","Advertising Major Banner update successfully");
+				redirAttrs.addFlashAttribute("save","အချက်အလက်များကို သိမ်းဆဲလိုက်ပါပြီ။");
 			}
-			
-			
 		}
 		
 		return "redirect:/admin/advertising/minorbanners/new";
@@ -95,7 +92,7 @@ public class AdvertisingMinorBannerController {
 	@GetMapping("/minorbanners/delete/{id}")
 	public String delete(@PathVariable String id, RedirectAttributes redirAttrs) {
 		advertisingMinorBannerService.delete(advertisingMinorBannerService.findByID(Long.parseLong(id)));
-		redirAttrs.addFlashAttribute("validation","Advertising Major Banner delete successfully");
+		redirAttrs.addFlashAttribute("validation","အချက်အလက်များကို ပယ်ဖျက်လိုက်ပါသည်။");
 		return "redirect:/admin/advertising/minorbanners/new";
 	}
 }

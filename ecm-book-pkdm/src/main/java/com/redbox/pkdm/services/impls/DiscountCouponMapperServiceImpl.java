@@ -1,5 +1,6 @@
 package com.redbox.pkdm.services.impls;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,6 +77,11 @@ public class DiscountCouponMapperServiceImpl implements DiscountCouponMapperServ
 			a.getEndDate();
 		});
 		return discountCouponMapperRepository.getDiscountCouponList(id);
+	}
+	
+	@Override
+	public List<DiscountCouponMapper> findByUserAndDate(String userID, LocalDate date) {
+		return discountCouponMapperRepository.findByUserAndEndDate(userID, date);
 	}
 
 }

@@ -14,7 +14,7 @@ public interface BookSectionRepository extends JpaRepository<BookSection, Long>{
 	@Query(value = "select b from BookSection as b where b.erase = :erase")
 	List<BookSection> findByErase(@Param("erase") Boolean erase);
 	
-	@Query(value = "select b from BookSection as b where b.book.id = :bookId and b.erase = :erase")
+	@Query(value = "select b from BookSection as b where b.book.id = :bookId and b.erase = :erase ORDER BY b.sort_no ASC")
 	List<BookSection> findByBookId(@Param("bookId") String bookId, @Param("erase") boolean erase);
 	
 	@Query(value = "select b.book from BookSection as b where b.erase = :erase")

@@ -1,0 +1,429 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymelead/layout">
+
+<h:head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>PKDM</title>
+    <link href="../static/vendor/fontawesome-free/css/all.min.css" th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="../static/css/sb-admin-2.min.css" th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/colors.css}" rel="stylesheet" />
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+</h:head> 
+<body>
+    <div class='dashboard'>
+    <div class="dashboard-nav">
+        <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+        	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+	            <div class="sidebar-brand-icon rounded-circle">
+	                <img th:src="@{/img/lgo-gnr-mjr.png}" width="40px" />
+	            </div>
+	             <div class="sidebar-brand-text mx-3 text-light pt-2" style="font-size: 14px; line-height: 25px;">Admin<br/> <sup class="text-danger" style="font-size: 12px;">Panelization</sup></div>
+	       	</a>
+        </header>
+        <nav class="dashboard-nav-list">
+			<ul class="navbar-nav sidebar bg-theme-blue sidebar-dark" style="font-size: 11px;">
+				<hr class="sidebar-divider"></hr>
+				<div class="sidebar-heading text-dark" >
+		           အထွေထွေ
+		        </div>
+				<li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/general/dashboard}">
+		                <i class="fas fa-fw fa-tachometer-alt text-danger" style="font-size: 14px;"></i>
+		                <span style="font-size: 9px;" class="font-weight-lighter">စာရင်းစုများ</span>
+		            </a>
+		        </li>
+		        <hr class="sidebar-divider"></hr>
+				<div class="sidebar-heading text-dark">
+		            အကောင့်
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/admins/new}">
+		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">ထိန်းချုပ်သူများ</span>
+		            </a>
+		        </li>
+		        <!-- <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/authors/new}">
+		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 12px;"  class="font-weight-lighter">Authors</span>
+		            </a>
+		        </li> -->
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/users/new}">
+		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">အသုံးပြုသူများ</span>
+		            </a>
+		        </li>
+		         <hr class="sidebar-divider"></hr>
+		         <div class="sidebar-heading text-dark">
+		            စာအုပ်
+		        </div>	        
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/book/book-entire/new}">
+		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">လုံးချင်းစာအုပ်များ</span>
+		            </a>
+		        </li> 
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/book/book-serie/new}">
+		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">စီးရီးစာအုပ်များ</span>
+		            </a>
+		        </li> 
+		        
+		        <!-- <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/book-section/show-book-sections/LoneChinn}">
+		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 12px;"  class="font-weight-lighter">All Book Sections</span>
+		            </a>
+		        </li>  -->
+		        <hr class="sidebar-divider"></hr>
+		        <div class="sidebar-heading text-dark">
+		            အချက်အလက်
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/authors/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">စာရေးဆရာများ</span>
+		            </a>
+		        </li>
+		        		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/categories/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">အမျိုးအစားများ</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/related/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">လုံးချင်းအုပ်စုများ</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/tag/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">စီးရီးခေါင်းစဉ်များ</span>
+		            </a>
+		        </li>
+		       
+		     
+		        
+		        <hr class="sidebar-divider"></hr>
+		         <div class="sidebar-heading text-dark">
+		           စာအုပ်စဉ်
+		        </div>
+		       		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/features/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">စာအုပ်စဉ်များ</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/shelf/featuremappers/new}">
+		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">စာအုပ်စဉ်များ တွဲဖက်မှုများ</span>
+		            </a>
+		        </li>
+		        <hr class="sidebar-divider"></hr>
+		         <div class="sidebar-heading text-dark">
+		            လျော့စျေး
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/discount/usercoupons/new}">
+		                <i class="fas fa-percentage text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">အသုံးပြုသူကူပွန်</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/discountcouponmappers/new}">
+		                <i class="fas fa-percentage text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">အသုံးပြုသူကူပွန် တွဲဖက်မှုများ</span>
+		            </a>
+		        </li>
+		        <hr class="sidebar-divider"></hr>
+		         <div class="sidebar-heading text-dark">
+		            ကြော်ငြာ
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/advertising/majorbanners/new}">
+		                <i class="fas fa-image text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">အဓိက ကြော်ငြာများ</span>
+		            </a>
+		        </li>
+		        
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/advertising/minorbanners/new}">
+		                <i class="fas fa-image text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">အရန် ကြော်ငြာများ</span>
+		            </a>
+		        </li>
+		        
+		         <hr class="sidebar-divider"></hr>
+		         <div class="sidebar-heading text-dark">
+		            ပိုဆောင်ရေး
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/delivery/regions/new}">
+		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">ပြည်နယ်နှင့် တိုင်းဒေသကြီးများ</span>
+		            </a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/delivery/townships/new}">
+		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">မြို့နယ်များ နှင့်စျေးနှုန်း</span>
+		            </a>
+		        </li>
+		        <hr class="sidebar-divider"></hr>
+		         <div class="sidebar-heading text-dark">
+		            ငွေစာရင်း
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/purchasement/wallets/new}">
+		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">ပိုက်ဆံအိတ်</span>
+		            </a>
+		        </li>
+		     
+		        
+		        <hr class="sidebar-divider"></hr>
+		        
+		        <div class="sidebar-heading text-dark">
+		            ဆက်သွယ်မှု
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/contact/edit}">
+		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">ဖုန်းနံပါတ်နှင့် လိပ်စာ</span>
+		            </a>
+		        </li>
+		        
+		        <hr class="sidebar-divider"></hr>
+		        
+		        <div class="sidebar-heading text-dark">
+		            သတ်မှတ်ချက်
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/termandconditions/new}">
+		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">သတ်မှတ်ချက်များ</span>
+		            </a>
+		        </li>
+		        
+		        <hr class="sidebar-divider"></hr>
+		        
+		        <div class="sidebar-heading text-dark">
+		           စည်းမျည်း
+		        </div>
+		        <li class="nav-item">
+		            <a class="nav-link text-light" th:href="@{/admin/account/ruleandregulations/new}">
+		                <i class="fas fa-map text-danger" style="font-size: 14px;"></i>
+		                 <span style="font-size: 9px;"  class="font-weight-lighter">စည်းမျည်းစည်းကမ်းများ</span>
+		            </a>
+		        </li>
+ 				<hr class="sidebar-divider"></hr>
+		        
+				<div class="text-center d-none d-md-inline mb-5">
+		            <span class="text-warning" style="font-size: 12px;">ဗားရှင်း 1.0</span>
+		        </div>
+			</ul>
+        </nav>
+    </div>
+    <div class="dashboard-app" style="font-size: 11px;">
+        <header class='dashboard-toolbar shadow-sm'>
+        <div class="pr-2">
+			<a href="#!" class="menu-toggle">
+				<i class="fas fa-bars"></i>
+			</a>
+		</div>
+        <div class="pl-5 pr-2 text-center" style="width: 10%">
+			စာအုပ်
+		</div>
+		<div class="pl-2 pr-2 text-center" style="width: 2.5%; font-size: 8px;">
+			<i class="fas fa-arrow-right"></i>
+		</div> 	
+		<div class="pl-2 pr-2 text-center" style="width: 10%">
+			စီးရီးစာအုပ်များ
+		</div>
+		<div class="text-right" style="width: 67%; font-size: 10px;">
+			<a class="profilebtn" th:href="@{/admin/profile/account}" > <i class="fas fa-user mr-2"></i> [[${loginaccount.name}]] (ထိန်းချုပ်သူ) </a>
+		</div>
+		<div class="text-right text-danger" style="width: 15%; font-size: 10px;">
+			<a class="logoutbtn" th:href="@{/signout}" > အကောင့်မှထွက်မည် </a>
+		</div>
+        </header>
+        
+        <div class="" style="width: 100%; color: white;">
+        	<div class="bg-success rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${save}" th:if="${save}"></div>
+        	<div class="bg-primary rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${update}" th:if="${update}"></div>
+			<div class="bg-danger rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${validation}" th:if="${validation}"></div>
+        </div>      	
+        
+        <form th:action="@{/admin/book/book-serie/save}" th:object="${book}" enctype="multipart/form-data" method="post" class="border-bottom" style="width: 100%; height:455px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
+			<div style="width: 100%; background-color: #F1F1F2; font-size: 9px;"  class="">
+				<div class="row">
+					<div class="col-12 font-weight-bold text-danger mb-3">
+						အချက်အလက်ထည့်သွင်းရန်
+					</div>
+					<div class="col-12 font-weight-bold text-danger mb-3">
+						<div class="col-12 border-bottom"></div>
+					</div>
+					<div class="col-4">
+						<span class="lbl">စာအုပ် အမည်</span>
+						<input type="text" name="name" th:field="*{name}" class="form-control textfield mt-1">
+					</div>
+					<div class="col-4">
+					<span class="lbl">စာအုပ် မျက်နှာဖုံးကာဗာ ပုံ</span>
+						  <div class="textfield border border-danger rounded mt-1" style="font-size: 9px;">
+						  	<input type="file" name="file" accept="*{file}" class="form-control-sm pt-1" style="font-size: 8px;">						 
+						  </div>					
+					</div>
+					<div class="col-4">
+						<span class="lbl">စာအုပ်ပုံစံ <span class="text-danger">(စီးရီး)</span></span>
+						<input type="text" name="bookType" th:field="*{bookType}" disabled="true" class="form-control textfield mt-1">
+					</div>
+					<div class="col-4 mb-3">
+							<span class="lbl">စာရေးသူ</span>
+							<select name="authorId" id="author" class="form-control textfield mt-1">
+        						<option th:each="author : ${authors}" th:text="${author.name}" th:value="${author.id}"></option>
+     			 			</select>
+					</div>
+					<div class="col-4 mb-3">
+						<span class="lbl">အမျိုးအစား</span>
+						<select name="categoryId" id="category" class="form-control textfield mt-1">
+        					<option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}"></option>
+     			 		</select>
+					</div>
+					<div class="col-4 mb-3"> 
+							<span class="lbl">စီးရီး</span>
+							<select name="relatedId" id="related" class="form-control textfield mt-1" value="Action">
+        					<option th:each="tag : ${tags}" th:text="${tag.name}" th:value="${tag.id}"></option>
+     			 		</select>
+					</div>
+					<div class="col-4">
+						<span class="lbl">ရွေးချယ်စရာ</span>
+						<div class="required-control p-2 rounded border mt-1" style="background: white; height: 32px;">
+				            	<label for="electronicBook" class="mr-2">Electronic Book</label>
+				            	<input id="electronicBook" type="checkbox" name="electronicBook" th:checked="*{electronicBook}" class="mr-4" />
+				        </div>
+					</div>
+					<div class="col-4">
+						<span class="lbl">Electronic Book - စျေးနှုန်း</span>
+						<input type="number" name="price" th:field="*{e_price}"  class="form-control textfield mt-1">
+					</div>
+					
+					<div class="col-12">
+						<span class="lbl">စာမြည်း</span>
+						<textarea name="description" th:field="*{description}" class="form-control textfield mt-1" style="width: 100%; height: 100px"></textarea>
+					</div>
+					<div class="col-4 mt-2 form-group">
+						<button class="btn btn-sm form-control savebtn mt-3">သိမ်းဆဲမည်</button>
+					</div>
+					<div class="col-0"><input type="text" name="id" th:field="*{id}" class="form-control textfield border-0 text-light" style="font-size: 0px; background-color: #F1F1F2"></div>
+				</div>
+			</div>
+		</form>
+		
+		<div style="width: 100%;"  class="mt-4 container-fluid">
+				<div class="form-inline">
+					<div class="col-12 font-weight-bold text-danger pb-3">
+						သိမ်းဆဲထားသော အချက်အလက်များ
+					</div>
+					<div class="col-12 font-weight-bold text-danger mb-2">
+						<div class="col-12 border-bottom"></div>
+					</div>
+				</div>
+		</div>
+		
+      	<div class="container-fluid mb-5 pb-5">
+			<div class="form-inline">
+				<div class="col-sm-12 col-md-12 col-lg-6 pb-2 pt-2" style="text-align: justify;" th:each="book : ${books}">
+					<div class="shadow-sm">
+						<div class="bg-theme-blue" style="height: 10px;">
+						</div>
+						<div class="row">
+							<div class="col-sm-5 col-md-12 col-lg-6">
+								<img th:src="@{${book.image}}" style="width: 100%; height:270px">
+							</div>
+							<div class="col-sm-7 col-md-12 col-lg-6 pt-3">
+								<div class="row">
+									<div class="col-8 row">
+										<h5 style="font-size: 10px; line-height: 15px;" class="fg-theme-blue"> [[${book.name}]] </h5>
+									</div>
+									<div class="col-1 text-right">
+										<a class="text-success" th:href="@{/admin/section/book-section/{bookID}/{sectionID}(bookID=${book.id}, sectionID=new)}"><i class="fa fa-plus" style="font-size: 10px;"></i></a>
+									</div>
+									<div class="col-1 text-right">
+										<a class="text-primary" th:href="@{/admin/book/book-serie/{id}(id=${book.id})}"><i class="fa fa-pen" style="font-size: 10px;"></i></a>
+									</div>
+									<div class="col-1 text-right">
+										<a class="text-danger" th:href="@{/admin/book/book-serie/delete/{id}(id=${book.id})}"><i class="fa fa-times" style="font-size: 10px;"></i></a>
+									</div>
+								</div>
+								<div class="row mt-2">
+									<span style="font-size: 10px;" class="text-danger"><span class="fg-theme-blue"> [[${book.author}]]</span> | <span class="fg-theme-blue text-uppercase"> [[${book.bookType}]]</span> </span>
+								</div>
+								<div class="row mt-1">
+									<span style="font-size: 10px;" class="text-danger"> <span th:if="${book.electronicBook == true}"> [[${book.p_price}]] MMK</span> | <span th:if="${book.physicalBook == true}">[[${book.p_price}]] MMK</span> <span class="text-secondary"> </span> </span>
+								</div>
+								<div class="row">
+									<span style="padding: 2px 5px 2px 5px; font-size: 8px; color:white;" class="bg-primary" th:if="${book.electronicBook == true}">Electronic Books</span>
+									<span style="padding: 2px 5px 2px 5px; font-size: 8px; color:white;" class="bg-danger" th:if="${book.physicalBook == true}">Physical Books</span>
+								</div>
+								<div class="mt-2 mr-3 row p-1 rounded" style="height: 120px; overflow-y : auto; background: #F1F1F2;">
+									<span style="font-size: 10px; text-align: justify;"> [[${book.description}]] </span>
+								</div>
+								
+								<div class="pt-2 text-dark row">
+					      			<span style="padding: 3px 5px 3px 5px; font-size: 8px; background: #F1F1F2;" class="rounded text-dark mr-1">[[${book.category}]]</span>
+					  				<span style="padding: 3px 5px 3px 5px; font-size: 8px; background: #F1F1F2;" class="rounded text-dark ml-1">[[${book.bookTag.name}]]</span>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	
+      	<footer class="bg-white border-top pt-2 pb-2" style="height: 35px; width:100%; bottom: 0; position: fixed;">
+            <div class="container" style="margin-left: 33%;">
+                <div class="copyright">
+                    <span>copyright @ <span class="text-danger">www.redboxmm.com</span> 2022</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script>
+	const mobileScreen = window.matchMedia("(max-width: 990px )");
+	$(document).ready(function () {
+	    $(".dashboard-nav-dropdown-toggle").click(function () {
+	        $(this).closest(".dashboard-nav-dropdown")
+	            .toggleClass("show")
+	            .find(".dashboard-nav-dropdown")
+	            .removeClass("show");
+	        $(this).parent()
+	            .siblings()
+	            .removeClass("show");
+	    });
+	    $(".menu-toggle").click(function () {
+	        if (mobileScreen.matches) {
+	            $(".dashboard-nav").toggleClass("mobile-show");
+	        } else {
+	            $(".dashboard").toggleClass("dashboard-compact");
+	        }
+	    });
+	});
+</script>
+</body>
+</html>

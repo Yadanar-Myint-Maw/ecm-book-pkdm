@@ -27,7 +27,6 @@ public class BookSection {
 	@Transient
 	private MultipartFile file;
 	
-	@Lob
 	private String description;
 	
 	@Lob

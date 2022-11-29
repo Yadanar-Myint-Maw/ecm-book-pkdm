@@ -19,7 +19,7 @@ public class AccountUserServiceImpl implements AccountUserService{
 
 	@Override
 	public void save(AccountUser accountUser) {
-		if (accountUser.getId() == null) {
+		if (accountUser.getId() == null || accountUser.getId().isEmpty()) {
 			accountUser.setId(IDGeneratorUtility.generate(findByLast()));
 		}
 		repository.save(accountUser);	
@@ -62,7 +62,7 @@ public class AccountUserServiceImpl implements AccountUserService{
 	}
 
 	@Override
-	public String findByPhone(String phone) {
+	public AccountUser findByPhone(String phone) {
 		return repository.findByPhone(phone);
 	}
 

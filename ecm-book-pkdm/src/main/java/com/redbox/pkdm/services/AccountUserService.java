@@ -24,7 +24,7 @@ public interface AccountUserService {
 	
 	List<AccountUser> findByNameAndErase(String name, boolean erase);
 	
-	String findByPhone(String phone);
+	AccountUser findByPhone(String phone);
 	
 	boolean checkByPhone(String phone);
 	

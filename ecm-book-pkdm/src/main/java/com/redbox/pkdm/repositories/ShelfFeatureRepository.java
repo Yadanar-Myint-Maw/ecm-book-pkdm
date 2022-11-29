@@ -2,12 +2,11 @@ package com.redbox.pkdm.repositories;
 
 import java.util.List;
 
+import com.redbox.pkdm.entities.ShelfFeature;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import com.redbox.pkdm.entities.DiscountCoupon;
-import com.redbox.pkdm.entities.ShelfFeature;
 
 public interface ShelfFeatureRepository  extends JpaRepository<ShelfFeature, Long> {
 	

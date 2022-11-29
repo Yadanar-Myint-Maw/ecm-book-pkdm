@@ -9,13 +9,13 @@ import com.redbox.pkdm.entities.ContactInfo;
 import com.redbox.pkdm.services.ContactInfoService;
 
 @RestController
-@RequestMapping("/admin/contact/api")
+@RequestMapping("/api/contact")
 public class ContactApi {
 	
 	@Autowired
 	private ContactInfoService contactInfoService;
 	
-	@GetMapping
+	@GetMapping("/findall")
 	ContactInfo getAllContactInfos(){
 		return contactInfoService.findById(1);
 	}
