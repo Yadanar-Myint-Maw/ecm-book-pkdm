@@ -45,7 +45,7 @@
 		        <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/account/admin/initialize/new}">
 		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 11px;"  class="font-weight-bold  text-secondary">Account Data</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Account Data</span>
 		            </a>
 		        </li>
 		         <hr class="sidebar-divider"></hr>
@@ -55,7 +55,7 @@
 		        <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/book/book-entire/new}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 11px;"  class="font-weight-bold">Book Data</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold text-danger">Book Data</span>
 		            </a>
 		        </li> 
 		        <hr class="sidebar-divider"></hr>
@@ -146,34 +146,36 @@
     </div>
     <div class="dashboard-app" style="font-size: 11px;">
         <header class='dashboard-toolbar shadow-sm'>
-        <div class="pr-2">
+        	<div class="pr-2">
 			<a href="#!" class="menu-toggle">
-				<i class="fas fa-bars"></i>
+				<i class="fas fa-book-open"></i>
 			</a>
 		</div>
-        <div class="pl-5 pr-2 text-center" style="width: 10%">
-			စာအုပ်
+		<div class="pl-3 pr-2" style="width: 10%">
+			<span style="font-size: 12px;">Book</span>
 		</div>
-		<div class="pl-2 pr-2 text-center" style="width: 2.5%; font-size: 8px;">
-			<i class="fas fa-arrow-right"></i>
-		</div> 	စာအုပ်များ
-		</div>
-		<div class="text-right" style="width: 67%; font-size: 10px;">
-			<a class="profilebtn" th:href="@{/admin/profile/account}" > <i class="fas fa-user mr-2"></i> [[${loginaccount.name}]] (ထိန်းချုပ်သူ) </a>
-		</div>
-		<div class="text-right text-danger" style="width: 15%; font-size: 10px;">
-			<a class="logoutbtn" th:href="@{/signout}" >Logout</a>
+		<div class="text-right" style="width: 90%; font-size: 9px;">
+			<span class="text-secondary" style="font-size: 8px;">Current User </span> <span class="text-secondary ml-1 mr-2"> - </span> <a class="fg-theme-blue font-weight-bold" style="font-size: 10px;" th:href="@{/admin/account/admins/new}" > [[${loginaccount.name}]] </a>
+			<span class="ml-2 mr-2 text-secondary"> | </span>
+			<a class="text-success" style="font-size: 10px;" th:href="@{/admin/book/book-entire/new}" > Refresh Page </a>
+			<span class="ml-2 mr-2 text-secondary"> | </span>
+			<a class="text-danger" style="font-size: 10px;" th:href="@{/signin}" > Sign Out </a>
+			
 		</div>
         </header>
-        
+        <div class="pt-4 pb-3 text-right border-bottom" style="width: 100%; background: #FFFFFF; box-shadow: none; border-radius: 0px; font-size: 8px;">
+        	<div class="form-inline ml-3">
+        		<span> <a class="text-dark font-weight-bold pt-2 pb-2 pl-5 pr-5 active bg-light border rounded m-2" th:href="@{/admin/book/book-entire/new}"> Novel Data </a></span>
+        		<span>  <a class="text-light font-weight-bold pt-2 pb-2 pl-5 pr-5 bg-theme-blue rounded m-2" th:href="@{/admin/book/book-serie/new}"> Serie Data </a></span>
+        	</div>
+        </div> 
         <div class="" style="width: 100%; color: white;">
         	<div class="bg-success rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${save}" th:if="${save}"></div>
         	<div class="bg-primary rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${update}" th:if="${update}"></div>
 			<div class="bg-danger rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${validation}" th:if="${validation}"></div>
-        </div>      	
-        
+        </div>  
         <form th:action="@{/admin/book/book-serie/save}" th:object="${book}" enctype="multipart/form-data" method="post" class="border-bottom" style="width: 100%; height:455px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
-			<div style="width: 100%; background-color: #F1F1F2; font-size: 9px;"  class="">
+			<div style="width: 100%; background-color: #F1F1F2; font-size: 9px;"  class="container-fluid mt-4">
 				<div class="row">
 					<div class="col-12 font-weight-bold text-danger mb-3">
 						Inventory
@@ -192,7 +194,7 @@
 						  </div>					
 					</div>
 					<div class="col-4">
-						<span class="lbl">စာအုပ်ပုံစံ <span class="text-danger">(Series)</span></span>
+						<span class="lbl">Book Type <span class="text-danger">(Series)</span></span>
 						<input type="text" name="bookType" th:field="*{bookType}" disabled="true" class="form-control textfield mt-1">
 					</div>
 					<div class="col-4 mb-3">
@@ -214,15 +216,29 @@
      			 		</select>
 					</div>
 					<div class="col-4">
-						<span class="lbl">ရွေးချယ်စရာ</span>
+						<span class="lbl">Options</span>
 						<div class="required-control p-2 rounded border mt-1" style="background: white; height: 32px;">
 				            	<label for="electronicBook" class="mr-2">Electronic Book</label>
 				            	<input id="electronicBook" type="checkbox" name="electronicBook" th:checked="*{electronicBook}" class="mr-4" />
+				        	<label for="physicalBook" class="mr-1">Physical Book</label>
+				            	<input id="physicalBook" type="checkbox" name="physicalBook" th:checked="*{physicalBook}" />	
 				        </div>
 					</div>
-					<div class="col-4">
+					<div class="col-2">
 						<span class="lbl">Electronic Book - Price</span>
 						<input type="number" name="price" th:field="*{e_price}"  class="form-control textfield mt-1">
+					</div>
+					<div class="col-2">
+						<span class="lbl">Electronic Book - Discount (%)</span>
+						<input type="number" name="discount" th:field="*{e_discount}"  class="form-control textfield mt-1">
+					</div>
+					<div class="col-2">
+						<span class="lbl">Physical Book - Price</span>
+						<input type="number" name="price" th:field="*{p_price}"  class="form-control textfield mt-1">
+					</div>
+					<div class="col-2">
+						<span class="lbl">Physical Book - Discount (%)</span>
+						<input type="number" name="discount" th:field="*{p_discount}"  class="form-control textfield mt-1">
 					</div>
 					
 					<div class="col-12">
@@ -277,7 +293,7 @@
 									<span style="font-size: 10px;" class="text-danger"><span class="fg-theme-blue"> [[${book.author}]]</span> | <span class="fg-theme-blue text-uppercase"> [[${book.bookType}]]</span> </span>
 								</div>
 								<div class="row mt-1">
-									<span style="font-size: 10px;" class="text-danger"> <span th:if="${book.electronicBook == true}"> [[${book.p_price}]] MMK</span> | <span th:if="${book.physicalBook == true}">[[${book.p_price}]] MMK</span> <span class="text-secondary"> </span> </span>
+									<span style="font-size: 10px;" class="text-danger"> <span th:if="${book.electronicBook == true}"> [[${book.p_price}]] MMK</span> (<span style="font-size: 10px;" class="text-danger"> <span th:if="${book.electronicBook == true}"> [[${book.p_discount}]] %</span>) | <span th:if="${book.physicalBook == true}">[[${book.p_price}]] MMK</span> ( <span th:if="${book.physicalBook == true}">[[${book.p_discount}]] %</span> ) <span class="text-secondary"> </span> </span>
 								</div>
 								<div class="row">
 									<span style="padding: 2px 5px 2px 5px; font-size: 8px; color:white;" class="bg-primary" th:if="${book.electronicBook == true}">Electronic Books</span>

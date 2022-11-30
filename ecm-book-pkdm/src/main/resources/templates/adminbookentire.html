@@ -45,7 +45,7 @@
 		        <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/account/admin/initialize/new}">
 		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 11px;"  class="font-weight-bold  text-secondary">Account Data</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Account Data</span>
 		            </a>
 		        </li>
 		         <hr class="sidebar-divider"></hr>
@@ -55,7 +55,7 @@
 		        <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/book/book-entire/new}">
 		                <i class="fas fa-book-open text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 11px;"  class="font-weight-bold">Book Data</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold text-danger">Book Data</span>
 		            </a>
 		        </li> 
 		        <hr class="sidebar-divider"></hr>
@@ -148,11 +148,11 @@
         <header class='dashboard-toolbar shadow-sm'>
         	<div class="pr-2">
 			<a href="#!" class="menu-toggle">
-				<i class="fas fa-users"></i>
+				<i class="fas fa-book-open"></i>
 			</a>
 		</div>
 		<div class="pl-3 pr-2" style="width: 10%">
-			<span style="font-size: 12px;">Book Entire</span>
+			<span style="font-size: 12px;">Book</span>
 		</div>
 		<div class="text-right" style="width: 90%; font-size: 9px;">
 			<span class="text-secondary" style="font-size: 8px;">Current User </span> <span class="text-secondary ml-1 mr-2"> - </span> <a class="fg-theme-blue font-weight-bold" style="font-size: 10px;" th:href="@{/admin/account/admins/new}" > [[${loginaccount.name}]] </a>
@@ -163,7 +163,12 @@
 			
 		</div>
         </header>
-        
+        <div class="pt-4 pb-3 text-right border-bottom" style="width: 100%; background: #FFFFFF; box-shadow: none; border-radius: 0px; font-size: 8px;">
+        	<div class="form-inline ml-3">
+        		<span> <a class="text-light font-weight-bold pt-2 pb-2 pl-5 pr-5 bg-theme-blue rounded m-2" th:href="@{/admin/book/book-entire/new}"> Novel Data </a></span>
+        		<span> <a class="text-dark font-weight-bold pt-2 pb-2 pl-5 pr-5 active bg-light border rounded m-2" th:href="@{/admin/book/book-serie/new}"> Serie Data </a></span>
+        	</div>
+        </div> 
         <div class="" style="width: 100%; color: white;">
         	<div class="bg-success rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${save}" th:if="${save}"></div>
         	<div class="bg-primary rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${update}" th:if="${update}"></div>
@@ -191,7 +196,7 @@
 						  </div>					
 					</div>
 					<div class="col-4">
-						<span class="lbl">Book Type <span class="text-danger">(Book Entire)</span></span>
+						<span class="lbl">Book Type <span class="text-danger">(Novel)</span></span>
 						<input type="text" name="bookType" th:field="*{bookType}" disabled="true" class="form-control textfield mt-1">
 					</div>
 					<div class="col-4 mb-3">
@@ -212,7 +217,7 @@
         					<option th:each="related : ${relateds}" th:text="${related.name}" th:value="${related.id}"></option>
      			 		</select>
 					</div>
-					<div class="col-2">
+					<div class="col-4">
 						<span class="lbl">Book Type</span>
 						<div class="required-control p-2 rounded border mt-1" style="background: white; height: 28px;">
 				            	<label for="electronicBook" class="mr-1">E-Book</label>
@@ -229,7 +234,7 @@
 						<span class="lbl">Electronic Book - Discount (%)</span>
 						<input type="number" name="discount" th:field="*{e_discount}"  class="form-control textfield mt-1">
 					</div>
-					<div class="col-3">
+					<div class="col-2">
 						<span class="lbl">Physical Book - Price</span>
 						<input type="number" name="price" th:field="*{p_price}"  class="form-control textfield mt-1">
 					</div>
@@ -250,20 +255,20 @@
 		</div>	
 		</form>
 		
-	<form style="width: 100%; height:160px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">		
+	<form style="width: 100%; height:70px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">		
 	<div style="width: 100%; background-color: #FFFFFF;"  class="pb-2 container-fluid mt-4">
-			<div class="row">
+			<div class="row mt-4">
 				<div class="col-12 font-weight-bold text-danger pt-1">
 					DATA TABLE
 				</div>
-					<div class="col-12 font-weight-bold text-danger mb-2">
+					<div class="col-12 font-weight-bold text-danger mb-2 mt-3">
 						<div class="col-12 border-bottom"></div>
 					</div>
 				</div>
 		</div>
 		</form>
       	<div class="container-fluid mb-5 pb-5">
-			<div class="form-inline">
+			<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-6 pb-2 pt-2" style="text-align: justify;" th:each="book : ${books}">
 					<div class="shadow-sm">
 						<div class="bg-theme-blue" style="height: 10px;">

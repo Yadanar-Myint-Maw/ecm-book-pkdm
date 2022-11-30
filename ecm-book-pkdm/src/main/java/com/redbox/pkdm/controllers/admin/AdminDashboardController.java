@@ -73,9 +73,9 @@ public class AdminDashboardController {
 //		model.addAttribute("userlevel2Total", accountUserService.findByCountUserLevel2("Level-2"));
 //		model.addAttribute("ebookTotal", bookService.findByCountEBook("Series"));
 //		model.addAttribute("pbookTotal", bookService.findByCountPBook("LoneChinn"));
-//		model.addAttribute("shelfAuthorTotal", shelfAuthorService.findCountByShelfAuthor());
-//		model.addAttribute("shelfFeatureTotal", shelfFeatureService.findCountByShelfFeature());
-//		model.addAttribute("shelfCategoryTotal", shelfCategoryService.findCountByShelfCategory());
+		model.addAttribute("shelfAuthorTotal", shelfAuthorService.findCountByShelfAuthor());
+		model.addAttribute("shelfFeatureTotal", shelfFeatureService.findCountByShelfFeature());
+		model.addAttribute("shelfCategoryTotal", shelfCategoryService.findCountByShelfCategory());
 //		model.addAttribute("couponTotal" , discountCouponService.findCountByDiscountCoupon());
 //		model.addAttribute("majorBannerTotal" , advertisingMajorBannerService.findCountByMajorBanner());
 //		model.addAttribute("minorTotal", advertisingMinorBannerService.findCountByMinorBanner());
