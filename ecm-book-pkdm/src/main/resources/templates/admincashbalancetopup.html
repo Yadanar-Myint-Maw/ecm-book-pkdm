@@ -295,7 +295,7 @@
 			    	    	<span class="text-warning font-weight-bold" th:if="${wallet.status == 'REQUEST'}">REQUEST</span>
 			    	    	<span class="text-danger font-weight-bold" th:if="${wallet.status == 'CANCEL'}">CANCEL</span>
 			    	    </td>
-					    <td style="font-size: 7px;"> <a class="bg-primary text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/wallet/init/TOPUP/{id}(id=${wallet.id})}"> UPDATE </a></td>
+					    <td style="font-size: 7px;"> <a class="bg-primary text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/cash/wallet/init/TOPUP/{id}(id=${wallet.id})}"> UPDATE </a></td>
 					    </tr>
 					  </tbody>
 					</table>

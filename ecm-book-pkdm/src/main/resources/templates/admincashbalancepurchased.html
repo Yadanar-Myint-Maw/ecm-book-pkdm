@@ -165,8 +165,8 @@
         
          <div class="pt-3 pb-3 text-right border-bottom" style="width: 100%; background: #FFFFFF; box-shadow: none; border-radius: 0px; font-size: 8px;">
         	<div class="form-inline ml-3">
-        		<span> <a class="text-light pt-1 pb-2 pl-4 pr-4 bg-danger rounded m-2" th:href="@{/admin/cash/wallet/init/TOPUP/0}"> TopUp </a></span>
-        		<span> <a class="text-light pt-1 pb-2 pl-4 pr-4 bg-primary rounded m-2" th:href="@{/admin/cash/wallet/init/PURCHASED/0}"> Purchase </a></span>
+        		<span> <a class="text-light pt-1 pb-2 pl-4 pr-4 bg-primary rounded m-2" th:href="@{/admin/cash/wallet/init/TOPUP/0}"> TopUp </a></span>
+        		<span> <a class="text-light pt-1 pb-2 pl-4 pr-4 bg-danger rounded m-2" th:href="@{/admin/cash/wallet/init/PURCHASED/0}"> Purchase </a></span>
         		<span> <a class="text-light pt-1 pb-2 pl-4 pr-4 bg-primary rounded m-2" th:href="@{/admin/cash/wallet/init/ALL/0}"> All </a></span>
         	</div>
         </div> 
@@ -242,7 +242,7 @@
 			    	    	<span class="text-warning font-weight-bold" th:if="${wallet.status == 'REQUEST'}">REQUEST</span>
 			    	    	<span class="text-danger font-weight-bold" th:if="${wallet.status == 'CANCEL'}">CANCEL</span>
 			    	    </td>
-					    <td style="font-size: 7px;"> <a class="bg-primary text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/wallet/init/TOPUP/{id}(id=${wallet.id})}"> UPDATE </a></td>
+					    <td style="font-size: 7px;"> <a class="bg-primary text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/cash/wallet/init/PURCHASED/{id}(id=${wallet.id})}"> UPDATE </a></td>
 					    </tr>
 					  </tbody>
 					</table>
