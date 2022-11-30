@@ -30,12 +30,12 @@
 			<ul class="navbar-nav sidebar bg-theme-blue sidebar-dark" style="font-size: 11px;">
 				<hr class="sidebar-divider"></hr>
 				<div class="sidebar-heading text-dark" >
-		           Dashboard
+		           Overview
 		        </div>
 				<li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/general/dashboard}">
 		                <i class="fas fa-fw fa-tachometer-alt text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 11px;"  class="font-weight-bold">Dashboard Data</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold text-danger">Dashboard</span>
 		            </a>
 		        </li>
 		        <hr class="sidebar-divider"></hr>
@@ -43,9 +43,9 @@
 		            Accounts
 		        </div>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/account/admin/initialize/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/account/admin/initialize/0}">
 		                <i class="fas fa-users text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 11px;"  class="font-weight-bold  text-secondary">Account Data</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Account Data</span>
 		            </a>
 		        </li>
 		         <hr class="sidebar-divider"></hr>
@@ -63,12 +63,12 @@
 		           General
 		        </div>
 		        <li class="nav-item">
-		            <a class="nav-link text-light" th:href="@{/admin/essential/author/initialize/new}">
+		            <a class="nav-link text-light" th:href="@{/admin/essential/author/initialize/0}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
 		                  <span style="font-size: 11px;"  class="font-weight-bold">Essential Data</span>
 		            </a>
 		        </li>
-		       <li class="nav-item">
+		        <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/shelf/feature/initialize/0}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
 		                  <span style="font-size: 11px;"  class="font-weight-bold">Shelf Data</span>
@@ -99,7 +99,7 @@
 		         <div class="sidebar-heading text-dark">
 		            Cash
 		        </div>
-		       <li class="nav-item">
+		        <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/cash/wallet/init/TOPUP/0}">
 		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
 		                 <span style="font-size: 11px;"  class="font-weight-bold">Wallet Data</span>
@@ -111,7 +111,6 @@
 		                 <span style="font-size: 11px;"  class="font-weight-bold">Point Data</span>
 		            </a>
 		        </li>
-		     
 		        
 		        <hr class="sidebar-divider"></hr>
 		        
@@ -141,8 +140,8 @@
 				<div class="text-center d-none d-md-inline mb-5">
 		            <span class="text-warning" style="font-size: 12px;">Version 1.0</span>
 		        </div>
-			</ul>        
-		</nav>
+			</ul>
+        </nav>
     </div>
     <div class="dashboard-app" style="font-size: 11px;">
         <header class='dashboard-toolbar shadow-sm'>
