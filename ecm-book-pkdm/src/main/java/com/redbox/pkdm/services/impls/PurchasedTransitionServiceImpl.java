@@ -1,8 +1,11 @@
 package com.redbox.pkdm.services.impls;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.redbox.pkdm.entities.PurchasedTransition;
+import com.redbox.pkdm.models.BookReportModel;
+import com.redbox.pkdm.models.UserReportModel;
 import com.redbox.pkdm.repositories.PurchasedTransitionRepository;
 import com.redbox.pkdm.services.PurchasedTransitionService;
 
@@ -45,4 +48,28 @@ public class PurchasedTransitionServiceImpl implements PurchasedTransitionServic
 		return repository.findByBookType(bookType);
 	}
 
+//	@Override
+//	public List<PurchasedTransition> findByInvoiceNo(String invoiceNo) {
+//		return repository.findByInvoiceNo(invoiceNo);
+//	}
+
+	@Override
+	public List<BookReportModel> findCountByBook() {
+		return repository.findCountByBook();
+	}
+
+	@Override
+	public List<BookReportModel> findCountByBookAndDate(LocalDate dateFrom, LocalDate dateTo) {
+		return repository.findCountByBookAndDate(dateFrom, dateTo);
+	}
+
+	@Override
+	public List<UserReportModel> findCountByUser() {
+		return repository.findCountByUser();
+	}
+
+	@Override
+	public List<UserReportModel> findCountByUserAndDate(LocalDate dateFrom, LocalDate dateTo) {
+		return repository.findCountByUserAndDate(dateFrom, dateTo);
+	}
 }

@@ -3,6 +3,7 @@ package com.redbox.pkdm.services.impls;
 import java.util.List;
 
 import com.redbox.pkdm.entities.PurchasedInvoice;
+import com.redbox.pkdm.entities.PurchasedTransition;
 import com.redbox.pkdm.repositories.PurchasedInvoiceRepository;
 import com.redbox.pkdm.services.PurchasedInvoiceService;
 
@@ -35,5 +36,9 @@ public class PurchasedInvoiceServiceImpl implements PurchasedInvoiceService {
 	public List<PurchasedInvoice> findByUser(String userID) {
 		return purchasedInvoiceRepository.findByUser(userID);
 	}
+
+
+
+
 
 }

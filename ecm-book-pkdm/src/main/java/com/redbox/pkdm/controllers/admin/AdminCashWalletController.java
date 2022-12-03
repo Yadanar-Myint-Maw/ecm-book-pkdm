@@ -5,6 +5,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.redbox.pkdm.entities.PurchasedTransition;
+import com.redbox.pkdm.services.PurchasedTransitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +38,9 @@ public class AdminCashWalletController {
 	
 	@Autowired
 	private AccountUserService accountUserService;
+
+	@Autowired
+	private PurchasedTransitionService purchasedTransitionService;
 	
 	@GetMapping("init/{type}/{id}")
 	public String initialize(Model model, @PathVariable String type, @PathVariable String id, String dateFrom, String dateTo, @CookieValue("login_user_id") String cookieId) throws Exception{
@@ -81,8 +86,8 @@ public class AdminCashWalletController {
 		 model.addAttribute("wallets", wallets);
 
 		 model.addAttribute("total", getTotal(wallets));
-
-		 return redirectPage;
+		 model.addAttribute("purchases", purchasedTransitionService.findAll());
+		return redirectPage;
 		 
 	}
 	
@@ -124,5 +129,6 @@ public class AdminCashWalletController {
 		} 
 		return total;
 	}
+
 
 }
