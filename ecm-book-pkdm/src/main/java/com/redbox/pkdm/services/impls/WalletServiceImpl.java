@@ -1,17 +1,18 @@
 package com.redbox.pkdm.services.impls;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.redbox.pkdm.entities.Wallet;
 import com.redbox.pkdm.models.WalletModle;
 import com.redbox.pkdm.repositories.WalletRepository;
 import com.redbox.pkdm.services.AccountUserService;
 import com.redbox.pkdm.services.WalletService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class WalletServiceImpl implements WalletService{
@@ -53,12 +54,12 @@ public class WalletServiceImpl implements WalletService{
 
 	@Override
 	public List<Wallet> findAll() {
-		return walletRepository.findAll();
+		return walletRepository.findAll().stream().sorted(Comparator.comparing(Wallet::getId).reversed()).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<Wallet> findByErase(boolean erase) {
-		return walletRepository.findByErase(false);
+		return walletRepository.findByErase(false).stream().sorted(Comparator.comparing(Wallet::getId).reversed()).collect(Collectors.toList());
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class WalletServiceImpl implements WalletService{
 		}
 		LocalDate dateFrom = LocalDate.parse(from);
 		LocalDate dateTo = LocalDate.parse(to);
-		return walletRepository.findByDate(dateFrom, dateTo);
+		return walletRepository.findByDate(dateFrom, dateTo).stream().sorted(Comparator.comparing(Wallet::getId).reversed()).collect(Collectors.toList());
 	}
 
 	@Override
@@ -86,17 +87,17 @@ public class WalletServiceImpl implements WalletService{
 			w.getDescription();
 			w.getAmount();
 		});
-		return walletRepository.getWalletList(id);
+		return walletRepository.getWalletList(id).stream().sorted(Comparator.comparing(Wallet::getId).reversed()).collect(Collectors.toList());
 	}
 	
 	@Override
 	public List<Wallet> findByStatus (String status) {
-		return walletRepository.findByStatus(status);
+		return walletRepository.findByStatus(status).stream().sorted(Comparator.comparing(Wallet::getId).reversed()).collect(Collectors.toList());
 	}
 	
 	@Override
 	public List<Wallet> findByWalletType (String type) {
-		return walletRepository.findBywalletType(type);
+		return walletRepository.findBywalletType(type).stream().sorted(Comparator.comparing(Wallet::getId).reversed()).collect(Collectors.toList());
 	}
 	
 	@Override
@@ -106,12 +107,12 @@ public class WalletServiceImpl implements WalletService{
 		} 
 		LocalDate dateFrom = LocalDate.parse(from);
 		LocalDate dateTo = LocalDate.parse(to);
-		return walletRepository.findBywalletTypeAndDateFromTo(type, dateFrom, dateTo);
+		return walletRepository.findBywalletTypeAndDateFromTo(type, dateFrom, dateTo).stream().sorted(Comparator.comparing(Wallet::getId).reversed()).collect(Collectors.toList());
 	}
 	
 	@Override
 	public List<Wallet> findByUser (String id) {
-		return walletRepository.findByUser(id);
+		return walletRepository.findByUser(id).stream().sorted(Comparator.comparing(Wallet::getId).reversed()).collect(Collectors.toList());
 	}
 
 }

@@ -1,10 +1,7 @@
 package com.redbox.pkdm.controllers.admin;
 
-import com.redbox.pkdm.entities.AccountAdmin;
-import com.redbox.pkdm.entities.PurchasedTransition;
-import com.redbox.pkdm.models.BookReportModel;
-import com.redbox.pkdm.services.AccountAdminService;
-import com.redbox.pkdm.services.PurchasedTransitionService;
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import com.redbox.pkdm.entities.AccountAdmin;
+import com.redbox.pkdm.services.AccountAdminService;
+import com.redbox.pkdm.services.PurchasedTransitionService;
 
 @Controller
 @RequestMapping("admin/report/book")

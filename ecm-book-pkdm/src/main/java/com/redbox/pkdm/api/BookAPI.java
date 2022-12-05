@@ -1,7 +1,16 @@
 package com.redbox.pkdm.api;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.redbox.pkdm.entities.Book;
 import com.redbox.pkdm.entities.BookSection;
@@ -19,12 +28,6 @@ import com.redbox.pkdm.services.PurchasedTransitionService;
 import com.redbox.pkdm.services.ShelfAuthorMapperService;
 import com.redbox.pkdm.services.ShelfCategoryMapperService;
 import com.redbox.pkdm.services.ShelfRelatedMapperService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/book")
@@ -92,6 +95,7 @@ public class BookAPI {
 				
 			}
 			
+			Collections.reverse(bookModels);
 			return bookModels;
 			
 		} catch (Exception e) {
@@ -162,7 +166,7 @@ public class BookAPI {
 				models.add(model);
 				model = new MyBookModel();
 			}
-			return models;
+			return models.stream().sorted(Comparator.comparing(MyBookModel::getBookID).reversed()).collect(Collectors.toList());
 		} catch (Exception e) {
 			return new ArrayList<>();
 		}

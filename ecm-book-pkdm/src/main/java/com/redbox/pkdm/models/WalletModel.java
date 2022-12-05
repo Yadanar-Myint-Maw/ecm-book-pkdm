@@ -6,6 +6,8 @@ public class WalletModel {
 	
 	private String walletType; // Top Up, Purchased
 	
+	private String walletStatus;
+	
 	private String description; // Top Up 5000 MMK into ACCOUNT - ID (Name) WALLET
 	
 	private double amount;
@@ -60,6 +62,14 @@ public class WalletModel {
 
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+	public String getWalletStatus() {
+		return walletStatus;
+	}
+
+	public void setWalletStatus(String walletStatus) {
+		this.walletStatus = walletStatus;
 	}
 	
 }

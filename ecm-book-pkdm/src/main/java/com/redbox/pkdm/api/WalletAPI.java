@@ -105,10 +105,10 @@ public class WalletAPI {
 			String invoice_no = "INV-" + LocalDateTime.now() + new Random().nextInt(99);
 			AccountUser accountUser = accountUserService.findByID(userID);
 			
-			wallet.setWalletType("Purchased");
+			wallet.setWalletType("PURCAHSED");
 			wallet.setDescription(description);
 			wallet.setAmount(price);
-			wallet.setStatus("Approve");
+			wallet.setStatus("APPROVE");
 			wallet.setAccountUser(accountUser);
 			wallet.setSecurityInfo(new SecurityInfo());
 			wallet.getSecurityInfo().setCreateDate(LocalDate.now());
@@ -166,10 +166,10 @@ public class WalletAPI {
 							String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ လျော့စျေး ရရှိသောကြောင့် " + 
 							String.valueOf(book.getE_discount()) + " စုစုပေါင်းကျသင့်ငွေမှာ " + String.valueOf(price) + " ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
 					Wallet wallet = new Wallet();
-					wallet.setWalletType("Purchased");
+					wallet.setWalletType("PURCHASED");
 					wallet.setDescription(description);
 					wallet.setAmount(total);
-					wallet.setStatus("Approve");
+					wallet.setStatus("APPROVE");
 					wallet.setAccountUser(accountUser);
 					wallet.setSecurityInfo(new SecurityInfo());
 					wallet.getSecurityInfo().setCreateDate(LocalDate.now());
@@ -213,10 +213,10 @@ public class WalletAPI {
 					String.valueOf(book.getP_price()) + " MMK ဖြစ်ပါသည်။ " + township.getName() + "အတွက် ပိုဆောင်ခမှာ " + township.getFee() + " ဖြစ်ပါသည။ စုစုပေါင်း ကျသင့်ငွေ " + String.valueOf(total) + "MMK ကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
 			
 			Wallet wallet = new Wallet();
-			wallet.setWalletType("Purchased");
+			wallet.setWalletType("PURCHASED");
 			wallet.setDescription(description);
 			wallet.setAmount(total);
-			wallet.setStatus("Approve");
+			wallet.setStatus("APPROVE");
 			wallet.setAccountUser(user);
 			wallet.setSecurityInfo(new SecurityInfo());
 			wallet.getSecurityInfo().setCreateDate(LocalDate.now());
@@ -262,14 +262,14 @@ public class WalletAPI {
 		try {
 			AccountUser accountUser = accountUserService.findByID(userID);
 			Wallet wallet = new Wallet();
-			wallet.setWalletType("Top Up");
+			wallet.setWalletType("TOPUP");
 			wallet.setDescription("လူကြီးမင်း ပိုက်ဆံအိတ် အတွင်းသို့ " + amount + "MMK ငွေ ဖြည့်သွင်းခြင်းကို လက်ခံရရှိပါသည်။ စစ်ဆေးမှုများပြုလုပ်နေပါသဖြင့် ခဏစောင့်ဆိုင်းပေးပါ။");
 			wallet.setAmount(Double.parseDouble(amount));
 			wallet.setAccountUser(accountUser);
 			wallet.setApprove(false);
 			wallet.setTaskIDNo(taskIDNo);
 			wallet.setPayment(payment);
-			wallet.setStatus("Request");
+			wallet.setStatus("REQUEST");
 			wallet.setSecurityInfo(new SecurityInfo());
 			wallet.getSecurityInfo().setCreateDate(LocalDate.now());
 			wallet.getSecurityInfo().setCreateTime(LocalTime.now().toString());
@@ -286,8 +286,8 @@ public class WalletAPI {
 		double wallet_amount = 0.0;
 		List<Wallet> wallets = walletTopUpService.findByUser(id);
 		for (Wallet wallet : wallets) {
-			if (wallet.getStatus().equals("Approve")) {
-				if (wallet.getWalletType().equals("Top Up")) {
+			if (wallet.getStatus().equals("APPROVE")) {
+				if (wallet.getWalletType().equals("TOPUP")) {
 					wallet_amount += wallet.getAmount();
 				} else {
 					wallet_amount -= wallet.getAmount();
@@ -309,6 +309,7 @@ public class WalletAPI {
 			model.setWalletType(w.getWalletType());
 			model.setDescription(w.getDescription());
 			model.setAmount(w.getAmount());
+			model.setWalletStatus(w.getStatus());
 			models.add(model);
 			model = new WalletModel();
 		}

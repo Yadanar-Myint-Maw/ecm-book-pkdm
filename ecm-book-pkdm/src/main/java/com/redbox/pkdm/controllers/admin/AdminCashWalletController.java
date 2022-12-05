@@ -5,8 +5,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.redbox.pkdm.entities.PurchasedTransition;
-import com.redbox.pkdm.services.PurchasedTransitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +21,7 @@ import com.redbox.pkdm.entities.SecurityInfo;
 import com.redbox.pkdm.entities.Wallet;
 import com.redbox.pkdm.services.AccountAdminService;
 import com.redbox.pkdm.services.AccountUserService;
+import com.redbox.pkdm.services.PurchasedTransitionService;
 import com.redbox.pkdm.services.WalletService;
 import com.redbox.pkdm.utilities.MessageUtility;
 
@@ -107,9 +106,7 @@ public class AdminCashWalletController {
 				wallet2.setWalletType("TOPUP");
 				wallet2.setDescription(MessageUtility.getTopUpDescription(String.valueOf(wallet.getAmount())));
 				wallet2.setStatus(wallet.getStatus());
-				wallet2.setAccountUser(wallet.getAccountUser());
 				wallet2.setAmount(wallet.getAmount());
-				wallet2.setDescription(wallet.getDescription());
 				wallet2.getSecurityInfo().setUpdateDate(LocalDate.now());
 				wallet2.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
 				wallet2.getSecurityInfo().setUpdateUser(cookieId);
@@ -117,7 +114,7 @@ public class AdminCashWalletController {
 				redirAttrs.addFlashAttribute("update", MessageUtility.getTopUpMessage());
 			}
 		}
-		return "redirect:/admin/wallet/init/TOPUP/0";
+		return "redirect:/admin/cash/wallet/init/TOPUP/0";
 	}
 	
 	private double getTotal (List<Wallet> wallets) {
