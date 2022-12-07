@@ -8,6 +8,7 @@ import java.util.List;
 import com.redbox.pkdm.entities.AccountAdmin;
 import com.redbox.pkdm.entities.Book;
 import com.redbox.pkdm.entities.BookTag;
+import com.redbox.pkdm.entities.DiscountCoupon;
 import com.redbox.pkdm.entities.SecurityInfo;
 import com.redbox.pkdm.entities.ShelfAuthor;
 import com.redbox.pkdm.entities.ShelfAuthorMapper;
@@ -20,6 +21,7 @@ import com.redbox.pkdm.entities.ShelfRelatedMapper;
 import com.redbox.pkdm.services.AccountAdminService;
 import com.redbox.pkdm.services.BookService;
 import com.redbox.pkdm.services.BookTagService;
+import com.redbox.pkdm.services.DiscountCouponService;
 import com.redbox.pkdm.services.ShelfAuthorMapperService;
 import com.redbox.pkdm.services.ShelfAuthorService;
 import com.redbox.pkdm.services.ShelfCategoryMapperService;
@@ -77,6 +79,9 @@ public class AdminBookController {
 	
 	@Autowired
 	private ShelfRelatedMapperService shelfRelatedMapperService;
+	
+	@Autowired
+	private DiscountCouponService discountCouponService;
 	
 	@GetMapping("/book-entire/{id}")
 	public String initializeBookEntire(@PathVariable String id, Model model, String keyword, @CookieValue("login_user_id") String cookieId) throws Exception {
@@ -169,18 +174,16 @@ public class AdminBookController {
 			
 			books.add(book);
 			
+			
 		}
 		
 		model.addAttribute("books", books);
 		
-		if(id.equals("new")) {
-			
+		if(id.equals("new")) {	
 			Book book = new Book();
 			book.setBookType("SERIE");
 			book.setElectronicBook(true);
-			model.addAttribute("book", book);
-			
-			
+			model.addAttribute("book", book);				
 		} else {	
 			model.addAttribute("book", bookService.findByID(id));
 		}
@@ -201,7 +204,34 @@ public class AdminBookController {
 			book.setSecurityInfo(new SecurityInfo(cookieId));
 			bookService.save(book);
 			redirAttrs.addFlashAttribute("save","အချက်အလက်များကို သိမ်းဆဲလိုက်ပါပြီ။");
+			
+			DiscountCoupon discountCoupon = new DiscountCoupon();
+			discountCoupon.setName(book.getName() + "Coupon");
+			discountCoupon.setStartDate(LocalDate.now());
+			discountCoupon.setBook(book);
+			discountCoupon.setSecurityInfo(new SecurityInfo(cookieId));
+	
+			if(book.getE_discount() > 0 && book.getP_discount() > 0) {
+				
+				discountCoupon.setRate(book.getE_discount());
+				discountCoupon.setCouponType("EBookCoupon");
+				discountCouponService.save(discountCoupon);
+				
+				discountCoupon = new DiscountCoupon();
+				discountCoupon.setRate(book.getE_discount());
+				discountCoupon.setCouponType("PBookCoupon");
+				discountCouponService.save(discountCoupon);
+				
+			}else if(book.getE_discount() > 0) {
+				discountCoupon.setRate(book.getE_discount());
+				discountCoupon.setCouponType("EBookCoupon");
+				discountCouponService.save(discountCoupon);
 		
+			}else if(book.getP_discount() > 0){
+				discountCoupon.setRate(book.getP_discount());
+				discountCoupon.setCouponType("PBookCoupon");
+				discountCouponService.save(discountCoupon);
+			}	
 		} else {
 			
 			Book book2 = bookService.findByID(book.getId());
@@ -224,6 +254,34 @@ public class AdminBookController {
 			book2.getSecurityInfo().setUpdateUser(cookieId);
 			bookService.save(book2);
 			redirAttrs.addFlashAttribute("update","အချက်အလက်များကို ပြင်ဆင်လိုက်ပါပြီ။");
+			
+			List<DiscountCoupon> updateDiscountCoupons = discountCouponService.findByBook(book.getId());
+			System.out.println("Update Cpupon Size" + updateDiscountCoupons.size());
+			
+			for(DiscountCoupon discountCoupon : updateDiscountCoupons) {
+				if(discountCoupon.getCouponType().equals("PBookCoupon")) {
+					discountCoupon.setRate(book2.getP_discount());
+					if(book2.getP_discount() == 0) {
+						discountCoupon.setEndDate(LocalDate.now());
+						discountCoupon.setActive(true);
+					}
+					discountCoupon.getSecurityInfo().setUpdateDate(LocalDate.now());
+					discountCoupon.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
+					discountCoupon.getSecurityInfo().setUpdateUser(cookieId);
+					discountCouponService.save(discountCoupon);
+					
+				}else if(discountCoupon.getCouponType().equals("EBookCoupon")) {
+					discountCoupon.setRate(book2.getE_discount());
+					if(book2.getE_discount() == 0) {
+						discountCoupon.setEndDate(LocalDate.now());
+						discountCoupon.setActive(true);
+					}
+					discountCoupon.getSecurityInfo().setUpdateDate(LocalDate.now());
+					discountCoupon.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
+					discountCoupon.getSecurityInfo().setUpdateUser(cookieId);
+					discountCouponService.save(discountCoupon);
+				}
+			}
 			
 		}
 		
@@ -261,6 +319,49 @@ public class AdminBookController {
 			book.setSecurityInfo(new SecurityInfo(cookieId));
 			bookService.save(book);
 			redirAttrs.addFlashAttribute("save","အချက်အလက်များကို သိမ်းဆဲလိုက်ပါပြီ။");
+			
+			DiscountCoupon discountCoupon = new DiscountCoupon();
+			
+			if(book.getE_discount() > 0 && book.getP_discount() > 0) {
+				
+				System.out.println("Physical ANd electronic");
+				
+				discountCoupon.setStartDate(LocalDate.now());
+				discountCoupon.setName("Electronic Book Coupon");
+				discountCoupon.setRate(book.getE_discount());
+				discountCoupon.setCouponType("EBookCoupon");
+				discountCoupon.setBook(book);
+				discountCoupon.setSecurityInfo(new SecurityInfo(cookieId));
+				discountCouponService.save(discountCoupon);
+				
+				discountCoupon = new DiscountCoupon();				
+				discountCoupon.setStartDate(LocalDate.now());
+				discountCoupon.setName("Physical Book Coupon");
+				discountCoupon.setRate(book.getE_discount());
+				discountCoupon.setCouponType("PBookCoupon");
+				discountCoupon.setBook(book);
+				discountCoupon.setSecurityInfo(new SecurityInfo(cookieId));
+				discountCouponService.save(discountCoupon);
+				
+			}else if(book.getE_discount() > 0) {
+				
+				System.out.println("ELe");
+				
+				discountCoupon.setName("Electronic Book Coupon");
+				discountCoupon.setRate(book.getE_discount());
+				discountCoupon.setCouponType("EBookCoupon");
+				discountCoupon.setBook(book);
+				discountCoupon.setSecurityInfo(new SecurityInfo(cookieId));
+				discountCouponService.save(discountCoupon);
+		
+			}else if(book.getP_discount() > 0){
+				discountCoupon.setName("Physical Book Coupon");
+				discountCoupon.setRate(book.getP_discount());
+				discountCoupon.setCouponType("PBookCoupon");
+				discountCoupon.setBook(book);
+				discountCoupon.setSecurityInfo(new SecurityInfo(cookieId));
+				discountCouponService.save(discountCoupon);
+			}
 		
 		} else {
 			
@@ -286,7 +387,36 @@ public class AdminBookController {
 			bookService.save(book2);
 			redirAttrs.addFlashAttribute("update","အချက်အလက်များကို ပြင်ဆင်လိုက်ပါပြီ။");
 			
+			List<DiscountCoupon> updateDiscountCoupons = discountCouponService.findByBook(book.getId());
+			
+			for(DiscountCoupon discountCoupon : updateDiscountCoupons) {
+				if(discountCoupon.getCouponType().equals("PBookCoupon")) {
+					discountCoupon.setRate(book2.getP_discount());
+					if(book2.getP_discount() == 0) {
+						discountCoupon.setEndDate(LocalDate.now());
+						discountCoupon.setActive(true);
+					}
+					discountCoupon.getSecurityInfo().setUpdateDate(LocalDate.now());
+					discountCoupon.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
+					discountCoupon.getSecurityInfo().setUpdateUser(cookieId);	
+					discountCouponService.save(discountCoupon);
+					
+				}else if(discountCoupon.getCouponType().equals("EBookCoupon")) {
+					discountCoupon.setRate(book2.getE_discount());
+					if(book2.getE_discount() == 0) {
+						discountCoupon.setEndDate(LocalDate.now());
+						discountCoupon.setActive(true);
+					}
+					discountCoupon.getSecurityInfo().setUpdateDate(LocalDate.now());
+					discountCoupon.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
+					discountCoupon.getSecurityInfo().setUpdateUser(cookieId);
+					discountCouponService.save(discountCoupon);
+				}
+			}	
 		}
+		
+		
+		
 		
 		ShelfCategory shelfCategory = shelfCategoryService.findByID(Long.parseLong(categoryId));
 		ShelfCategoryMapper shelfCategoryMapper = new ShelfCategoryMapper(shelfCategory, book);

@@ -23,6 +23,8 @@ public class BookTag {
 	private String name;
 	
 	private boolean erase;
+	
+	private double discount;
 
 	public long getId() {
 		return id;
@@ -63,5 +65,17 @@ public class BookTag {
 	public void setImageFile(MultipartFile imageFile) {
 		this.imageFile = imageFile;
 	}
+
+	public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+	
+	
+
+		
 
 }

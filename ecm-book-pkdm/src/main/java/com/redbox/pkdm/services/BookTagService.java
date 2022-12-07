@@ -14,6 +14,6 @@ public interface BookTagService {
 	
 	List<BookTag> findByErase(boolean erase);
 	
-	List<BookTag> findByBook(String id);
+	List<BookTag> findByName(String name);
 
 }

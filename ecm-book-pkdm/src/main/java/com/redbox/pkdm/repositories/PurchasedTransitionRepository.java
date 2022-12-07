@@ -28,7 +28,6 @@ public interface PurchasedTransitionRepository extends JpaRepository<PurchasedTr
 	@Query(value = "SELECT new BookReportModel(p.book, COUNT(p.book.id), p.bookPrice) FROM PurchasedTransition AS p GROUP BY p.book.id ORDER BY COUNT(p.book.id) DESC")
 	List<BookReportModel> findCountByBook();
 
-
 	@Query(value = "SELECT new BookReportModel(p.book, COUNT(p.book.id), p.bookPrice) FROM PurchasedTransition AS p where p.securityInfo.createDate between :dateFrom and :dateTo GROUP BY p.book.id ORDER BY COUNT(p.book.id) DESC")
 	List<BookReportModel> findCountByBookAndDate(@Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo);
 

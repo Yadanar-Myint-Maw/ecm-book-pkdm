@@ -9,6 +9,7 @@ import java.util.Random;
 
 import com.redbox.pkdm.entities.AccountUser;
 import com.redbox.pkdm.entities.Book;
+import com.redbox.pkdm.entities.BookTag;
 import com.redbox.pkdm.entities.DeliveryInfo;
 import com.redbox.pkdm.entities.DeliveryTownship;
 import com.redbox.pkdm.entities.DiscountCoupon;
@@ -21,6 +22,7 @@ import com.redbox.pkdm.entities.Wallet;
 import com.redbox.pkdm.models.WalletModel;
 import com.redbox.pkdm.services.AccountUserService;
 import com.redbox.pkdm.services.BookService;
+import com.redbox.pkdm.services.BookTagService;
 import com.redbox.pkdm.services.DeliveryInfoService;
 import com.redbox.pkdm.services.DeliveryTownshipService;
 import com.redbox.pkdm.services.DiscountCouponService;
@@ -66,6 +68,9 @@ public class WalletAPI {
 	@Autowired
 	private DeliveryInfoService deliveryInfoService;
 	
+	@Autowired
+	private BookTagService bookTagService;
+	
 	@GetMapping("/walletlist")
 	public List<Wallet> getWalletList(@PathVariable String id){
 		return walletTopUpService.getWalletList(id);
@@ -82,25 +87,52 @@ public class WalletAPI {
 			double price = 0;
 			String description = "";
 			Book book = bookService.findByID(BookID);
-			if (couponID.equals("No")) {
-				if (book.getE_discount() != 0) {
-					price = book.getE_price() - (book.getE_price() * book.getE_discount()) / 100;
-					transition.setDiscountPercent(book.getE_discount());
-					description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
-							String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ လျော့စျေး " + String.valueOf(book.getE_discount()) +" % ရရှိသောကြောင့် စုစုပေါင်းကျသင့်ငွေမှာ " + String.valueOf(price) + " ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
-				} else {
-					price = book.getE_price();
-					description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
-							String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
+			
+			// MyoSandiKyaw
+			List<DiscountCoupon> bookDiscountCoupons = discountCouponService.findByBook(BookID);
+			if(bookDiscountCoupons.size() > 0) {
+				for(DiscountCoupon bookDiscountCoupon : bookDiscountCoupons) {
+					if(bookDiscountCoupon.getCouponType().equals("EBookCoupon")) {
+						price = book.getE_price() - (book.getE_price() * bookDiscountCoupon.getRate()) / 100;
+						transition.setDiscountPercent(bookDiscountCoupon.getRate());
+						transition.setDiscountCoupon(bookDiscountCoupon);
+						transition.setBookPrice(price); // sayar ko may ya ml : book discount pr p thr price ko htae ya mr lr
+						description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
+								String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ book discount " + String.valueOf(bookDiscountCoupon.getRate()) +" % ရရှိသောကြောင့် စုစုပေါင်းကျသင့်ငွေမှာ " + String.valueOf(price) + " ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
+					}
 				}
 			} else {
-				coupon = discountCouponService.findByID(Long.parseLong(couponID));
-				transition.setDiscountCoupon(coupon);
-				transition.setDiscountPercent(coupon.getRate());
-				price = book.getE_price() - (book.getE_price() * coupon.getRate()) / 100;
-				description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
-						String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ လျော့စျေး " + String.valueOf(coupon.getRate()) +" % ရရှိသောကြောင့် စုစုပေါင်းကျသင့်ငွေမှာ " + String.valueOf(price) + " ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
-			}
+				if (!couponID.equals("No")) {
+					coupon = discountCouponService.findByID(Long.parseLong(couponID));
+					transition.setDiscountCoupon(coupon);
+					transition.setDiscountPercent(coupon.getRate());
+					transition.setBookPrice(book.getE_price()); //  sayar ko may ya ml : book discount pr p thr price ko htae ya mr lr
+					price = book.getE_price() - (book.getE_price() * coupon.getRate()) / 100;
+					description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
+					String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ လျော့စျေး " + String.valueOf(coupon.getRate()) +" % ရရှိသောကြောင့် စုစုပေါင်းကျသင့်ငွေမှာ " + String.valueOf(price) + " ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
+				}
+			} // MyoSandiKyaw
+			
+			// Sayar
+//			if (couponID.equals("No")) {
+//				if (book.getE_discount() != 0) {
+//					price = book.getE_price() - (book.getE_price() * book.getE_discount()) / 100;
+//					transition.setDiscountPercent(book.getE_discount());
+//					description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
+//							String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ လျော့စျေး " + String.valueOf(book.getE_discount()) +" % ရရှိသောကြောင့် စုစုပေါင်းကျသင့်ငွေမှာ " + String.valueOf(price) + " ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
+//				} else {
+//					price = book.getE_price();
+//					description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
+//							String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
+//				}
+//			} else {
+//			coupon = discountCouponService.findByID(Long.parseLong(couponID));
+//			transition.setDiscountCoupon(coupon);
+//			transition.setDiscountPercent(coupon.getRate());
+//			price = book.getE_price() - (book.getE_price() * coupon.getRate()) / 100;
+//			description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
+//					String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ လျော့စျေး " + String.valueOf(coupon.getRate()) +" % ရရှိသောကြောင့် စုစုပေါင်းကျသင့်ငွေမှာ " + String.valueOf(price) + " ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
+//		}
 			
 			String invoice_no = "INV-" + LocalDateTime.now() + new Random().nextInt(99);
 			AccountUser accountUser = accountUserService.findByID(userID);
@@ -121,6 +153,7 @@ public class WalletAPI {
 			transition.setBookType("ELECTRONIC");
 			transition.setPaymentType("Balance");
 			transition.setInvoice_no(invoice_no);
+			transition.setTotal(price); // MyosandiKyaw
 			transition.setSecurityInfo(new SecurityInfo());
 			purchasedTransitionService.save(transition);
 			
@@ -129,9 +162,9 @@ public class WalletAPI {
 			purchasedInvoice.setErase(false);
 			purchasedInvoice.setTotal(price);
 			purchasedInvoice.setSecurityInfo(new SecurityInfo());
-			purchasedInvoiceService.save(purchasedInvoice);
-			
+			purchasedInvoiceService.save(purchasedInvoice);	
 			return true;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -146,12 +179,13 @@ public class WalletAPI {
 			List<ShelfRelated> shelfRelateds = shelfRelatedMapperService.findByBook(bookID);
 			if (shelfRelateds != null && shelfRelateds.size() > 0) {
 				shelfRelated = shelfRelateds.get(0);
-			}
+			}			
 			
 			String invoice_no = "INV-" + LocalDateTime.now() + new Random().nextInt(99);
 			double total = 0;
 			List<PurchasedTransition> purchasedTransitions = purchasedTransitionService.findByUser(userID);
 			List<ShelfRelatedMapper> shelfRelatedMappers = shelfRelatedMapperService.findByErase(false);
+				
 			outer : for (ShelfRelatedMapper shelfRelatedMapper : shelfRelatedMappers) {
 				for (PurchasedTransition purchasedTransition : purchasedTransitions) {
 					if (purchasedTransition.getBook().getId().equals(shelfRelatedMapper.getBook().getId()))
@@ -163,8 +197,8 @@ public class WalletAPI {
 					double price = (book.getE_price() * discount) / 100; 
 					total += price;
 					String description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
-							String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ လျော့စျေး ရရှိသောကြောင့် " + 
-							String.valueOf(book.getE_discount()) + " စုစုပေါင်းကျသင့်ငွေမှာ " + String.valueOf(price) + " ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
+							String.valueOf(book.getE_price()) + " MMK ဖြစ်ပါသည်။ လျော့စျေး " + 
+							String.valueOf(shelfRelated.getPrice()) + "% ရရှိသောကြောင့် စုစုပေါင်းကျသင့်ငွေမှာ " + String.valueOf(price) + " ဖြစ်ပါသည်။ ကျသင့်ငွေကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။"; // MyoSnadiKyaw Update
 					Wallet wallet = new Wallet();
 					wallet.setWalletType("PURCHASED");
 					wallet.setDescription(description);
@@ -176,6 +210,7 @@ public class WalletAPI {
 					wallet.getSecurityInfo().setCreateTime(LocalTime.now().toString());
 					wallet.getSecurityInfo().setCreateUser(accountUser.getId());
 					walletTopUpService.save(wallet);
+					
 					PurchasedTransition transition = new PurchasedTransition();
 					transition.setAccountUser(accountUser);
 					transition.setBook(book);
@@ -183,6 +218,7 @@ public class WalletAPI {
 					transition.setPaymentType("Balance");
 					transition.setInvoice_no(invoice_no);
 					transition.setDiscountPercent(shelfRelated.getPrice());
+					transition.setDiscountCoupon(null); // MyoSandiKyaw
 					transition.setSecurityInfo(new SecurityInfo());
 					purchasedTransitionService.save(transition);
 				}
@@ -208,10 +244,41 @@ public class WalletAPI {
 			Book book = bookService.findByID(BookID);
 			DeliveryTownship township = deliveryTownshipService.findByID(Long.parseLong(townshipID));
 			String invoice_no = "INV-" + LocalDateTime.now() + new Random().nextInt(99);
-			double total = book.getP_price() + township.getFee();
-			String description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
-					String.valueOf(book.getP_price()) + " MMK ဖြစ်ပါသည်။ " + township.getName() + "အတွက် ပိုဆောင်ခမှာ " + township.getFee() + " ဖြစ်ပါသည။ စုစုပေါင်း ကျသင့်ငွေ " + String.valueOf(total) + "MMK ကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
 			
+			//MyoSandiKyaw
+			double total = 0;
+			String description = "";
+			PurchasedTransition transition = new PurchasedTransition();
+			
+			if(book.getP_discount() > 0) {
+				total = ( (book.getP_price() * book.getP_discount()) / 100) + township.getFee() ;
+				description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်မှာ Discount" + book.getP_discount() + "% ရရှိသောကြောင့် " + 
+						String.valueOf((book.getP_price() * book.getP_discount()) / 100) + " MMK ဖြစ်ပါသည်။ " + township.getName() + "အတွက် ပိုဆောင်ခမှာ " + township.getFee() + " ဖြစ်ပါသည။ စုစုပေါင်း ကျသင့်ငွေ " + String.valueOf(total) + "MMK ကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
+				
+				List<DiscountCoupon> bookDiscountCoupons = discountCouponService.findByBook(BookID);
+				for(DiscountCoupon bookDiscountCoupon : bookDiscountCoupons) {
+					if(bookDiscountCoupon.getCouponType().equals("PBookCoupon")) {
+						transition.setBookPrice(book.getP_price()); // sayar ko may ya ml : book discount pr p thr price ko htae ya mr lr
+						transition.setDiscountCoupon(bookDiscountCoupon);
+						transition.setDiscountPercent(bookDiscountCoupon.getRate());
+					}
+				}
+				
+			}else {
+				total = book.getP_price() + township.getFee();
+				description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
+						String.valueOf(book.getP_price()) + " MMK ဖြစ်ပါသည်။ " + township.getName() + "အတွက် ပိုဆောင်ခမှာ " + township.getFee() + " ဖြစ်ပါသည။ စုစုပေါင်း ကျသင့်ငွေ " + String.valueOf(total) + "MMK ကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
+				
+				transition.setBookPrice(book.getP_price()); // sayar ko may ya ml : book discount pr p thr price ko htae ya mr lr
+				transition.setDiscountCoupon(null);
+				transition.setDiscountPercent(0);	
+			}
+			
+			// Sayar
+//			double total = book.getP_price() + township.getFee(); 
+//			String description = "လူကြီးမင်း ဝယ်ယူသော "+ book.getName() +"  စာအုပ်၏စျေးနှုန်းမှာ " + 
+//					String.valueOf(book.getP_price()) + " MMK ဖြစ်ပါသည်။ " + township.getName() + "အတွက် ပိုဆောင်ခမှာ " + township.getFee() + " ဖြစ်ပါသည။ စုစုပေါင်း ကျသင့်ငွေ " + String.valueOf(total) + "MMK ကို လူကြီးမင်းပိုက်ဆံအိပ်ထဲမှ နှတ်ယူလိုက်ပါသည်။";
+//			
 			Wallet wallet = new Wallet();
 			wallet.setWalletType("PURCHASED");
 			wallet.setDescription(description);
@@ -231,7 +298,7 @@ public class WalletAPI {
 			deliveryInfo.setAddressDetail(address);
 			deliveryInfoService.save(deliveryInfo);
 			
-			PurchasedTransition transition = new PurchasedTransition();
+			//PurchasedTransition transition = new PurchasedTransition(); // Sayar
 			transition.setAccountUser(user);
 			transition.setBook(book);
 			transition.setBookType("Physical");

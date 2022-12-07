@@ -36,7 +36,7 @@ public class AdminEssentialTagController {
 		}
 		model.addAttribute("loginaccount", loginaccount);
 		if (id.equals("0")) {
-			model.addAttribute("bookTag", new ShelfRelated());
+			model.addAttribute("bookTag", new BookTag());
 		} else {
 			model.addAttribute("bookTag", bookTagService.findByID(Long.parseLong(id)));
 		}

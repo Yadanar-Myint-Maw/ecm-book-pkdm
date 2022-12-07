@@ -62,4 +62,17 @@ public class DiscountCouponServiceImpl implements DiscountCouponService{
 	public long findCountByDiscountCoupon() {
 		return repository.findCountByDiscountCoupon();
 	}
+	
+	//MyoSandiKyaw
+	
+	@Override
+	public List<DiscountCoupon> findByCouponTypeAndActive(String couponType, boolean active) {
+		return repository.findByCouponTypeAndActive(couponType, active);
+	}
+
+	@Override
+	public List<DiscountCoupon> findByBook(String bookId) {
+		return repository.findByBook(bookId);
+	}
+	
 }

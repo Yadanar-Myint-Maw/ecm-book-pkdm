@@ -196,6 +196,10 @@
 						<span class="lbl">Header Name</span>
 						<input type="text" name="name" th:field="*{name}" class="form-control textfield mt-1">
 					</div>
+					<div class="col-3 mt-2 form-group">
+						<span class="lbl">Discount</span>
+						<input type="text" name="name" th:field="*{discount}" class="form-control textfield mt-1">
+					</div>
 					<div class="col-2 mt-2 form-group">
 						<span class="lbl"><br/></span>
 						<button class="btn btn-sm form-control savebtn mt-1">Save</button>
@@ -223,6 +227,7 @@
 					    <tr>
 					      <th scope="col"></th>
 					      <th scope="col">Name</th>
+					      <th scope="col">Discount</th>   
 					      <th scope="col"></th>
 					      <th scope="col"></th>
 					    </tr>
@@ -231,6 +236,7 @@
 					    <tr th:each="s : ${bookTags}">
 					    <td> <img th:src="@{/img/category.png}" width="15px" /> </td>
 					    <td class=""> [[${s.name}]] </td>
+					    <td class=""> [[${s.discount}]] </td>
 					    <td style="font-size: 7px;"> <a class="bg-primary text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/essential/tag/initialize/{id}(id=${s.id})}"> UPDATE </a></td>
 					    <td style="font-size: 7px;"> <a class="bg-danger text-light btn-sm" style="font-size: 9px;" th:href="@{/admin/essential/tag/delete/{id}(id=${s.id})}"> DELETE </a></td>
 					    </tr>

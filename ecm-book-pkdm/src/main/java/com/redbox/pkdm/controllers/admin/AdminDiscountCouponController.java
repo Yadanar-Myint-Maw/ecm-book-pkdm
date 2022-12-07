@@ -68,11 +68,13 @@ public class AdminDiscountCouponController {
 		}else {
 			if(discountCoupon.getId() == 0) {
 				discountCoupon.setSecurityInfo(new SecurityInfo(cookieId));
+				discountCoupon.setCouponType("UserCoupon");
 				discountCouponService.save(discountCoupon);
 				redirAttrs.addFlashAttribute("save", "Discount Coupon save successfully.");
 		}else {
 			DiscountCoupon discountCoupon2 = discountCouponService.findByID(discountCoupon.getId());
 			discountCoupon2.setName(discountCoupon.getName());
+			
 			discountCoupon2.setStartDate(LocalDate.now());
 			discountCoupon2.setEndDate(LocalDate.now());
 			discountCoupon2.setActive(true);

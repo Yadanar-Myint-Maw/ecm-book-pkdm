@@ -26,4 +26,17 @@ public interface DiscountCouponRepository extends JpaRepository<DiscountCoupon, 
 
 	@Query(value = "select count(d) from DiscountCoupon as d where d.erase = false")
 	long findCountByDiscountCoupon();
+	
+	//MyoSandiKyaw
+	
+	@Query(value = "select d from DiscountCoupon as d where d.active = :active and d.couponType = :couponType and d.erase = false ORDER BY d.id DESC")
+	List<DiscountCoupon> findByCouponTypeAndActive(@Param("couponType") String couponType,  boolean active);
+		
+	@Query(value = "select d from DiscountCoupon as d where d.book.id = :bookId and d.erase = false ORDER BY d.id DESC")
+	List<DiscountCoupon> findByBook(@Param("bookId")String bookId);
+	
+	
+	
+	
+	
 }

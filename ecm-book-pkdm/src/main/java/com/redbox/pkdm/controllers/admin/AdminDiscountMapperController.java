@@ -46,7 +46,7 @@ public class AdminDiscountMapperController {
 			throw new Exception();
 		}
 		model.addAttribute("loginaccount", loginaccount);
-		model.addAttribute("discountcoupons", discountCouponService.findByErase(false));
+		model.addAttribute("discountcoupons", discountCouponService.findByCouponTypeAndActive("UserCoupon", false));
 		model.addAttribute("accountusers", accountUserService.findByErase(false));
 		if(id.equals("0")) {
 			model.addAttribute("discountcouponmapper", new DiscountCouponMapper());

@@ -20,7 +20,7 @@ public interface DiscountCouponService {
 	List<DiscountCoupon> findAll();
 	
 	List<DiscountCoupon> findByErase(boolean erase);
-	
+			
 	List<DiscountCoupon> findBySingleDate(LocalDate singleDate);
 	
 	List<DiscountCoupon> findByDateFromAndDateTo(LocalDate dateFrom, LocalDate dateTo);
@@ -28,5 +28,15 @@ public interface DiscountCouponService {
 	List<AccountUser> getDiscountCouponList(String id);
 	
 	long findCountByDiscountCoupon();
+	
+	// MyoSandiKyaw
+	
+	List<DiscountCoupon> findByCouponTypeAndActive(String couponType, boolean active);
+	
+	List<DiscountCoupon> findByBook(String bookId);
+	
+	
+
+
 	
 }

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,6 +23,8 @@ public class DiscountCoupon {
 	
 	private int rate;
 	
+	private String couponType;
+	
 	@Lob
 	private String description;
 	
@@ -34,6 +37,9 @@ public class DiscountCoupon {
 	private boolean active;
 	
 	private boolean erase;
+	
+	@ManyToOne
+	private Book book;
 	
 	@Embedded
 	private SecurityInfo securityInfo;
@@ -126,5 +132,25 @@ public class DiscountCoupon {
 	public void setRate(int rate) {
 		this.rate = rate;
 	}
+
+	public String getCouponType() {
+		return couponType;
+	}
+
+	public void setCouponType(String couponType) {
+		this.couponType = couponType;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+	
+	
+	
+	
 
 }

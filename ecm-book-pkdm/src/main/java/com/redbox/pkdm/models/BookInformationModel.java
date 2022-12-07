@@ -20,6 +20,8 @@ public class BookInformationModel {
 	
 	private String tag;
 	
+	private double tagDiscount;
+	
 	private String bookType;
 	
 	private boolean electronicBook;
@@ -201,6 +203,16 @@ public class BookInformationModel {
 	public void setRelatedDiscount(double relatedDiscount) {
 		this.relatedDiscount = relatedDiscount;
 	}
+
+	public double getTagDiscount() {
+		return tagDiscount;
+	}
+
+	public void setTagDiscount(double tagDiscount) {
+		this.tagDiscount = tagDiscount;
+	}
+	
+	
 
 }
 

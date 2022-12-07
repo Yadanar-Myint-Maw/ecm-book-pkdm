@@ -37,8 +37,8 @@ public class BookTagServiceImpl implements BookTagService {
 	}
 
 	@Override
-	public List<BookTag> findByBook(String id) {
-		return null;
+	public List<BookTag> findByName(String name) {
+		return bookTagRepository.findByName(name);
 	}
 
 }
