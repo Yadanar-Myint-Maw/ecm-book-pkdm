@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.redbox.pkdm.entities.Book;
 import com.redbox.pkdm.entities.BookSection;
+import com.redbox.pkdm.entities.BookTag;
 import com.redbox.pkdm.entities.PurchasedTransition;
 import com.redbox.pkdm.entities.ShelfAuthor;
 import com.redbox.pkdm.entities.ShelfCategory;
@@ -24,6 +25,7 @@ import com.redbox.pkdm.models.BookSectionModel;
 import com.redbox.pkdm.models.MyBookModel;
 import com.redbox.pkdm.services.BookSectionService;
 import com.redbox.pkdm.services.BookService;
+import com.redbox.pkdm.services.BookTagService;
 import com.redbox.pkdm.services.PurchasedTransitionService;
 import com.redbox.pkdm.services.ShelfAuthorMapperService;
 import com.redbox.pkdm.services.ShelfCategoryMapperService;
@@ -50,6 +52,9 @@ public class BookAPI {
 	
 	@Autowired
 	private PurchasedTransitionService purchasedTransitionService;
+	
+	@Autowired
+	private BookTagService bookTagService;
 
 	@GetMapping("/findbyuser/{userID}")
 	public List<BookModel> findByOption (@PathVariable String userID) {
@@ -69,6 +74,7 @@ public class BookAPI {
 				bookInformationModel.setRelated(getRelatedName(book.getId()));
 				bookInformationModel.setRelatedDiscount(getRelatedPrice(book.getId()));
 				bookInformationModel.setTag(getTagName(book));
+				bookInformationModel.setTagDiscount(getTagPrice(getTagName(book))); // Myosandikyaw
 				bookInformationModel.setBookType(book.getBookType());
 				bookInformationModel.setElectronicBook(book.isElectronicBook());
 				bookInformationModel.setPhysicalBook(book.isPhysicalBook());
@@ -143,6 +149,16 @@ public class BookAPI {
 		}
 		return "-";
 	}
+	
+	//MyosandiKyaw
+	private double getTagPrice (String name) {
+		List<BookTag> bookTags = bookTagService.findByName(name);
+		if (bookTags != null && bookTags.size() > 0) {
+			return bookTags.get(0).getDiscount();
+		}
+		return 0;
+	}
+	
 	
 	private double getActualPrice (double price, int discount) {
 		if (discount != 0) {
