@@ -60,6 +60,7 @@ public class DiscountCoupon {
 		this.erase = erase;
 		this.securityInfo = securityInfo;
 	}
+	
 
 	public long getId() {
 		return id;

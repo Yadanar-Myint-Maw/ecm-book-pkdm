@@ -150,11 +150,21 @@ public class WalletAPI {
 			
 			transition.setAccountUser(accountUser);
 			transition.setBook(book);
-			transition.setBookType("ELECTRONIC");
+			transition.setBookType(false); // myosandikyaw
 			transition.setPaymentType("Balance");
 			transition.setInvoice_no(invoice_no);
-			transition.setTotal(price); // MyosandiKyaw
-			transition.setSecurityInfo(new SecurityInfo());
+			
+			// MyosandiKyaw
+			transition.setTotal(price); 
+			wallet.getSecurityInfo().setCreateDate(LocalDate.now());
+			wallet.getSecurityInfo().setCreateTime(LocalTime.now().toString());
+			wallet.getSecurityInfo().setCreateUser(accountUser.getId());
+			wallet.getSecurityInfo().setUpdateDate(LocalDate.now());
+			wallet.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
+			wallet.getSecurityInfo().setUpdateUser(accountUser.getId());
+			
+			
+			
 			purchasedTransitionService.save(transition);
 			
 			purchasedInvoice.setId(invoice_no);
@@ -214,7 +224,7 @@ public class WalletAPI {
 					PurchasedTransition transition = new PurchasedTransition();
 					transition.setAccountUser(accountUser);
 					transition.setBook(book);
-					transition.setBookType("ELECTRONIC");
+					transition.setBookType(false); // myosandikyaw
 					transition.setPaymentType("Balance");
 					transition.setInvoice_no(invoice_no);
 					transition.setDiscountPercent(shelfRelated.getPrice());
@@ -301,11 +311,12 @@ public class WalletAPI {
 			//PurchasedTransition transition = new PurchasedTransition(); // Sayar
 			transition.setAccountUser(user);
 			transition.setBook(book);
-			transition.setBookType("Physical");
+			transition.setBookType(true); // myosandikyaw
 			transition.setPaymentType("Balance");
 			transition.setInvoice_no(invoice_no);
 			transition.setDeliveryInfo(deliveryInfo);
 			transition.setTotal(total);
+			transition.setDeliveryFee(deliveryInfo.getDeliveryTownship().getFee()); //myosandikyaw
 			transition.setSecurityInfo(new SecurityInfo());
 			purchasedTransitionService.save(transition);
 			

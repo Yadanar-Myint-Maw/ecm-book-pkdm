@@ -17,13 +17,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.redbox.pkdm.entities.AccountAdmin;
+import com.redbox.pkdm.entities.DeliveryInfo;
+import com.redbox.pkdm.entities.DiscountCoupon;
+import com.redbox.pkdm.entities.PurchasedTransition;
 import com.redbox.pkdm.entities.SecurityInfo;
 import com.redbox.pkdm.entities.Wallet;
+import com.redbox.pkdm.models.PurchaseByInvoiceModel;
 import com.redbox.pkdm.services.AccountAdminService;
 import com.redbox.pkdm.services.AccountUserService;
 import com.redbox.pkdm.services.PurchasedTransitionService;
 import com.redbox.pkdm.services.WalletService;
 import com.redbox.pkdm.utilities.MessageUtility;
+
+import net.bytebuddy.asm.Advice.Local;
 
 @Controller
 @RequestMapping("admin/cash/wallet")
@@ -71,23 +77,67 @@ public class AdminCashWalletController {
 		 } else if (type.equals("PURCHASED")) {
 
 		 wallets = walletService.findByWalletTypeAndDateFromTo(type, dateFrom, dateTo);
-
+		 
+		 //MyosandiKyaw
+		 List<PurchaseByInvoiceModel> purchaseByInvoiceModelList = new ArrayList<>();
+		 List<PurchasedTransition> purchasedTransitions = new ArrayList<>();
+		 
+		 if(dateFrom == null && dateTo == null) {
+			 purchasedTransitions = purchasedTransitionService.findByInvoiceNoWithGroupBy();
+		 }else if(dateFrom.isEmpty() && dateTo != null ){
+			 purchasedTransitions = purchasedTransitionService.findByInvoiceNoAndDateWithGroupBy(LocalDate.parse(dateTo));
+		 }else if(dateFrom != null && dateTo.isEmpty()){
+			 purchasedTransitions = purchasedTransitionService.findByInvoiceNoAndDateWithGroupBy(LocalDate.parse(dateFrom));
+		 }else {
+			 purchasedTransitions = purchasedTransitionService.findByInvoiceNoAndDateBetweenWithGroupBy(LocalDate.parse(dateFrom), LocalDate.parse(dateTo));
+		 } 
+		 
+		 for(PurchasedTransition purchasedTransition : purchasedTransitions) {
+			 double total = 0;
+			 double deliveryFee = 0;
+			 List<DiscountCoupon> discountCoupons = new ArrayList<>();
+			 String deliveryInfo = "";
+			 
+			 List<PurchasedTransition> purchasedTransitionsByInvoiceNo = purchasedTransitionService.findByInvoiceNo(purchasedTransition.getInvoice_no());
+			 for(PurchasedTransition purchasedTransition2 : purchasedTransitionsByInvoiceNo) {
+				 total += purchasedTransition2.getTotal();
+				 
+				 if(purchasedTransition2.getDiscountCoupon() != null) {
+					 if(purchasedTransition2.getDiscountCoupon().getCouponType().equals("UserCoupon") || 
+							 purchasedTransition2.getDiscountCoupon().getCouponType().equals("OtherCoupon")
+						 ) {
+						 discountCoupons.add(purchasedTransition2.getDiscountCoupon());
+					 }
+				 }
+				 
+				 if(deliveryFee <= 0) {
+					 if(purchasedTransition2.isBookType() == true) {
+						 deliveryInfo = purchasedTransition2.getDeliveryInfo().getDeliveryTownship().getName() + ", " + 
+								 			purchasedTransition2.getDeliveryInfo().getDeliveryRegion().getName(); 
+						deliveryFee = purchasedTransition2.getDeliveryFee();
+					 }
+				 }	
+			 }
+			 purchaseByInvoiceModelList.add(new PurchaseByInvoiceModel(purchasedTransition.getAccountUser(), purchasedTransition.getInvoice_no(),
+					 purchasedTransitionsByInvoiceNo, discountCoupons, total+deliveryFee , deliveryInfo, deliveryFee));
+		 }
+		 
+		 
+		 model.addAttribute("purchases", purchaseByInvoiceModelList); 
+		 
 		 redirectPage = "admincashbalancepurchased"; 
 
 		 } else {
-
+			 
 		 wallets = walletService.findByDate(dateFrom, dateTo);
-
 		 redirectPage = "admincashbalanceall"; 
-
 		}
-
+		 
+		 
 		 model.addAttribute("wallets", wallets);
 
 		 model.addAttribute("total", getTotal(wallets));
-		 model.addAttribute("purchases", purchasedTransitionService.findAll());
-		return redirectPage;
-		 
+		return redirectPage; 
 	}
 	
 	@PostMapping("save")
@@ -111,8 +161,8 @@ public class AdminCashWalletController {
 				wallet2.getSecurityInfo().setUpdateTime(LocalTime.now().toString());
 				wallet2.getSecurityInfo().setUpdateUser(cookieId);
 				walletService.save(wallet2, userId);	
-				redirAttrs.addFlashAttribute("update", MessageUtility.getTopUpMessage());
-			}
+				redirAttrs.addFlashAttribute("update", MessageUtility.getTopUpMessage());	
+			}	
 		}
 		return "redirect:/admin/cash/wallet/init/TOPUP/0";
 	}

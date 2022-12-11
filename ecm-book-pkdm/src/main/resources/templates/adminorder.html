@@ -16,7 +16,7 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet" />
 </h:head> 
 <body>
-        <div class='dashboard'>
+ <div class='dashboard'>
     <div class="dashboard-nav">
         <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
         	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -96,19 +96,17 @@
 		        <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/order/physical-book/initialize/0}">
 		                <i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
-		                  <span style="font-size: 11px;"  class="font-weight-bold">Order Data</span>
+		                  <span style="font-size: 11px;"  class="font-weight-bold text-denger">Order Data</span>
 		            </a>
 		        </li>
 		        
+
 				<li class="nav-item">
 					<a class="nav-link text-light" th:href="@{/admin/report/book/initialize/0}">
 						<i class="fas fa-cubes text-danger" style="font-size: 14px;"></i>
 						<span style="font-size: 11px;"  class="font-weight-bold">Report</span>
 					</a>
 				</li>
-
-
-
 
 				<hr class="sidebar-divider"></hr>
 		         <div class="sidebar-heading text-dark">
@@ -117,7 +115,7 @@
 		        <li class="nav-item">
 		            <a class="nav-link text-light" th:href="@{/admin/cash/wallet/init/TOPUP/0}">
 		                <i class="fas fa-list text-danger" style="font-size: 14px;"></i>
-		                 <span style="font-size: 11px;"  class="font-weight-bold text-danger">Wallet Data</span>
+		                 <span style="font-size: 11px;"  class="font-weight-bold">Wallet Data</span>
 		            </a>
 		        </li>
 		        <li class="nav-item">
@@ -158,49 +156,87 @@
 			</ul>
         </nav>
     </div>
-    <div class="dashboard-app" style="font-size: 9px;">
-        <header class='dashboard-toolbar shadow-sm'>
+   <div class="dashboard-app" style="font-size: 11px;">
+         <header class='dashboard-toolbar shadow-sm'>
         	<div class="pr-2">
 			<a href="#!" class="menu-toggle">
 				<i class="fas fa-users"></i>
 			</a>
 		</div>
 		<div class="pl-3 pr-2" style="width: 10%">
-			<span style="font-size: 12px;">Wallet</span>
+			<span style="font-size: 12px;">User Data</span>
 		</div>
 		<div class="text-right" style="width: 90%; font-size: 9px;">
 			<span class="text-secondary" style="font-size: 8px;">Current User </span> <span class="text-secondary ml-1 mr-2"> - </span> <a class="fg-theme-blue font-weight-bold" style="font-size: 10px;" th:href="@{/admin/account/admins/new}" > [[${loginaccount.name}]] </a>
 			<span class="ml-2 mr-2 text-secondary"> | </span>
-			<a class="text-success" style="font-size: 10px;" th:href="@{/admin/cash/wallet/init/PURCHASED/0}" > Refresh Page </a>
+			<a class="text-success" style="font-size: 10px;" th:href="@{/admin/order/physical-book/initialize/0}" > Refresh Page </a>
 			<span class="ml-2 mr-2 text-secondary"> | </span>
 			<a class="text-danger" style="font-size: 10px;" th:href="@{/signin}" > Sign Out </a>
 			
 		</div>
         </header>
-        
          <div class="pt-4 pb-3 text-right border-bottom" style="width: 100%; background: #FFFFFF; box-shadow: none; border-radius: 0px; font-size: 8px;">
         	<div class="form-inline ml-3">
-        		<span> <a class="text-dark font-weight-bold pt-2 pb-2 pl-5 pr-5 active bg-light border rounded m-2" th:href="@{/admin/cash/wallet/init/TOPUP/0}"> TopUp  </a></span>
-        		<span> <a class="text-light font-weight-bold pt-2 pb-2 pl-5 pr-5 bg-theme-blue  rounded m-2" th:href="@{/admin/cash/wallet/init/PURCHASED/0}"> Purchase </a></span>
-        		<span> <a class="text-dark font-weight-bold pt-2 pb-2 pl-5 pr-5 active bg-light border rounded m-2" th:href="@{/admin/cash/wallet/init/ALL/0}"> All </a></span>	
+        		<span> <a class="text-light font-weight-bold pt-2 pb-2 pl-5 pr-5 bg-theme-blue border rounded m-2" th:href="@{/admin/order/physical-book/initialize/0}"> Physical Books </a></span>
         	</div>
-        </div>
-         
-        <div class="" style="width: 100%; color: white;">
-        	<div class="bg-success rounded-0 pl-4 pt-3 pb-3" role="alert" th:text="${save}" th:if="${save}"></div>
-        	<div class="bg-primary rounded-0 pl-4 pt-3 pb-3" role="alert" th:text="${update}" th:if="${update}"></div>
-			<div class="bg-danger rounded-0 pl-4 pt-3 pb-3" role="alert" th:text="${validation}" th:if="${validation}"></div>
         </div> 
-
-		<form th:action="@{/admin/cash/wallet/init/PURCHASED/0}" method="get" style="width: 100%; height:160px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
-		<div style="width: 100%; background-color: #FFFFFF;"  class="pb-2 container-fluid mt-4">
+        <div class="" style="width: 100%; color: white;">
+        	<div class="bg-success rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${save}" th:if="${save}"></div>
+        	<div class="bg-primary rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${update}" th:if="${update}"></div>
+			<div class="bg-danger rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${validation}" th:if="${validation}"></div>
+        </div>
+      	<form th:action="@{/admin/order/physical-book/save}" th:object="${purchaseTransition}" method="post" class="border-bottom container-fluid" style="width: 100%; height:170px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
+		<div style="width: 100%; background-color: #F1F1F2;"  class="pb-2 pt-4">
+		<div class="">
+			<div class="row">
+					<div class="col-12 font-weight-bold text-danger mb-3">
+						DATA INVENTORY
+					</div>
+					<div class="col-12 font-weight-bold text-danger mb-2">
+						<div class="col-12 border-bottom"></div>
+					</div>
+					<div class="col-4 mt-2 form-group">
+						<span class="lbl">Invoice No.</span>
+						<input type="text" name="password" min="4" th:field="*{invoice_no}" class="form-control textfield mt-1">
+					</div>
+					<div class="col-2 mt-2 form-group">
+					<span class="lbl">Delivery Status</span>
+						<select name="level" th:field=*{deliveryStatus} class="form-control textfield mt-1">
+							<option th:value="Order" th:text="Order"></option>
+							<option th:value="Approve" th:text="Approve"></option>
+							<option th:value="Deliver" th:text="Deliver"></option>
+							<option th:value="Complete" th:text="Complete"></option>
+						</select>
+					</div>
+					<div class="col-2 mt-2 form-group">
+						<span class="lbl"><br/></span>
+						<button class="btn btn-sm form-control savebtn mt-1">Update</button>
+					</div>				
+					<div class="col-1"><input type="text" name="id" th:field="*{id}" class="form-control textfield border-0" style="font-size: 0px; background-color:#F1F1F2;"></div>
+			</div>
+		</div>
+		</div>
+		</form>
+		
+	<form th:action="@{/admin/order/physical-book/initialize/0}" method="get" style="width: 100%; height:160px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
+		<div style="width: 100%; background-color: #FFFFFF;"  class="pt-4 pb-2 container-fluid">
 			<div class="row">
 				<div class="col-12 font-weight-bold text-danger pt-1">
 					DATA TABLE
 				</div>
-				<div class="col-12 font-weight-bold text-danger mb-2">
-						<div class="col-12 border-bottom"></div>
-					</div>
+				<div class="col-12 font-weight-bold text-danger mt-4 mb-3">
+					<div class="col-12 border-bottom"></div>
+				</div>
+				<div class="col-2 mt-2 form-group">
+					<span class="lbl">Delivery Status</span>
+					<select name="deliveryStatus" class="form-control textfield mt-1">
+						<option th:value="notselected">Select Delivery Status</option>
+						<option th:value="Order" th:text="Order"></option>
+						<option th:value="Approve" th:text="Approve"></option>
+						<option th:value="Deliver" th:text="Deliver"></option>
+						<option th:value="Complete" th:text="Complete"></option>
+					</select>
+				</div>	
 				<div class="col-2 mt-2 form-group">
 					<span class="lbl">Start Date</span>
 					<input name="dateFrom" type="date" class="form-control mt-1 textfield" placeholder="start date">
@@ -209,81 +245,74 @@
 					<span class="lbl">End Date</span>
 					<input name="dateTo" type="date" class="form-control mt-1 textfield" placeholder="end date">
 				</div>
+				
 				<div class="col-2 mt-2 form-group">
-				<span class="lbl"><br/></span>
-					<button type="submit" class="btn btn-sm form-control bg-primary searchbtn mt-1">Search</button>
+					<span class="lbl"> <br/> </span>
+					<button type="submit" class="btn btn-sm form-control searchbtn bg-primary mt-1">Search</button>
 				</div>
+				
 			</div>
-		</div>	
-   </form>
-   
-         <div class="container-fluid mb-5 pb-5">
-         	<div class="row">
-         		<div class="col-md-6" th:each="purchase : ${purchases}">
-         			<div class="card mb-3 bg-light border-light" style="width: 100%">
-         				<div class="row">
-         					<div class="col-md-7 pt-2 pb-1"> 
-         			    		<p class="pl-2 m-0 pb-1 pt-1" style="font-size: 11px;">   [[${purchase.invoiceNo}]] </p>
-         					</div>
-		         			<div class="col-md-5 pt-2 pb-1"> 
-		         			      <button class="border btn-sm btn btn-light text-danger font-weight-bold text-left ml-3 pl-2 pr-2" style="height: 26px; width: 180px; font-size: 10px;"> [[${purchase.accountUser.name}]] - ([[${purchase.accountUser.id}]]) </button>         			     
-		         			</div>
-		           		</div>
-		         		<div class="col-12 font-weight-bold text-danger mb-2">
-							<div class="col-12 border-bottom"></div>
-						</div>
-						<div class="row" th:each="purchaseByInvoiceNo : ${purchase.purchaseTransitions}" >
-							<div class="col-md-7">
-								<p class="m-0 pt-1 pl-2"> [[${purchaseByInvoiceNo.book.name}]] 
-								<span class="badge-info ml-2 pl-1 pr-1 rounded-circle" th:if="${purchaseByInvoiceNo.bookType != true}" > E </span>
-								<span class="badge-info ml-2 pl-1 pr-1 rounded-circle" th:if="${purchaseByInvoiceNo.bookType == true}"> P </span>
-								<span class="pl-2 text-success"> ([[${purchaseByInvoiceNo.discountPercent}]] %)</span>  </p>
-							</div>
-							<div class="col-md-5">
-								<p class="m-0 pl-4 pt-1"> [[${purchaseByInvoiceNo.bookPrice}]] MMK </p> 
-							</div>	
-						</div>
-						
-					<div class="row">
-						<div class="col-md-7" >
-							<p class="m-0 pt-1 pl-2"> [[${purchase.deliveryInfo}]] </p>
-						</div>
-						<div class="col-md-5">
-							<p class="m-0 pl-4 pt-1" th:if="${!(purchase.deliveryFee <= 0)}"> [[${purchase.deliveryFee}]] MMK</p> 		
-						</div>	
-					</div>
-								
-					<div class="row mb-2 pl-3 mt-2">
-						<div class="col-auto pl-0" th:each="coupon : ${purchase.discountCoupons}">
-							<p class="m-0 pl-2 pr-2 text-light badge-success" style="font-size: 11px"> [[${coupon.name}]] </p>
-						</div>
-					</div>
-						
-					<div class="card-footer p-0 bg-secondary">
-						<div class="row m-0">
-							<div class="col-md-7 d-flex justify-content-end">
-								<p class="m-0 pt-2 pb-2 text-light" style="font-size: 11px"> TOTAL <span class="pl-5">:</span> </p>
-							</div>
-							<div class="col-md-5">
-								<p class="m-0 pt-2 pb-2 pl-4 text-light" style="font-size: 11px;"> [[${purchase.total}]]  MMK </p> 
-							</div>	
-						</div>	
-					</div>	
-         		</div>
-         	</div>
-         </div> 		
-       </div>
-         	
-   
-	
+		</div>
+		</form>
+
+	<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 mt-2 form-group">
+					<table class="table" style="font-size: 9px;">
+					  <thead>
+					    <tr>
+					   	  <th scope="col"></th>
+					      <th scope="col">UserID</th>
+					      <th scope="col">Invoice No.</th>
+					      <th scope="col">Books</th>
+					      <th scope="col">date</th>
+					      <th scope="col">Address</th>
+					      <th scope="col">Deli Fee</th>
+					      <th scope="col">Total Price</th>
+					      <th scope="col">Payment Type</th>
+					      <th scope="col">Delivery Status</th>  
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr th:each="purchaseTransition : ${purchaseTransitionsByOrder}">
+					      <td>
+					      	
+					      </td>
+					      <td th:text=${purchaseTransition.purchasedTransitions.get(0).accountUser.id}></td>
+					      <td th:text="${purchaseTransition.invoiceNo}"></td>
+					      <td>
+					      	<div class="row">
+					      		<div class="col-auto" th:each="purchase : ${purchaseTransition.purchasedTransitions}">
+					      			<p class="m-0" style="font-size: 10px"> [[${purchase.book.name}]], </p>
+					      		</div>
+					      	</div>
+					      </td>
+					      <td ></td>
+					      <td th:text="${purchaseTransition.purchasedTransitions.get(0).deliveryInfo.addressDetail}"></td>
+					      <td th:text="${purchaseTransition.purchasedTransitions.get(0).deliveryFee}"></td>
+					      <td th:text="${purchaseTransition.totalPrice}"></td>
+					      <td th:text="${purchaseTransition.purchasedTransitions.get(0).paymentType}"></td>
+					      <td th:text="${purchaseTransition.purchasedTransitions.get(0).deliveryStatus}"></td>    
+					      <td>
+					      	<a style="font-size: 7px;"> <a class="text-primary" style="font-size: 9px; text-decoration: underline;" th:href="@{/admin/order/physical-book/initialize/{invoiceNo}(invoiceNo=${purchaseTransition.invoiceNo})}"> 
+					      		Change State
+					      	</a>
+					      </td>    
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+			
+			</div>
+		</div>
 		
-      	<div class="bg-light pt-3 pb-2 shadow" style="height: 42px; width:100%; position: fixed; bottom: 0;">
+      	<footer class="bg-white border-top pt-2 pb-2" style="height: 35px; width:100%; bottom: 0; position: fixed;">
             <div class="container" style="margin-left: 33%;">
                 <div class="copyright">
                     <span>copyright @ <span class="text-danger">www.redboxmm.com</span> 2022</span>
                 </div>
             </div>
-        </div>
+        </footer>
     </div>
 </div>
 

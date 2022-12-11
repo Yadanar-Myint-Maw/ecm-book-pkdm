@@ -24,6 +24,12 @@ public interface PurchasedTransitionService {
 	
 	List<PurchasedTransition> findByBookType(String bookType);
 
+	//MyoSandiKyaw
+	
+	List<PurchasedTransition> findByErase(boolean erase);
+	
+	List<PurchasedTransition> findByDateBetween(LocalDate dateFrom, LocalDate dateTo);
+	
 	List<BookReportModel> findCountByBook();
 
 	List<BookReportModel> findCountByBookAndDate(LocalDate dateFrom, LocalDate dateTo);
@@ -31,6 +37,35 @@ public interface PurchasedTransitionService {
 	List<UserReportModel> findCountByUser();
 
 	List<UserReportModel> findCountByUserAndDate(LocalDate dateFrom, LocalDate dateTo);
+	
+	List<PurchasedTransition> findByInvoiceNoWithGroupBy();
+	
+	List<PurchasedTransition> findByInvoiceNo(String invoiceNo);
+	
+	List<PurchasedTransition> findByInvoiceNoAndDateBetweenWithGroupBy(LocalDate dateFrom, LocalDate dateTo);
+	
+	List<PurchasedTransition> findByInvoiceNoAndDateWithGroupBy(LocalDate date);
+	
+	List<PurchasedTransition> findByBookTypeWithGroupByInvoiceNo(boolean bookType);
+	
+	List<PurchasedTransition> findByBookTypeAndDeliveryStatusWithGroupByInvoiceNo(boolean bookType, String deliveryStatus);
+	
+	List<PurchasedTransition> findByBookTypeAndDeliveryStatusAndDateBetweenWithGroupByInvoiceNo(boolean bookType, String deliveryStatus, LocalDate dateFrom, LocalDate dateTo);
+	
+	List<PurchasedTransition> findByBookTypeAndDeliveryStatusAndDateWithGroupByInvoiceNo(boolean bookType, String deliveryStatus, LocalDate date);
+	
+	List<PurchasedTransition> findByBookTypeAndDateBetweenWithGroupByInvoiceNo(boolean bookType, LocalDate dateFrom, LocalDate dateTo);
+	
+	List<PurchasedTransition> findByBookTypeAndDateWithGroupByInvoiceNo(boolean bookType, LocalDate date);
+
+
+	
+	
+	
+
+
+	
+	
 
 
 

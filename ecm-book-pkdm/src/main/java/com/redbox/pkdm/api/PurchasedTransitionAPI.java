@@ -20,24 +20,24 @@ public class PurchasedTransitionAPI {
 	@Autowired
 	private PurchasedTransitionService purchasedTransitionService;
 	
-	@GetMapping("/purchased/{userID}")
-	public List<PurchasedTransitionModel> purchasebooksection (@PathVariable String userID) {
-		try {
-			PurchasedTransitionModel model = new PurchasedTransitionModel();
-			List<PurchasedTransitionModel> models = new ArrayList<>();
-			List<PurchasedTransition> transitions = purchasedTransitionService.findByUser(userID);
-			for (PurchasedTransition transition : transitions) {
-				model.setId(transition.getId());
-				model.setBookID(transition.getBook().getId());
-				model.setUserID(transition.getAccountUser().getId());
-				model.setSectionID(transition.getBookType());
-				models.add(model);
-				model = new PurchasedTransitionModel();
-			}
-			return models;
-		} catch (Exception e) {
-			return new ArrayList<>();
-		}
-	}
+//	@GetMapping("/purchased/{userID}")
+//	public List<PurchasedTransitionModel> purchasebooksection (@PathVariable String userID) {
+//		try {
+//			PurchasedTransitionModel model = new PurchasedTransitionModel();
+//			List<PurchasedTransitionModel> models = new ArrayList<>();
+//			List<PurchasedTransition> transitions = purchasedTransitionService.findByUser(userID);
+//			for (PurchasedTransition transition : transitions) {
+//				model.setId(transition.getId());
+//				model.setBookID(transition.getBook().getId());
+//				model.setUserID(transition.getAccountUser().getId());
+//				model.setSectionID(transition.getBookType());
+//				models.add(model);
+//				model = new PurchasedTransitionModel();
+//			}
+//			return models;
+//		} catch (Exception e) {
+//			return new ArrayList<>();
+//		}
+//	}
 
 }

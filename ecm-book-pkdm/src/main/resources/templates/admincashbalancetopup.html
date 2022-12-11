@@ -171,13 +171,14 @@
 		</div>
         </header>
        
-         <div class="pt-3 pb-3 text-right border-bottom" style="width: 100%; background: #FFFFFF; box-shadow: none; border-radius: 0px; font-size: 8px;">
+         <div class="pt-4 pb-3 text-right border-bottom" style="width: 100%; background: #FFFFFF; box-shadow: none; border-radius: 0px; font-size: 8px;">
         	<div class="form-inline ml-3">
-        		<span> <a class="text-light pt-1 pb-2 pl-4 pr-4 bg-danger rounded m-2" th:href="@{/admin/cash/wallet/init/TOPUP/0}"> TopUp </a></span>
-        		<span> <a class="text-light pt-1 pb-2 pl-4 pr-4 bg-primary rounded m-2" th:href="@{/admin/cash/wallet/init/PURCHASED/0}"> Purchase </a></span>
-        		<span> <a class="text-light pt-1 pb-2 pl-4 pr-4 bg-primary rounded m-2" th:href="@{/admin/cash/wallet/init/ALL/0}"> All </a></span>
+        		<span> <a class="text-light font-weight-bold pt-2 pb-2 pl-5 pr-5 bg-theme-blue rounded m-2" th:href="@{/admin/cash/wallet/init/TOPUP/0}"> TopUp  </a></span>
+        		<span> <a class="text-dark font-weight-bold pt-2 pb-2 pl-5 pr-5 active bg-light border  rounded m-2" th:href="@{/admin/cash/wallet/init/PURCHASED/0}"> Purchase </a></span>
+        		<span> <a class="text-dark font-weight-bold pt-2 pb-2 pl-5 pr-5 active bg-light border rounded m-2" th:href="@{/admin/cash/wallet/init/ALL/0}"> All </a></span>	
         	</div>
-        </div> 
+        </div>
+         
         <div class="" style="width: 100%; color: white;">
         	<div class="bg-success rounded-0 pl-4 pt-3 pb-3" role="alert" th:text="${save}" th:if="${save}"></div>
         	<div class="bg-primary rounded-0 pl-4 pt-3 pb-3" role="alert" th:text="${update}" th:if="${update}"></div>

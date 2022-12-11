@@ -47,12 +47,9 @@ public class PurchasedTransitionServiceImpl implements PurchasedTransitionServic
 	public List<PurchasedTransition> findByBookType(String bookType) {
 		return repository.findByBookType(bookType);
 	}
-
-//	@Override
-//	public List<PurchasedTransition> findByInvoiceNo(String invoiceNo) {
-//		return repository.findByInvoiceNo(invoiceNo);
-//	}
-
+	
+	//MyoSandiKyaw
+	
 	@Override
 	public List<BookReportModel> findCountByBook() {
 		return repository.findCountByBook();
@@ -72,4 +69,78 @@ public class PurchasedTransitionServiceImpl implements PurchasedTransitionServic
 	public List<UserReportModel> findCountByUserAndDate(LocalDate dateFrom, LocalDate dateTo) {
 		return repository.findCountByUserAndDate(dateFrom, dateTo);
 	}
+
+	@Override
+	public List<PurchasedTransition> findByErase(boolean erase) {
+		return repository.findByErase(erase);
+	}
+
+	@Override
+	public List<PurchasedTransition> findByDateBetween(LocalDate dateFrom, LocalDate dateTo) {
+		return repository.findByDateBetween(dateFrom, dateTo);
+	}
+
+	@Override
+	public List<PurchasedTransition> findByInvoiceNoWithGroupBy() {
+		return repository.findByInvoiceNoWithGroupBy();
+	}
+
+	@Override
+	public List<PurchasedTransition> findByInvoiceNo(String invoiceNo) {
+		return repository.findByInvoiceNo(invoiceNo);
+	}
+
+	@Override
+	public List<PurchasedTransition> findByInvoiceNoAndDateBetweenWithGroupBy(LocalDate dateFrom, LocalDate dateTo) {
+		return repository.findByInvoiceNoAndDateBetweenWithGroupBy(dateFrom, dateTo);
+	}
+
+	@Override
+	public List<PurchasedTransition> findByInvoiceNoAndDateWithGroupBy(LocalDate date) {
+		return repository.findByInvoiceNoAndDateWithGroupBy(date);
+	}
+
+	@Override
+	public List<PurchasedTransition> findByBookTypeWithGroupByInvoiceNo(boolean bookType) {
+		return repository.findByBookTypeWithGroupByInvoiceNo(bookType);
+	}
+
+	@Override
+	public List<PurchasedTransition> findByBookTypeAndDeliveryStatusWithGroupByInvoiceNo(boolean bookType,
+			String deliveryStatus) {
+		return repository.findByBookTypeAndDeliveryStatusWithGroupByInvoiceNo(bookType, deliveryStatus);
+	}
+	
+	@Override
+	public List<PurchasedTransition> findByBookTypeAndDateBetweenWithGroupByInvoiceNo(boolean bookType,LocalDate dateFrom, LocalDate dateTo) {
+		return repository.findByBookTypeAndDateBetweenWithGroupByInvoiceNo(bookType, dateFrom, dateTo);
+	}
+
+	@Override
+	public List<PurchasedTransition> findByBookTypeAndDeliveryStatusAndDateBetweenWithGroupByInvoiceNo(boolean bookType,
+			String deliveryStatus, LocalDate dateFrom, LocalDate dateTo) {
+		return repository.findByBookTypeAndDeliveryStatusAndDateBetweenWithGroupByInvoiceNo(bookType, deliveryStatus, dateFrom, dateTo);
+	}
+
+	@Override
+	public List<PurchasedTransition> findByBookTypeAndDeliveryStatusAndDateWithGroupByInvoiceNo(boolean bookType,
+			String deliveryStatus, LocalDate date) {
+		return repository.findByBookTypeAndDeliveryStatusAndDateWithGroupByInvoiceNo(bookType, deliveryStatus, date);
+	}
+
+	@Override
+	public List<PurchasedTransition> findByBookTypeAndDateWithGroupByInvoiceNo(boolean bookType, LocalDate date) {
+		return repository.findByBookTypeAndDateWithGroupByInvoiceNo(bookType, date);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
 }

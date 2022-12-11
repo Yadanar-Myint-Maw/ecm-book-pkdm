@@ -25,7 +25,7 @@ public class PurchasedTransition {
 	
 	private String sectionID;
 	
-	private String bookType;
+	private boolean bookType;
 	
 	@ManyToOne
 	private DiscountCoupon discountCoupon;
@@ -44,6 +44,8 @@ public class PurchasedTransition {
 	
 	@ManyToOne
 	private DeliveryInfo deliveryInfo;
+	
+	private double deliveryFee; //Myosandikyaw
 	
 	private boolean erase;
 	
@@ -74,11 +76,11 @@ public class PurchasedTransition {
 		this.purchasedInvoice = purchasedInvoice;
 	}
 
-	public String getBookType() {
+	public boolean isBookType() {
 		return bookType;
 	}
 
-	public void setBookType(String bookType) {
+	public void setBookType(boolean bookType) {
 		this.bookType = bookType;
 	}
 
@@ -177,5 +179,15 @@ public class PurchasedTransition {
 	public void setDeliveryStatus(String deliveryStatus) {
 		this.deliveryStatus = deliveryStatus;
 	}
+
+	public double getDeliveryFee() {
+		return deliveryFee;
+	}
+
+	public void setDeliveryFee(double deliveryFee) {
+		this.deliveryFee = deliveryFee;
+	}
+	
+	
 
 }
