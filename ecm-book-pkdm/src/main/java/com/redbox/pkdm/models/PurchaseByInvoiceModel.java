@@ -15,7 +15,7 @@ public class PurchaseByInvoiceModel {
 	
 	private List<PurchasedTransition> purchaseTransitions;
 	
-	private List<DiscountCoupon> discountCoupons;
+	//private List<DiscountCoupon> discountCoupons;
 		
 	private double total;
 	
@@ -28,13 +28,13 @@ public class PurchaseByInvoiceModel {
 	}
 	
 	public PurchaseByInvoiceModel(AccountUser accountUser, String invoiceNo,
-			List<PurchasedTransition> purchaseTransitions, List<DiscountCoupon> discountCoupons, double total,
+			List<PurchasedTransition> purchaseTransitions, double total,
 			String deliveryInfo, double deliveryFee) {
 		super();
 		this.accountUser = accountUser;
 		this.invoiceNo = invoiceNo;
 		this.purchaseTransitions = purchaseTransitions;
-		this.discountCoupons = discountCoupons;
+		//this.discountCoupons = discountCoupons;
 		this.total = total;
 		this.deliveryInfo = deliveryInfo;
 		this.deliveryFee = deliveryFee;
@@ -83,14 +83,14 @@ public class PurchaseByInvoiceModel {
 	}
 
 
-	public List<DiscountCoupon> getDiscountCoupons() {
-		return discountCoupons;
-	}
-
-
-	public void setDiscountCoupons(List<DiscountCoupon> discountCoupons) {
-		this.discountCoupons = discountCoupons;
-	}
+//	public List<DiscountCoupon> getDiscountCoupons() {
+//		return discountCoupons;
+//	}
+//
+//
+//	public void setDiscountCoupons(List<DiscountCoupon> discountCoupons) {
+//		this.discountCoupons = discountCoupons;
+//	}
 
 	public double getTotal() {
 		return total;

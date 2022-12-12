@@ -4,7 +4,7 @@ public class MyBookModel {
 	
 	private String bookID;
 	
-	private String bookType;
+	private boolean bookType;
 	
 	private String address;
 	
@@ -12,9 +12,11 @@ public class MyBookModel {
 		
 	}
 	
-	public MyBookModel (String bookID, String bookType) {
+	public MyBookModel(String bookID, boolean bookType, String address) {
+		super();
 		this.bookID = bookID;
 		this.bookType = bookType;
+		this.address = address;
 	}
 
 	public String getBookID() {
@@ -25,13 +27,16 @@ public class MyBookModel {
 		this.bookID = bookID;
 	}
 
-	public String getBookType() {
+	
+	public boolean isBookType() {
 		return bookType;
 	}
 
-	public void setBookType(String bookType) {
+
+	public void setBookType(boolean bookType) {
 		this.bookType = bookType;
 	}
+
 
 	public String getAddress() {
 		return address;

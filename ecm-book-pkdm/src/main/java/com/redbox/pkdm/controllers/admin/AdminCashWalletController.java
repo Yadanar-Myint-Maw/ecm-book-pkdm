@@ -57,7 +57,7 @@ public class AdminCashWalletController {
 		 return "signin";
 
 		}
-
+		 
 		 String redirectPage = "";
 
 		 List<Wallet> wallets = new ArrayList<>();
@@ -82,6 +82,7 @@ public class AdminCashWalletController {
 		 List<PurchaseByInvoiceModel> purchaseByInvoiceModelList = new ArrayList<>();
 		 List<PurchasedTransition> purchasedTransitions = new ArrayList<>();
 		 
+		 
 		 if(dateFrom == null && dateTo == null) {
 			 purchasedTransitions = purchasedTransitionService.findByInvoiceNoWithGroupBy();
 		 }else if(dateFrom.isEmpty() && dateTo != null ){
@@ -92,37 +93,39 @@ public class AdminCashWalletController {
 			 purchasedTransitions = purchasedTransitionService.findByInvoiceNoAndDateBetweenWithGroupBy(LocalDate.parse(dateFrom), LocalDate.parse(dateTo));
 		 } 
 		 
+		 
 		 for(PurchasedTransition purchasedTransition : purchasedTransitions) {
 			 double total = 0;
 			 double deliveryFee = 0;
-			 List<DiscountCoupon> discountCoupons = new ArrayList<>();
+			// List<DiscountCoupon> discountCoupons = new ArrayList<>();
 			 String deliveryInfo = "";
 			 
 			 List<PurchasedTransition> purchasedTransitionsByInvoiceNo = purchasedTransitionService.findByInvoiceNo(purchasedTransition.getInvoice_no());
 			 for(PurchasedTransition purchasedTransition2 : purchasedTransitionsByInvoiceNo) {
 				 total += purchasedTransition2.getTotal();
 				 
-				 if(purchasedTransition2.getDiscountCoupon() != null) {
-					 if(purchasedTransition2.getDiscountCoupon().getCouponType().equals("UserCoupon") || 
-							 purchasedTransition2.getDiscountCoupon().getCouponType().equals("OtherCoupon")
-						 ) {
-						 discountCoupons.add(purchasedTransition2.getDiscountCoupon());
-					 }
-				 }
-				 
+//				 if(purchasedTransition2.getDiscountCoupon() != null) {
+//					 if(purchasedTransition2.getDiscountCoupon().getCouponType().equals("UserCoupon") || 
+//							 purchasedTransition2.getDiscountCoupon().getCouponType().equals("OtherCoupon")
+//						 ) {
+//						 discountCoupons.add(purchasedTransition2.getDiscountCoupon());
+//					 }
+//				 }
 				 if(deliveryFee <= 0) {
 					 if(purchasedTransition2.isBookType() == true) {
 						 deliveryInfo = purchasedTransition2.getDeliveryInfo().getDeliveryTownship().getName() + ", " + 
 								 			purchasedTransition2.getDeliveryInfo().getDeliveryRegion().getName(); 
 						deliveryFee = purchasedTransition2.getDeliveryFee();
 					 }
-				 }	
+				 }		 
 			 }
+			 
+			 
 			 purchaseByInvoiceModelList.add(new PurchaseByInvoiceModel(purchasedTransition.getAccountUser(), purchasedTransition.getInvoice_no(),
-					 purchasedTransitionsByInvoiceNo, discountCoupons, total+deliveryFee , deliveryInfo, deliveryFee));
-		 }
+					 purchasedTransitionsByInvoiceNo, total , deliveryInfo, deliveryFee));
+		 } 
 		 
-		 
+		  
 		 model.addAttribute("purchases", purchaseByInvoiceModelList); 
 		 
 		 redirectPage = "admincashbalancepurchased"; 
@@ -164,8 +167,11 @@ public class AdminCashWalletController {
 				redirAttrs.addFlashAttribute("update", MessageUtility.getTopUpMessage());	
 			}	
 		}
+		
 		return "redirect:/admin/cash/wallet/init/TOPUP/0";
 	}
+	
+	
 	
 	private double getTotal (List<Wallet> wallets) {
 		double total = 0;
@@ -176,6 +182,5 @@ public class AdminCashWalletController {
 		} 
 		return total;
 	}
-
-
+	
 }
