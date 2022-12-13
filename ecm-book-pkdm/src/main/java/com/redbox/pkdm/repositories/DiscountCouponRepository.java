@@ -35,6 +35,11 @@ public interface DiscountCouponRepository extends JpaRepository<DiscountCoupon, 
 	@Query(value = "select d from DiscountCoupon as d where d.book.id = :bookId and d.erase = false ORDER BY d.id DESC")
 	List<DiscountCoupon> findByBook(@Param("bookId")String bookId);
 	
+	@Query(value = "select d from DiscountCoupon as d where d.name = :name")
+	List<DiscountCoupon> findByName(String name);
+	
+	
+	
 	
 	
 	

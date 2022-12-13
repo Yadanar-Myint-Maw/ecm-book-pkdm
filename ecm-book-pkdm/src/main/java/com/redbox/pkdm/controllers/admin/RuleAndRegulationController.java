@@ -46,6 +46,7 @@ public class RuleAndRegulationController {
 		return "adminruleandregulations";
 	}
 	
+	
 	@PostMapping("/ruleandregulations/save")
 	public String save(@ModelAttribute("ruleandregulation") RuleAndRegulation ruleAndRegulation, @CookieValue("login_user_id") String cookieId, Model model, RedirectAttributes redirAttrs) {
 		if (ruleAndRegulation.getSortNumber() == 0 || ruleAndRegulation.getTitle().isEmpty() || ruleAndRegulation.getDescription().isEmpty()) {
@@ -67,8 +68,7 @@ public class RuleAndRegulationController {
 			redirAttrs.addFlashAttribute("save", "Rule & Regulation update successfully.");
 			}
 		}
-		return "redirect:/admin/account/ruleandregulations/new";
-		
+		return "redirect:/admin/account/ruleandregulations/new";	
 	}
 	
 	@GetMapping("/ruleandregulations/delete/{id}")

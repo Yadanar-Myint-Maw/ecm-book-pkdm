@@ -69,12 +69,12 @@ public class BookAPI {
 				bookInformationModel.setImage(book.getImage());
 				bookInformationModel.setName(book.getName());
 				bookInformationModel.setDescription(book.getDescription());
-				bookInformationModel.setAuthor(getAuthorName(book.getId()));
-				bookInformationModel.setCategory(getCategoryName(book.getId()));
-				bookInformationModel.setRelated(getRelatedName(book.getId()));
-				bookInformationModel.setRelatedDiscount(getRelatedPrice(book.getId()));
-				bookInformationModel.setTag(getTagName(book));
-				bookInformationModel.setTagDiscount(getTagPrice(getTagName(book))); // Myosandikyaw
+				bookInformationModel.setAuthor(book.getAuthorName());			
+				bookInformationModel.setCategory(book.getCategoryName());
+				bookInformationModel.setRelated(book.getRelatedName());
+				bookInformationModel.setRelatedDiscount(book.getRelatedPrice());
+				bookInformationModel.setTag(book.getTagName());
+				bookInformationModel.setTagDiscount(book.getTagPrice()); // Myosandikyaw
 				bookInformationModel.setBookType(book.getBookType());
 				bookInformationModel.setElectronicBook(book.isElectronicBook());
 				bookInformationModel.setPhysicalBook(book.isPhysicalBook());
@@ -82,10 +82,11 @@ public class BookAPI {
 				bookInformationModel.setP_price(book.getP_price());
 				bookInformationModel.setE_discount(book.getE_discount());
 				bookInformationModel.setP_discount(book.getP_discount());
-				bookInformationModel.setE_actual_price(getActualPrice(book.getE_price(), book.getE_discount()));
-				bookInformationModel.setP_actual_price(getActualPrice(book.getP_price(), book.getP_discount()));
+				bookInformationModel.setE_actual_price(0);
+				bookInformationModel.setP_actual_price(0);
 				bookInformationModel.setE_purchased(false);
-				bookInformationModel.setP_purchased(false);
+				bookInformationModel.setP_purchased(false);		
+				bookInformationModel.setNo(book.getSortNo()); //Myosandikyaw
 				
 				List<BookSectionModel> bookSectionModels = new ArrayList<>();
 				for (BookSection bookSection : bookSectionService.findByBookId(book.getId(), false)) {
@@ -111,61 +112,61 @@ public class BookAPI {
 		}
 	}
 	
-	private String getAuthorName (String bookID) {
-		List<ShelfAuthor> authors = shelfAuthorMapperService.findByBook(bookID);
-		if (authors != null && authors.size() > 0) {
-			return authors.get(0).getName();
-		}
-		return "-";
-	}
-	
-	private String getCategoryName (String bookID) {
-		List<ShelfCategory> categories = shelfCategoryMapperService.findByBook(bookID);
-		if (categories != null && categories.size() > 0) {
-			return categories.get(0).getName();
-		}
-		return "-";
-	}
-	
-	private String getRelatedName (String bookID) {
-		List<ShelfRelated> relateds = shelfRelatedMapperService.findByBook(bookID);
-		if (relateds != null && relateds.size() > 0) {
-			return relateds.get(0).getName();
-		}
-		return "-";
-	}
-	
-	private double getRelatedPrice (String bookID) {
-		List<ShelfRelated> relateds = shelfRelatedMapperService.findByBook(bookID);
-		if (relateds != null && relateds.size() > 0) {
-			return relateds.get(0).getPrice();
-		}
-		return 0;
-	}
-	
-	private String getTagName (Book book) {
-		if (book.getBookTag() != null) {
-			return book.getBookTag().getName();
-		}
-		return "-";
-	}
-	
-	//MyosandiKyaw
-	private double getTagPrice (String name) {
-		List<BookTag> bookTags = bookTagService.findByName(name);
-		if (bookTags != null && bookTags.size() > 0) {
-			return bookTags.get(0).getDiscount();
-		}
-		return 0;
-	}
-	
-	
-	private double getActualPrice (double price, int discount) {
-		if (discount != 0) {
-			return price - ((price * discount) / 100);
-		}
-		return price;
-	}
+//	private String getAuthorName (String bookID) {
+//		List<ShelfAuthor> authors = shelfAuthorMapperService.findByBook(bookID);
+//		if (authors != null && authors.size() > 0) {
+//			return authors.get(0).getName();
+//		}
+//		return "-";
+//	}
+//	
+//	private String getCategoryName (String bookID) {
+//		List<ShelfCategory> categories = shelfCategoryMapperService.findByBook(bookID);
+//		if (categories != null && categories.size() > 0) {
+//			return categories.get(0).getName();
+//		}
+//		return "-";
+//	}
+//	
+//	private String getRelatedName (String bookID) {
+//		List<ShelfRelated> relateds = shelfRelatedMapperService.findByBook(bookID);
+//		if (relateds != null && relateds.size() > 0) {
+//			return relateds.get(0).getName();
+//		}
+//		return "-";
+//	}
+//	
+//	private double getRelatedPrice (String bookID) {
+//		List<ShelfRelated> relateds = shelfRelatedMapperService.findByBook(bookID);
+//		if (relateds != null && relateds.size() > 0) {
+//			return relateds.get(0).getPrice();
+//		}
+//		return 0;
+//	}
+//	
+//	private String getTagName (Book book) {
+//		if (book.getBookTag() != null) {
+//			return book.getBookTag().getName();
+//		}
+//		return "-";
+//	}
+//	
+//	//MyosandiKyaw
+//	private double getTagPrice (String name) {
+//		List<BookTag> bookTags = bookTagService.findByName(name);
+//		if (bookTags != null && bookTags.size() > 0) {
+//			return bookTags.get(0).getDiscount();
+//		}
+//		return 0;
+//	}
+//	
+//	
+//	private double getActualPrice (double price, int discount) {
+//		if (discount != 0) {
+//			return price - ((price * discount) / 100);
+//		}
+//		return price;
+//	}
 	
 	@GetMapping("/findmybooks/{userID}")
 	public List<MyBookModel> findMyBooks (@PathVariable String userID) {
@@ -175,7 +176,7 @@ public class BookAPI {
 			List<PurchasedTransition> purchasedTransitions = purchasedTransitionService.findByUser(userID);
 			for (PurchasedTransition purchasedTransition : purchasedTransitions) {
 				model.setBookID(purchasedTransition.getBook().getId());
-				model.setBookType(purchasedTransition.getBookType());
+				model.setBookType(purchasedTransition.isBookType());
 				if (purchasedTransition.getDeliveryInfo() != null) {
 					model.setAddress(purchasedTransition.getDeliveryInfo().getPhone() + ", " + purchasedTransition.getDeliveryInfo().getDeliveryRegion().getName() + ", " + purchasedTransition.getDeliveryInfo().getDeliveryTownship().getName() + ", " + purchasedTransition.getDeliveryInfo().getAddressDetail());
 				}

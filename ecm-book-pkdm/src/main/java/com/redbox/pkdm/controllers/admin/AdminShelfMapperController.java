@@ -45,11 +45,11 @@ public class AdminShelfMapperController {
 		if (loginaccount == null) {
 			throw new Exception();
 		}
+		
 		model.addAttribute("loginaccount", loginaccount);	
 		
 		model.addAttribute("features", shelfFeatureService.findByErase(false));
 		model.addAttribute("books" , bookService.findByErase(false));
-		model.addAttribute("shelfFeatureMappers" , shelfFeatureMapperService.findAll());
 		
 		if(id.equals("0")) {
 			model.addAttribute("shelfFeatureMapper", new ShelfFeatureMapper());
@@ -59,12 +59,11 @@ public class AdminShelfMapperController {
 		}
 		
 		if(featureId == null) {
-			model.addAttribute("featureMappers", shelfFeatureMapperService.findByErase(false));
+			model.addAttribute("shelfFeatureMappers", shelfFeatureMapperService.findByErase(false));
 		}else {
-			model.addAttribute("featureMappers", shelfFeatureMapperService.findById(Long.parseLong(featureId)));
+			model.addAttribute("shelfFeatureMappers", shelfFeatureMapperService.findById(Long.parseLong(featureId)));
 		}
 
-		
 		return "adminshelfmapper";
 	}
 	
@@ -88,8 +87,7 @@ public class AdminShelfMapperController {
 				shelfFeatureMapper2.getSecurityInfo().setUpdateUser(cookieId);
 				shelfFeatureMapperService.save(shelfFeatureMapper2, featureId, bookId);
 				redirAttrs.addFlashAttribute("update", "Shelf Feature Mapper update successfully");
-			}
-			
+			}	
 		}
 		
 		return "redirect:/admin/shelf/mapper/initialize/0";

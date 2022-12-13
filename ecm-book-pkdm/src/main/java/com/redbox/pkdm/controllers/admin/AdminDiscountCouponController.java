@@ -43,14 +43,13 @@ public class AdminDiscountCouponController {
 		}else {
 			model.addAttribute("discountcoupon", discountCouponService.findByID(Long.parseLong(id)));
 		}
-		
-		if (dateFrom == null || dateTo == null || dateFrom.isEmpty() || dateTo.isEmpty()) {
+			
+		if (name == null && dateFrom == null && dateTo == null) {
 			model.addAttribute("discountcoupons", discountCouponService.findByErase(false));
 		} else {
-			if (dateFrom.equals(dateTo)) {
-				LocalDate date1 = LocalDate.parse(dateFrom);
-				model.addAttribute("discountcoupons", discountCouponService.findBySingleDate(date1));	
-			} else {
+			if (name != null && dateFrom.isEmpty() && dateTo.isEmpty()) {
+				model.addAttribute("discountcoupons", discountCouponService.findByName(name));	
+			} else if(name == null && !dateFrom.isEmpty() && !dateTo.isEmpty()){
 				LocalDate date1 = LocalDate.parse(dateFrom);
 				LocalDate date2 = LocalDate.parse(dateTo);
 				model.addAttribute("discountcoupons", discountCouponService.findByDateFromAndDateTo(date1, date2));	
@@ -87,6 +86,7 @@ public class AdminDiscountCouponController {
 		}
 		return "redirect:/admin/discount/coupon/initialize/0";
 	}
+	
 	
 	
 	@GetMapping("/delete/{id}")

@@ -203,7 +203,7 @@
 					<span class="lbl">Book</span>
 						<select name="bookId" id="bookName" class="form-control textfield mt-1" value="Action">
 							
-	        				<option th:each="book : ${books}" th:text="${book.name}" th:value="${book.id}"></option>
+	        				<option th:each="book : ${books}" th:text="${book.name}" th:value="${book.id}" th:field=*{book}></option>
 	     			 	</select>
 					</div>
 					
@@ -212,7 +212,7 @@
 						<select name="featureId" id="feature" class="form-control textfield mt-1" value="Action">
 						
 							
-							<option th:each="feature : ${features}" th:text="${feature.name}"
+							<option th:each="feature : ${features}" th:text="${feature.name}" th:field=*{shelfFeature}
                 					th:value="${feature.id}"></option>
      			 			</select>
 				</div>	
@@ -230,7 +230,7 @@
 		</form>
 		
 		
-      	<form th:action="@{/admin/shelf/featuremappers/new}" method="get" style="width: 100%; height:120px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
+      	<form th:action="@{/admin/shelf/mapper/initialize/0}" method="get" style="width: 100%; height:120px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
 		<div style="width: 100%; background-color: #FFFFFF; font-size: 10px;"  class="pb-2 container-fluid mt-4">
 			<div class="row">
 				<div class="col-12 font-weight-bold text-danger pt-1">
@@ -278,10 +278,10 @@
 					    <td th:text="${featureMapper.shelfFeature.name}"></td>
 					      
 					      <td>			     
-					      	<a class="text-primary" th:href="@{/admin/shelf/featuremappers/{id}(id=${featureMapper.id})}"> Edit </a> 
+					      	<a class="text-primary" th:href="@{/admin/shelf/mapper/initialize/{id}(id=${featureMapper.id})}"> Edit </a> 
 					      </td>
 					      <td>
-					      	<a class="text-danger" th:href="@{/admin/shelf/featuremappers/delete/{id}(id=${featureMapper.id})}"> Delete </a>
+					      	<a class="text-danger" th:href="@{/admin/shelf/mapper/delete/{id}(id=${featureMapper.id})}"> Delete </a>
 					      </td>  
 					    </tr>
 					  </tbody>

@@ -37,7 +37,6 @@ public class AdminDeliveryTownshipController {
 	@Autowired
 	private AccountAdminService accountAdminService;
 	
-	
 	@GetMapping("/initialize/{id}")
 	public String initialize(@PathVariable String id,@CookieValue("login_user_id") String cookieId, Model model, String keyword,String regId) throws Exception {
 		
@@ -82,6 +81,7 @@ public class AdminDeliveryTownshipController {
 		model.addAttribute("townships", townships);
 		return "admindeliverytownship";
 	}
+	
 	
 	@PostMapping("/save")
 	public String save(@ModelAttribute("deliveryTownship") DeliveryTownship deliveryTownship,@RequestParam String regId, @CookieValue("login_user_id") String cookieId, RedirectAttributes redirAttrs) {

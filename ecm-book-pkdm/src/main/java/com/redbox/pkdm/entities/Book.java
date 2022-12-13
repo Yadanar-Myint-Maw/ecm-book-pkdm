@@ -77,6 +77,22 @@ public class Book {
 	@Embedded
 	private SecurityInfo securityInfo;
 	
+	//Myosandikyaw
+	
+	private String authorName;
+	
+	private String categoryName;
+	
+	private String relatedName;
+	
+	private double relatedPrice;
+	
+	private String tagName;
+	
+	private double tagPrice;
+	
+	private long sortNo;
+	
 	public Book() {
 		
 	}
@@ -315,5 +331,67 @@ public class Book {
 	public void setRelatedDiscount(String relatedDiscount) {
 		this.relatedDiscount = relatedDiscount;
 	}
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public double getRelatedPrice() {
+		return relatedPrice;
+	}
+
+	public void setRelatedPrice(double relatedPrice) {
+		this.relatedPrice = relatedPrice;
+	}
+
+	public double getTagPrice() {
+		return tagPrice;
+	}
+
+	public void setTagPrice(double tagPrice) {
+		this.tagPrice = tagPrice;
+	}
+
+	public String getRelatedName() {
+		return relatedName;
+	}
+
+	public void setRelatedName(String relatedName) {
+		this.relatedName = relatedName;
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+
+	public long getSortNo() {
+		return sortNo;
+	}
+
+	public void setSortNo(long sortNo) {
+		this.sortNo = sortNo;
+	}
+	
+	
+	
+	
+	
+	
 
 }

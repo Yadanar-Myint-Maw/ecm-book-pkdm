@@ -81,7 +81,6 @@ public class AdminDeliveryRegionController {
 				deliveryRegionService.save(deliveryRegion2);
 				redirAttrs.addFlashAttribute("update","Delivery Region update successfully.");
 			}
-			
 		}
 		return "redirect:/admin/delivery/region/initialize/0";
 	}

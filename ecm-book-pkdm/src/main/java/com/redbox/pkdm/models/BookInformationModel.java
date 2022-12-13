@@ -43,6 +43,8 @@ public class BookInformationModel {
 	private boolean e_purchased;
 	
 	private boolean p_purchased;
+	
+	private long no; //Myosandikyaw
 
 	public String getId() {
 		return id;
@@ -211,6 +213,16 @@ public class BookInformationModel {
 	public void setTagDiscount(double tagDiscount) {
 		this.tagDiscount = tagDiscount;
 	}
+
+	public long getNo() {
+		return no;
+	}
+
+	public void setNo(long no) {
+		this.no = no;
+	}
+	
+	
 	
 	
 

@@ -35,6 +35,8 @@ public interface DiscountCouponService {
 	
 	List<DiscountCoupon> findByBook(String bookId);
 	
+	List<DiscountCoupon> findByName(String name);
+	
 	
 
 

@@ -189,7 +189,7 @@
         	<div class="bg-primary rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${update}" th:if="${update}"></div>
 			<div class="bg-danger rounded-0 pl-4 pt-2 pb-2" role="alert" th:text="${validation}" th:if="${validation}"></div>
         </div>
-      	<form  class="border-bottom" th:action="@{/admin/deliver/township/save}" enctype="multipart/form-data" th:object="${deliveryTownship}" method="post" style="width: 100%; height:170px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
+      	<form  class="border-bottom" th:action="@{/admin/delivery/township/save}" enctype="multipart/form-data" th:object="${deliveryTownship}" method="post" style="width: 100%; height:170px; box-shadow: none; background-color: #F1F1F2; border-radius: 0px;">
 		<div style="width: 100%; background-color: #F1F1F2;"  class="pb-2 container-fluid pt-4">
 		<div class="">
 			<div class="row">
@@ -203,7 +203,7 @@
 						<span class="lbl">Region</span>
 						<select name="regId" id="region" class="form-control textfield" value="Action">
 							<option value="notselected">Select Region</option>
-							<option th:each="region : ${regions}" th:text="${region.name}"
+							<option th:each="region : ${regions}" th:text="${region.name}" th:field=*{deliveryRegion}
                 					th:value="${region.id}"></option>
      			 			</select>
 					</div>
@@ -229,7 +229,7 @@
 		</div>
 		</form>
       	
-      	<form th:action="@{/admin/delivery/townships/new}" style="width: 100%; height:120px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
+      	<form th:action="@{/admin/delivery/township/initialize/0}" style="width: 100%; height:120px; box-shadow: none; background-color: #FFFFFF; border-radius: 0px;">
 		<div style="width: 100%; background-color: #FFFFFF;"  class="pb-2 container-fluid mt-4">
 			<div class="row">
 				<div class="col-12 font-weight-bold text-danger pt-1">
